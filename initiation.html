@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!-- This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). -->
+
+<html>
+
+<head>
+    <title>Sacraments of Initiation</title>
+    <script type="text/javascript" src="initiation.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', (event) => {
+            updateForm();
+            addFormListeners();
+        });
+    </script>
+</head>
+<body>
+    <noscript>Warning: this page will not work without JavaScript enabled.</noscript>
+    <form autocomplete="off" method="post" action="" onsubmit="return false;">
+    <div id="recipient">
+        <h1>Recipient</h1>
+        <div id="recipient.basics">
+            <p>
+                <label for="recipient.name">Recipient's full name:</label>
+                <input type="text" id="recipient.name"/>
+            </p>
+            <p>
+                <label for="recipient.birth">Recipient's date of birth:</label>
+                <input type="date" id="recipient.birth"/>
+            </p>
+            <p>
+                <label for="sacraments.date">Date of reception of sacraments:</label>
+                <input type="date" id="sacraments.date"/>
+            </p>
+        </div>
+       
+        <div>
+            <p>
+                Is this person adopted?
+                <label for="recipient.adopted.false">No</label>
+                <input type="radio" id="recipient.adopted.false" name="recipient.adopted" checked="true"/>
+                <label for="recipient.adopted.true">Yes</label>
+                <input type="radio" id="recipient.adopted.true" name="recipient.adopted"/>
+            </p>
+            <p id="recipient.birthinfo">
+                <label for="recipient.birthname">Recipient's full birth name:</label>
+                <input type="text" id="recipient.birthname"/>
+            </p>
+        </div>
+    </div>
+    <div id="minister">
+        <h1>Minister</h1>
+    </div>
+    <div id="baptism.faculty">
+        <h1>Faculty to baptise</h1>
+    </div>
+    <div id="confirmation.faculty">
+        <h1>Faculty to confirm</h1>
+    </div>
+    <div id="eucharist.faculty">
+        <h1>Faculty to administer Holy Communion</h1>
+    </div>
+    <div id="baptism.register">
+        <h1>Baptismal register</h1>
+    </div>
+    <div id="confirmation.register">
+        <h1>Confirmation register</h1>
+    </div>
+    </form>
+</body>
+
+</html>
