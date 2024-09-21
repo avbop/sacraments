@@ -71,7 +71,7 @@ function updateForm() {
 
     // Show calculated age.
     let age = recipient('age');
-    if (age) {
+    if (age != NaN && age >= 0) {
         document.getElementById('ceremony.age').innerHTML = '(Recipient\'s canonical age: ' + age + ')';
     } else {
         document.getElementById('ceremony.age').innerHTML = '';
