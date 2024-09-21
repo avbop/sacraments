@@ -25,6 +25,7 @@ As time and effort allow, the project may be extended to briefly propose ideas r
     - This project will include citations to the relevant canons. These citations will be formatted in a way that is easy to find for an interested user but otherwise unobtrusive.
 4. Release to the public domain.
     - All code and other content created for this project is hereby released to the public domain.
+    - The code and other content created for this project will not incorporate any any information that cannot be released to the public domain.
     - Each file will indicate this public domain release by means of the [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) mark.
 
 # Public domain
