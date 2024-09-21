@@ -20,21 +20,27 @@
     <div id="recipient">
         <h1>Recipient</h1>
         <div id="recipient.basics">
+            <h2>Biographical details</h2>
             <p>
                 <label for="recipient.name">Recipient's full name:</label>
                 <input type="text" id="recipient.name"/>
             </p>
             <p>
-                <label for="recipient.birth">Recipient's date of birth:</label>
-                <input type="date" id="recipient.birth"/>
+                <label for="recipient.birthdate">Recipient's date of birth:</label>
+                <input type="date" id="recipient.birthdate"/>
             </p>
             <p>
-                <label for="sacraments.date">Date of reception of sacraments:</label>
-                <input type="date" id="sacraments.date"/>
+                <label for="recipient.birthplace">Recipient's place of birth:</label>
+                <input type="text" id="recipient.birthplace"/>
             </p>
-        </div>
-       
-        <div>
+            <p>
+                <label for="recipient.parents.mother">Recipient's mother's full maiden name:</label>
+                <input type="text" id="recipient.parents.mother"/>
+            </p>
+            <p>
+                <label for="recipient.parents.father">Recipient's father's full name:</label>
+                <input type="text" id="recipient.parents.father"/>
+            </p>
             <p>
                 Is this person adopted?
                 <label for="recipient.adopted.false">No</label>
@@ -42,14 +48,56 @@
                 <label for="recipient.adopted.true">Yes</label>
                 <input type="radio" id="recipient.adopted.true" name="recipient.adopted"/>
             </p>
-            <p id="recipient.birthinfo">
-                <label for="recipient.birthname">Recipient's full birth name:</label>
+            <p>
+                Has this person been baptised?
+                <label for="recipient.baptised.false">No</label>
+                <input type="radio" id="recipient.baptised.false" name="recipient.baptised" checked="true"/>
+                <label for="recipient.baptised.true">Yes</label>
+                <input type="radio" id="recipient.baptised.true" name="recipient.baptised"/>
+            </p>
+        </div>
+       
+        <div id="recipient.birthinfo">
+            <h2>Birth information</h2>
+            <p>Fill in the following with as much information as is known.</p>
+            <p>
+                <label for="recipient.birthname">Recipient's full name at birth:</label>
                 <input type="text" id="recipient.birthname"/>
+            </p>
+            <p>
+                <label for="recipient.birthparents.mother">Recipient's birth mother's full maiden name:</label>
+                <input type="text" id="recipient.birthparents.mother"/>
+            </p>
+            <p>
+                <label for="recipient.birthparents.father">Recipient's birth father's full name:</label>
+                <input type="text" id="recipient.birthparents.father"/>
+            </p>
+        </div>
+
+        <div id="recipient.baptisminfo">
+            <h2>Baptism information</h2>
+            <p>
+                <label for="recipient.baptismdate">Recipient's date of baptism:</label>
+                <input type="date" id="recipient.baptismdate"/>
+            </p>
+            <p>
+                <label for="recipient.baptismplace">Recipient's place of baptism:</label>
+                <input type="text" id="recipient.baptismplace"/>
             </p>
         </div>
     </div>
     <div id="minister">
         <h1>Minister</h1>
+    </div>
+    <div id="ceremony">
+        <h1>Ceremony</h1>
+        <div>
+            <p>
+                <label for="ceremony.date">Date of reception of sacraments:</label>
+                <input type="date" id="ceremony.date"/>
+                <span id="ceremony.age"></span>
+            </p>
+        </div>
     </div>
     <div id="baptism.faculty">
         <h1>Faculty to baptise</h1>
