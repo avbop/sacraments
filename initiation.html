@@ -13,6 +13,7 @@
             addFormListeners();
         });
     </script>
+    <link rel="stylesheet" href="initiation.css"/>
 </head>
 <body>
     <noscript>Warning: this page will not work without JavaScript enabled.</noscript>
@@ -43,17 +44,27 @@
             </p>
             <p>
                 Is this person adopted?
-                <label for="recipient.adopted.false">No</label>
-                <input type="radio" id="recipient.adopted.false" name="recipient.adopted" checked="true"/>
-                <label for="recipient.adopted.true">Yes</label>
-                <input type="radio" id="recipient.adopted.true" name="recipient.adopted"/>
+                <select id="recipient.adopted">
+                    <option selected="true">No</option>
+                    <option>Yes</option>
+                </select>
             </p>
             <p>
-                Has this person been baptised?
-                <label for="recipient.baptised.false">No</label>
-                <input type="radio" id="recipient.baptised.false" name="recipient.baptised" checked="true"/>
-                <label for="recipient.baptised.true">Yes</label>
-                <input type="radio" id="recipient.baptised.true" name="recipient.baptised"/>
+                Which sacraments has this person received?
+                <ul class="blanklist">
+                    <li>
+                        <input type="checkbox" id="recipient.baptised"/>
+                        <label for="recipient.baptised">Baptism</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="recipient.confirmed"/>
+                        <label for="recipient.confirmed">Confirmation</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="recipient.communioned"/>
+                        <label for="recipient.communioned">Holy Communion</label>
+                    </li>
+                </ul>
             </p>
         </div>
        
@@ -84,6 +95,10 @@
                 <label for="recipient.baptismplace">Recipient's place of baptism:</label>
                 <input type="text" id="recipient.baptismplace"/>
             </p>
+            <p>
+                <label for="recipient.baptismsponsors">Full names of the sponsors (godparents):</label>
+                <input type="text" id="recipient.baptismsponsors"/>
+            </p>
         </div>
     </div>
     <div id="minister">
@@ -92,10 +107,37 @@
     <div id="ceremony">
         <h1>Ceremony</h1>
         <div>
+            <h2>Calendar</h2>
             <p>
                 <label for="ceremony.date">Date of reception of sacraments:</label>
                 <input type="date" id="ceremony.date"/>
                 <span id="ceremony.age"></span>
+            </p>
+            <p>
+                <label for="ceremony.place">Place of reception of sacraments:</label>
+                <select id="ceremony.place">
+                    <option selected="true"></option>
+                    <option>Parish church</option>
+                    <option>Other church or oratory</option>
+                    <option>Outside a sacred space</option>
+                </select>
+            </p>
+        </div>
+
+        <div id="ceremony.sponsors">
+            <h2>Sponsors (godparents)</h2>
+            <p id="ceremony.sponsors.firstP">
+                <label for="ceremony.sponsors.first">Full name of Catholic sponsor:</label>
+                <input type="text" id="ceremony.sponsors.first"/>
+            </p>
+            <p id="ceremony.sponsors.secondP">
+                Full name of <select id="ceremony.sponsors.secondtype">
+                    <option>Catholic sponsor</option>
+                    <option>Christian witness</option>
+                </select> (if any):
+                <input type="text" id="ceremony.sponsors.second"/>
+                <br/>
+                Note: the second sponsor (godparent) is optional. There may not be more than two sponsors for baptism.
             </p>
         </div>
     </div>

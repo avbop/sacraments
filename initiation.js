@@ -5,6 +5,12 @@ function addFormListeners() {
             updateForm();
         });
     }
+    const selects = document.getElementsByTagName('select');
+    for (var i of selects) {
+        i.addEventListener('input', (event) => {
+            updateForm();
+        });
+    }
 }
 
 function calculate_age(bday, sacday) {
@@ -34,9 +40,13 @@ function recipient(p) {
         case 'birthday':
             return new Date(document.getElementById('recipient.birthdate').value);
         case 'adopted':
-            return document.getElementById('recipient.adopted.true').checked;
+            return document.getElementById('recipient.adopted').value == 'Yes';
         case 'baptised':
-            return document.getElementById('recipient.baptised.true').checked;
+            return document.getElementById('recipient.baptised').checked;
+        case 'confirmed':
+            return document.getElementById('recipient.confirmed').checked;
+        case 'communioned':
+            return document.getElementById('recipient.communioned').checked;
         default:
             return document.getElementById('recipient.' + p).value;
     }
@@ -55,6 +65,8 @@ function updateForm() {
     // This function runs every time the form is modified.
     // Run through the entire form and show/hide/update as needed.
 
+    console.log('Updating form...');
+
     // Show calculated age.
     let age = recipient('age');
     if (age) {
@@ -66,8 +78,26 @@ function updateForm() {
     // Show/hide baptism info.
     if (recipient('baptised')) {
         document.getElementById('recipient.baptisminfo').style.display = 'block';
+        document.getElementById('recipient.confirmed').disabled = false;
+        document.getElementById('recipient.communioned').disabled = false;
     } else {
         document.getElementById('recipient.baptisminfo').style.display = 'none';
+        document.getElementById('recipient.confirmed').disabled = true;
+        document.getElementById('recipient.confirmed').checked = false;
+        document.getElementById('recipient.communioned').disabled = true;
+        document.getElementById('recipient.communioned').checked = false;
+    }
+
+    // Show/hide sponsor info.
+    if (recipient('baptised')) {
+        document.getElementById('ceremony.sponsors.secondP').style.display = 'none';
+    } else {
+        document.getElementById('ceremony.sponsors.secondP').style.display = 'block';
+    }
+    if (recipient('confirmed')) {
+        document.getElementById('ceremony.sponsors').style.display = 'none';
+    } else {
+        document.getElementById('ceremony.sponsors').style.display = 'block';
     }
 
     // Show/hide adoption info.
