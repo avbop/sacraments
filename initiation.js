@@ -77,11 +77,15 @@ function updateForm() {
 
     // Show/hide baptism info.
     if (recipient('baptised')) {
+        // Collect info about prior baptism.
         document.getElementById('recipient.baptisminfo').style.display = 'block';
+        // Baptism enables other sacraments.
         document.getElementById('recipient.confirmed').disabled = false;
         document.getElementById('recipient.communioned').disabled = false;
     } else {
+        // Don't collect info about (non-existent) prior baptism.
         document.getElementById('recipient.baptisminfo').style.display = 'none';
+        // Without baptism, can't receive other sacraments.
         document.getElementById('recipient.confirmed').disabled = true;
         document.getElementById('recipient.confirmed').checked = false;
         document.getElementById('recipient.communioned').disabled = true;
@@ -89,12 +93,12 @@ function updateForm() {
     }
 
     // Show/hide sponsor info.
-    if (recipient('baptised')) {
+    if (recipient('baptised')) { // If baptised, they're going to be at most confirmed, so at most one sponsor.
         document.getElementById('ceremony.sponsors.secondP').style.display = 'none';
     } else {
         document.getElementById('ceremony.sponsors.secondP').style.display = 'block';
     }
-    if (recipient('confirmed')) {
+    if (recipient('confirmed')) { // If confirmed, they're by definition also baptised, so no sponsors are needed.
         document.getElementById('ceremony.sponsors').style.display = 'none';
     } else {
         document.getElementById('ceremony.sponsors').style.display = 'block';
