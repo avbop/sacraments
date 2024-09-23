@@ -25,7 +25,7 @@ function calculate_age(bday, sacday) {
     const sacMonth = sacday.getMonth();
     const sacDay = sacday.getDate();
     let age = sacYear - bornYear - 1;
-    if (sacMonth >= bornMonth && sacDay > bornDay) {
+    if ((sacMonth > bornMonth) || (sacMonth == bornMonth && sacDay > bornDay)) {
         age += 1;
     }
     if (age >= 0) {
