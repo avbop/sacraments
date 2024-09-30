@@ -2,7 +2,7 @@
 This project will provide an easy to use form that will assist a clerical user to collect and sort the information necessary to:
 1. determine whether a person is ready to receive one or more of the sacraments of initiation;
 2. obtain any necessary faculties to licitly administer said sacraments; and
-3. accurately record the sacraments after they have been administered.
+3. ensure that the sacraments of initiation have been properly recorded.
 
 This project is limited to the sacraments of initiation in the Latin Church.
 The user will be instructed to turn to his local chancery for this information as it relates to matrimony.
