@@ -27,6 +27,9 @@ As time and effort allow, the project may be extended to briefly propose ideas r
     - All code and other content created for this project is hereby released to the public domain.
     - The code and other content created for this project will not incorporate any any information that cannot be released to the public domain.
     - Each file will indicate this public domain release by means of the [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) mark.
+    - Exception: fonts, images, and other media used by, but not produced for, this project might have their own licences.
 
-# Public domain
+# Licence
 This file is released to the public domain and is marked with [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+
+The font used for this project, Charter, is free to use and redistribute without limitations, but it is not in the public domain. See [its licence](fonts/Charter license.txt) for details. BITSTREAM CHARTER is a registered trademark of Bitstream Inc.
