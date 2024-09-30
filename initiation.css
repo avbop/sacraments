@@ -3,3 +3,24 @@
 .blanklist {
     list-style: none;
 }
+
+.note {
+    font-style: italic;
+}
+
+.latin {
+    font-style: italic;
+}
+
+footer {
+    border-top: thin solid black;
+    font-style: italic;
+    text-align: right;
+}
+
+@media print {
+    a {
+        color: black;
+        text-decoration: none;
+    }
+}

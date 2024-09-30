@@ -80,18 +80,43 @@ function updateForm() {
     // Show/hide baptism info.
     if (recipient('baptised')) {
         // Collect info about prior baptism.
-        document.getElementById('recipient.baptisminfo').style.display = 'block';
+        document.getElementById('recipient.priorbaptisminfo').style.display = 'block';
         // Baptism enables other sacraments.
         document.getElementById('recipient.confirmed').disabled = false;
         document.getElementById('recipient.communioned').disabled = false;
     } else {
         // Don't collect info about (non-existent) prior baptism.
-        document.getElementById('recipient.baptisminfo').style.display = 'none';
+        document.getElementById('recipient.priorbaptisminfo').style.display = 'none';
         // Without baptism, can't receive other sacraments.
         document.getElementById('recipient.confirmed').disabled = true;
         document.getElementById('recipient.confirmed').checked = false;
         document.getElementById('recipient.communioned').disabled = true;
         document.getElementById('recipient.communioned').checked = false;
+    }
+
+    // Show/hide prior confirmation info.
+    if (recipient('confirmed')) {
+        document.getElementById('recipient.priorconfirmationinfo').style.display = 'block';
+    } else {
+        document.getElementById('recipient.priorconfirmationinfo').style.display = 'none';
+    }
+
+    // Show/hide prior reception into full communion info.
+    // Use stacked ifs so the logic is clearer.
+    if (recipient('baptised')) {
+        const oldchurch = recipient('priorbaptism.church')
+        const newchurch = recipient('currentchurch')
+        if (oldchurch == 'unknown' || oldchurch == 'orthodox' || oldchurch == 'protestant') {
+            if (newchurch == 'latin' || newchurch == 'eastern') {
+                document.getElementById('recipient.priorfullcommunioninfo').style.display = 'block';
+            } else {
+                document.getElementById('recipient.priorfullcommunioninfo').style.display = 'none';
+            }
+        } else {
+            document.getElementById('recipient.priorfullcommunioninfo').style.display = 'none';
+        }
+    } else {
+        document.getElementById('recipient.priorfullcommunioninfo').style.display = 'none';
     }
 
     // Show/hide sponsor info.
@@ -111,5 +136,22 @@ function updateForm() {
         document.getElementById('recipient.birthinfo').style.display = 'block';
     } else {
         document.getElementById('recipient.birthinfo').style.display = 'none';
+    }
+
+    // Show/hide faculties sections.
+    if (recipient('baptised')) {
+        document.getElementById('faculty.baptism').style.display = 'none';
+    } else {
+        document.getElementById('faculty.baptism').style.display = 'block';
+    }
+    if (recipient('confirmed')) {
+        document.getElementById('faculty.confirmation').style.display = 'none';
+    } else {
+        document.getElementById('faculty.confirmation').style.display = 'block';
+    }
+    if (recipient('communioned')) {
+        document.getElementById('faculty.eucharist').style.display = 'none';
+    } else {
+        document.getElementById('faculty.eucharist').style.display = 'block';
     }
 }

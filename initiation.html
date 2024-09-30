@@ -15,10 +15,12 @@
     </script>
     <link rel="stylesheet" href="initiation.css"/>
 </head>
+
 <body>
+    <main>
     <noscript>Warning: this page will not work without JavaScript enabled.</noscript>
     <form autocomplete="off" method="post" action="" onsubmit="return false;">
-    <div id="recipient">
+    <section id="recipient">
         <h1>Recipient</h1>
         <div id="recipient.basics">
             <h2>Biographical details</h2>
@@ -50,7 +52,7 @@
                 </select>
             </p>
             <p>
-                Which sacraments has this person received?
+                Which sacraments has this person (validly) received?
                 <ul class="blanklist">
                     <li>
                         <input type="checkbox" id="recipient.baptised"/>
@@ -85,26 +87,96 @@
             </p>
         </div>
 
-        <div id="recipient.baptisminfo">
+        <div id="recipient.priorbaptisminfo">
             <h2>Baptism information</h2>
             <p>
-                <label for="recipient.baptismdate">Recipient's date of baptism:</label>
-                <input type="date" id="recipient.baptismdate"/>
+                <label for="recipient.priorbaptism.date">Recipient's date of baptism:</label>
+                <input type="date" id="recipient.priorbaptism.date"/>
             </p>
             <p>
-                <label for="recipient.baptismplace">Recipient's place of baptism:</label>
-                <input type="text" id="recipient.baptismplace"/>
+                <label for="recipient.priorbaptism.place">Name and city of the recipient's place of baptism:</label>
+                <input type="text" id="recipient.priorbaptism.place"/>
             </p>
             <p>
-                <label for="recipient.baptismsponsors">Full names of the sponsors (godparents):</label>
-                <input type="text" id="recipient.baptismsponsors"/>
+                <label for="recipient.priorbaptism.minister">Full name and title of the person who performed the baptism:</label>
+                <input type="text" id="recipient.priorbaptism.minister" />
+            </p>
+            <p>
+                <label for="recipient.priorbaptism.sponsors">Full names of the sponsors (godparents):</label>
+                <input type="text" id="recipient.priorbaptism.sponsors"/>
+            </p>
+            <p>
+                <label for="recipient.priorbaptism.church">Church or denomination into which the recipient was baptised:</label>
+                <select id="recipient.priorbaptism.church">
+                    <option value="unknown" selected="true">Unknown</option>
+                    <option value="latin">Latin Catholic Church</option>
+                    <option value="eastern">Eastern Catholic Church</option>
+                    <option value="orthodox">Eastern non-Catholic Church</option>
+                    <option value="protestant">Other non-Catholic Christian community</option>
+                </select>
+            </p>
+            <p>
+                <label for="recipient.currentchurch">To which Church or Christian community does this person currently belong?</label>
+                <select id="recipient.currentchurch">
+                    <option value="unknown" selected="true">Unknown</option>
+                    <option value="latin">Latin Catholic Church</option>
+                    <option value="eastern">Eastern Catholic Church</option>
+                    <option value="orthodox">Eastern non-Catholic Church</option>
+                    <option value="protestant">Other non-Catholic Christian community</option>
+                </select>
             </p>
         </div>
-    </div>
-    <div id="minister">
+
+        <div id="recipient.priorfullcommunioninfo">
+            <h2>Information about reception into full communion</h2>
+            <p>
+                <label for="recipient.priorfullcommunion.date">Date recipient was received into full communion:</label>
+                <input type="date" id="recipient.priorfullcommunion.date"/>
+            </p>
+            <p>
+                <label for="recipient.priorfullcommunion.place">Name and city of the Catholic parish where this person was received into full communion:</label>
+                <input type="text" id="recipient.priorfullcommunion.place"/>
+            </p>
+            <p>
+                <label for="recipient.priorfullcommunion.minister">Full name of the minister who received this person into full communion:</label>
+                <input type="text" id="recipient.priorfullcommunion.minister"/>
+            </p>
+        </div>
+
+        <div id="recipient.priorconfirmationinfo">
+            <h2>Confirmation information</h2>
+            <p>
+                <label for="recipient.priorconfirmation.date">Recipient's date of confirmation:</label>
+                <input type="date" id="recipient.priorconfirmation.date"/>
+            </p>
+            <p>
+                <label for="recipient.priorconfirmation.place">Name and city of the recipient's place of confirmation:</label>
+                <input type="text" id="recipient.priorconfirmation.place"/>
+            </p>
+            <p>
+                <label for="recipient.priorconfirmation.sponsor">Full name of the sponsor:</label>
+                <input type="text" id="recipient.priorconfirmation.sponsor"/>
+            </p>
+        </div>
+    </section>
+
+    <section id="minister">
         <h1>Minister</h1>
-    </div>
-    <div id="ceremony">
+        <p>
+            <label for="minister.name">The name of the Catholic minister who will administer these sacraments is:</label>
+            <input type="text" id="minister.name" />
+        </p>
+        <p>
+            <label for="minister.grade">He is a:</label>
+            <select id="minister.grade">
+                <option value="deacon">Deacon</option>
+                <option value="presbyter" selected="true">Priest</option>
+                <option value="bishop">Bishop</option>
+            </select>
+        </p>
+    </section>
+
+    <section id="ceremony">
         <h1>Ceremony</h1>
         <div>
             <h2>Calendar</h2>
@@ -114,13 +186,8 @@
                 <span id="ceremony.age"></span>
             </p>
             <p>
-                <label for="ceremony.place">Place of reception of sacraments:</label>
-                <select id="ceremony.place">
-                    <option selected="true"></option>
-                    <option>Parish church</option>
-                    <option>Other church or oratory</option>
-                    <option>Outside a sacred space</option>
-                </select>
+                <label for="ceremony.place">Name and city of place of reception of sacraments:</label>
+                <input type="text" id="ceremony.place" />
             </p>
         </div>
 
@@ -140,23 +207,79 @@
                 Note: the second sponsor (godparent) is optional. There may not be more than two sponsors for baptism.
             </p>
         </div>
-    </div>
-    <div id="baptism.faculty">
+
+        <div id="ceremony.ascription">
+            <h2>Ascription</h2>
+            <p>
+                <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
+                <input type="text" id="ceremony.churchascription" />
+            </p>
+            <p class="note">
+            This is most likely the
+            <a href="#" onclick="document.getElementById('ceremony.churchascription').value = 'Latin Catholic Church';return false;">Latin Catholic Church</a>.
+                Contact your diocesan offices for clarification if:
+                <ul class="note">
+                    <li>the parents of the person receiving sacraments are of Eastern Catholic or Eastern Orthodox descent;</li>
+                    <li>the person is currently a member of an Eastern Orthodox Church;</li>
+                    <li>the person has expressed interest in joining one of the Eastern Catholic Churches; or</li>
+                    <li>you are otherwise unsure.</li>
+                </ul>
+            </p>
+        </div>
+    </section>
+
+    <section id="faculty.baptism">
         <h1>Faculty to baptise</h1>
-    </div>
-    <div id="confirmation.faculty">
+    </section>
+
+    <section id="faculty.reception">
+        <h1>Faculty to receive into full communion</h1>
+    </section>
+
+    <section id="faculty.confirmation">
         <h1>Faculty to confirm</h1>
-    </div>
-    <div id="eucharist.faculty">
+    </section>
+
+    <section id="faculty.eucharist">
         <h1>Faculty to administer Holy Communion</h1>
-    </div>
-    <div id="baptism.register">
-        <h1>Baptismal register</h1>
-    </div>
-    <div id="confirmation.register">
-        <h1>Confirmation register</h1>
-    </div>
+    </section>
+
+    <section id="summary">
+        <h1>Summary</h1>
+        TODO: summary of which sacraments (and reception) are being given
+    </section>
+
+    <section id="register">
+        <h1>Sacramental register</h1>
+        <div id="register.baptism">
+            <h2>Baptismal register</h2>
+            <p id="register.confirmation.index" class="note">
+                If your register has an index, remember to update it.
+            </p>
+        </div>
+        <div id="register.confirmation">
+            <h2>Confirmation register</h2>
+            <p id="register.confirmation.index" class="note">
+                If your register has an index, remember to update it.
+            </p>
+        </div>
+        <div id="register.notification">
+            <h2>Notification</h2>
+            TODO: provide a template for sending notification to parish with baptismal record.
+        </div>
+        <div id="register.notes">
+            <h2>Notes</h2>
+            <p id="register.notes.communion">
+                Contact your diocesan offices to determine how and whether to record a person's first reception of Holy Communion.
+            </p>
+        </div>
+    </section>
     </form>
+    </main>
+
+    <footer>
+        <p>Contributions and feedback are welcomed via <a href="https://github.com/avbop/sacramental-records">Github</a>.</p>
+    </footer>
 </body>
 
 </html>
