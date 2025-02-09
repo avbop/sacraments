@@ -246,4 +246,18 @@ function updateForm() {
             hide(e);
         }
     }
+
+    // Show/hide Eastern Church warnings.
+    const ascription = ceremony('churchascription')
+    const currentchurch = recipient('currentchurch')
+    if (ascription != 'Latin Catholic Church') {
+        show('ceremony.ascription.easternwarning');
+    } else {
+        hide('ceremony.ascription.easternwarning');
+    }
+    if (currentchurch == 'eastern') {
+        show('recipient.priorbaptism.easternwarning');
+    } else {
+        hide('recipient.priorbaptism.easternwarning');
+    }
 }

@@ -130,6 +130,7 @@
                     <option value="protestant">Other non-Catholic Christian community</option>
                 </select>
             </p>
+            <p id="recipient.priorbaptism.easternwarning" class="warning">This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.</p>
         </div>
 
         <div id="recipient.priorfullcommunioninfo">
@@ -222,11 +223,12 @@
             <h2>Ascription</h2>
             <p>
                 <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
-                <input type="text" id="ceremony.churchascription" />
+                <input type="text" id="ceremony.churchascription" value="Latin Catholic Church" />
             </p>
+            <p id="ceremony.ascription.easternwarning" class="warning">This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.</p>
             <p class="note">
             This is most likely the
-            <a href="#" onclick="document.getElementById('ceremony.churchascription').value = 'Latin Catholic Church';return false;">Latin Catholic Church</a>.
+            <a href="#" onclick="document.getElementById('ceremony.churchascription').value = 'Latin Catholic Church';updateForm();return false;">Latin Catholic Church</a>.
                 Contact your diocesan offices for clarification if:
                 <ul class="note">
                     <li>the parents of the person receiving sacraments are of Eastern Catholic or Eastern Orthodox descent;</li>
@@ -329,6 +331,10 @@
                     <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.extension"/>
                         <label for="faculty.confirmation.extension">the priest or bishop who has the faculty has, for a grave reason, extended it to <span data-autofill="minister.name"></span></label>
+                    </li>
+                    <li data-orders="presbyter">
+                        <input type="checkbox" id="faculty.confirmation.eastern"/>
+                        <label for="faculty.confirmation.eastern">he is an Eastern Catholic priest who has the faculty to confirm</label>
                     </li>
                     <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.db"/>
