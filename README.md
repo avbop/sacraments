@@ -26,8 +26,9 @@ As time and effort allow, the project may be extended to briefly propose ideas r
 4. Release to the public domain.
     - All code and other content created for this project is hereby released to the public domain.
     - The code and other content created for this project will not incorporate any any information that cannot be released to the public domain.
+    - All contributors to this project release their contributed work into the public domain and assert that their work may be so released.
     - Each file will indicate this public domain release by means of the [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) mark.
-    - Exception: fonts, images, and other media used by, but not produced for, this project might have their own licences.
+    - Exception: fonts, images, and other media used by, but not produced for, this project might have their own licences. Only information with a licence compatible with this project will be used.
 
 # Licence
 This file is released to the public domain and is marked with [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
