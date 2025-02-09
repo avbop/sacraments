@@ -2,13 +2,13 @@
 
 function addFormListeners() {
     const inputs = document.getElementsByTagName('input');
-    for (var i of inputs) {
+    for (let i of inputs) {
         i.addEventListener('input', (event) => {
             updateForm();
         });
     }
     const selects = document.getElementsByTagName('select');
-    for (var i of selects) {
+    for (let i of selects) {
         i.addEventListener('input', (event) => {
             updateForm();
         });
@@ -39,6 +39,13 @@ function recipient(p) {
     switch (p) {
         case 'age':
             return calculate_age(recipient('birthday'), ceremony('date'));
+        case 'fullname':
+            const name = recipient('name');
+            if (name == '') {
+                return 'N. N.';
+            } else {
+                return name;
+            }
         case 'birthday':
             return new Date(document.getElementById('recipient.birthdate').value);
         case 'adopted':
@@ -51,6 +58,31 @@ function recipient(p) {
             return document.getElementById('recipient.communioned').checked;
         default:
             return document.getElementById('recipient.' + p).value;
+    }
+}
+
+function minister(p) {
+    switch (p) {
+        case 'fullname':
+            let name = '';
+            const grade = minister('grade');
+            if (grade == 'bishop') {
+                name += 'Bishop';
+            } else if (grade == 'presbyter') {
+                name += 'Father';
+            } else if (grade == 'deacon') {
+                name += 'Deacon';
+            }
+            name += ' ';
+            const shortname = minister('name')
+            if (shortname == '') {
+                name += 'N. N.';
+            } else {
+                name += shortname;
+            }
+            return name;
+        default:
+            return document.getElementById('minister.' + p).value;
     }
 }
 
@@ -68,6 +100,16 @@ function updateForm() {
     // Run through the entire form and show/hide/update as needed.
 
     console.log('Updating form...');
+
+    // Fill in names.
+    const nameMinister = minister('fullname');
+    for (let e of document.getElementsByClassName('minister.name')) {
+        e.innerHTML = nameMinister;
+    }
+    const nameRecipient = recipient('fullname');
+    for (let e of document.getElementsByClassName('recipient.name')) {
+        e.innerHTML = nameRecipient;
+    }
 
     // Show calculated age.
     let age = recipient('age');
