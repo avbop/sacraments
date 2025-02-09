@@ -15,6 +15,18 @@ function addFormListeners() {
     }
 }
 
+// Hide element via CSS class.
+function hide(id) {
+    elem = document.getElementById(id);
+    elem.classList.add('hide');
+}
+
+// Show element via CSS class.
+function show(id) {
+    elem = document.getElementById(id);
+    elem.classList.remove('hide');
+}
+
 function calculate_age(bday, sacday) {
     // To calculate the canonical age, we don't actually want elapsed time.
     // Rather, we need to manually parse year, month, day.
@@ -122,13 +134,13 @@ function updateForm() {
     // Show/hide baptism info.
     if (recipient('baptised')) {
         // Collect info about prior baptism.
-        document.getElementById('recipient.priorbaptisminfo').style.display = 'block';
+        show('recipient.priorbaptisminfo');
         // Baptism enables other sacraments.
         document.getElementById('recipient.confirmed').disabled = false;
         document.getElementById('recipient.communioned').disabled = false;
     } else {
         // Don't collect info about (non-existent) prior baptism.
-        document.getElementById('recipient.priorbaptisminfo').style.display = 'none';
+        hide('recipient.priorbaptisminfo');
         // Without baptism, can't receive other sacraments.
         document.getElementById('recipient.confirmed').disabled = true;
         document.getElementById('recipient.confirmed').checked = false;
@@ -138,9 +150,9 @@ function updateForm() {
 
     // Show/hide prior confirmation info.
     if (recipient('confirmed')) {
-        document.getElementById('recipient.priorconfirmationinfo').style.display = 'block';
+        show('recipient.priorconfirmationinfo');
     } else {
-        document.getElementById('recipient.priorconfirmationinfo').style.display = 'none';
+        hide('recipient.priorconfirmationinfo');
     }
 
     // Show/hide prior reception into full communion info.
@@ -150,50 +162,50 @@ function updateForm() {
         const newchurch = recipient('currentchurch')
         if (oldchurch == 'unknown' || oldchurch == 'orthodox' || oldchurch == 'protestant') {
             if (newchurch == 'latin' || newchurch == 'eastern') {
-                document.getElementById('recipient.priorfullcommunioninfo').style.display = 'block';
+                show('recipient.priorfullcommunioninfo');
             } else {
-                document.getElementById('recipient.priorfullcommunioninfo').style.display = 'none';
+                hide('recipient.priorfullcommunioninfo');
             }
         } else {
-            document.getElementById('recipient.priorfullcommunioninfo').style.display = 'none';
+            hide('recipient.priorfullcommunioninfo');
         }
     } else {
-        document.getElementById('recipient.priorfullcommunioninfo').style.display = 'none';
+        hide('recipient.priorfullcommunioninfo');
     }
 
     // Show/hide sponsor info.
     if (recipient('baptised')) { // If baptised, they're going to be at most confirmed, so at most one sponsor.
-        document.getElementById('ceremony.sponsors.secondP').style.display = 'none';
+        hide('ceremony.sponsors.secondP');
     } else {
-        document.getElementById('ceremony.sponsors.secondP').style.display = 'block';
+        show('ceremony.sponsors.secondP');
     }
     if (recipient('confirmed')) { // If confirmed, they're by definition also baptised, so no sponsors are needed.
-        document.getElementById('ceremony.sponsors').style.display = 'none';
+        hide('ceremony.sponsors');
     } else {
-        document.getElementById('ceremony.sponsors').style.display = 'block';
+        show('ceremony.sponsors');
     }
 
     // Show/hide adoption info.
     if (recipient('adopted')) {
-        document.getElementById('recipient.birthinfo').style.display = 'block';
+        show('recipient.birthinfo');
     } else {
-        document.getElementById('recipient.birthinfo').style.display = 'none';
+        hide('recipient.birthinfo');
     }
 
     // Show/hide faculties sections.
     if (recipient('baptised')) {
-        document.getElementById('faculty.baptism').style.display = 'none';
+        hide('faculty.baptism');
     } else {
-        document.getElementById('faculty.baptism').style.display = 'block';
+        show('faculty.baptism');
     }
     if (recipient('confirmed')) {
-        document.getElementById('faculty.confirmation').style.display = 'none';
+        hide('faculty.confirmation');
     } else {
-        document.getElementById('faculty.confirmation').style.display = 'block';
+        show('faculty.confirmation');
     }
     if (recipient('communioned')) {
-        document.getElementById('faculty.eucharist').style.display = 'none';
+        hide('faculty.eucharist');
     } else {
-        document.getElementById('faculty.eucharist').style.display = 'block';
+        show('faculty.eucharist');
     }
 }
