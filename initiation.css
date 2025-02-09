@@ -95,7 +95,7 @@ footer {
     display: none;
 }
 
-.autofill {
+[data-autofill] {
     text-decoration: underline;
 }
 

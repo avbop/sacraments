@@ -60,15 +60,15 @@ function calculate_age(bday, sacday) {
 function recipient(p) {
     switch (p) {
         case 'age':
-            return calculate_age(recipient('birthday'), ceremony('date'));
+            return calculate_age(recipient('birthdate'), ceremony('date'));
         case 'name':
             const name = document.getElementById('recipient.name').value;
             if (name == '') {
-                return 'N. N.';
+                return '[recipient]';
             } else {
                 return name;
             }
-        case 'birthday':
+        case 'birthdate':
             return new Date(document.getElementById('recipient.birthdate').value);
         case 'adopted':
             return document.getElementById('recipient.adopted').value == 'Yes';
@@ -89,16 +89,16 @@ function minister(p) {
             let name = '';
             const grade = document.getElementById('minister.grade').value;
             if (grade == 'bishop') {
-                name += 'Bishop';
+                name += 'Most Rev.';
             } else if (grade == 'presbyter') {
-                name += 'Father';
+                name += 'Rev.';
             } else if (grade == 'deacon') {
                 name += 'Deacon';
             }
             name += ' ';
             const shortname = document.getElementById('minister.name').value;
             if (shortname == '') {
-                name += 'N. N.';
+                name += '[minister]';
             } else {
                 name += shortname;
             }
@@ -125,12 +125,21 @@ function ceremony(p) {
 }
 
 function autofill() {
-    const safeFns = ['minister', 'recipient', 'ceremony'];
-    for (let e of document.getElementsByClassName('autofill')) {
+    const dateKeys = ['date', 'birthdate'];
+    for (let e of document.querySelectorAll('[data-autofill]')) {
         let val = '[error]';
-        const keys = e.getAttribute('data-autofill').split('.');
+        const data = e.getAttribute('data-autofill');
+        const keys = data.split('.');
         val = window[keys.shift()](keys.join('.'));
-        e.innerHTML = val;
+        if (val instanceof Date) {
+            e.innerHTML = val.toDateString();
+            continue;
+        }
+        if (val && val != '') {
+            e.innerHTML = val;
+            continue;
+        }
+        e.innerHTML = '[not set]';
     }
 }
 

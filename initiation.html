@@ -243,9 +243,9 @@
 
         <div id="faculty.baptism">
             <h2>Baptism</h2>
-            <span class="autofill" data-autofill="minister.name"></span>
+            <span data-autofill="minister.name"></span>
             has the faculty to baptize
-            <span class="autofill" data-autofill="recipient.name"></span>
+            <span data-autofill="recipient.name"></span>
             because:
             <ul class="blanklist">
                 <li>
@@ -274,9 +274,9 @@
         <div id="faculty.reception">
             <h2>Reception into full communion</h2>
             <div class="orders presbyter bishop">
-                <span class="autofill" data-autofill="minister.name"></span>
+                <span data-autofill="minister.name"></span>
                 has the faculty to receive
-                <span class="autofill" data-autofill="recipient.name"></span>
+                <span data-autofill="recipient.name"></span>
                 into the full communion of the Catholic Church because:
                 <ul class="blanklist">
                     <li class="orders bishop presbyter">
@@ -290,16 +290,16 @@
                 </ul>
             </div>
             <div class="orders deacon warning">
-                <p>Because of the requirement that Confirmation immediately follow reception into full communion, a deacon cannot receive <span class="autofill" data-autofill="recipient.name"></span> into the Church.</p>
+                <p>Because of the requirement that Confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
             </div>
         </div>
 
         <div id="faculty.confirmation">
             <h2>Confirmation</h2>
             <div class="orders presbyter bishop">
-                <span class="autofill" data-autofill="minister.name"></span>
+                <span data-autofill="minister.name"></span>
                 can validly confirm
-                <span class="autofill" data-autofill="recipient.name"></span>
+                <span data-autofill="recipient.name"></span>
                 because:
                 <ul class="blanklist">
                     <li class="orders bishop">
@@ -312,23 +312,23 @@
                     </li>
                     <li class="orders presbyter">
                         <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
-                        <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<i>parochus</i>) and is legitimately baptising <span class="autofill" data-autofill="recipient.name"></span> in the same ceremony</label>
+                        <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<i>parochus</i>) and is legitimately baptising <span data-autofill="recipient.name"></span> in the same ceremony</label>
                     </li>
                     <li class="orders presbyter">
                         <input type="checkbox" id="faculty.confirmation.parochusreception"/>
-                        <label for="faculty.confirmation.parochusreception">he is the pastor/parish priest (<i>parochus</i>) and is legitimately receiving <span class="autofill" data-autofill="recipient.name"></span> into full communion in the same ceremony</label>
+                        <label for="faculty.confirmation.parochusreception">he is the pastor/parish priest (<i>parochus</i>) and is legitimately receiving <span data-autofill="recipient.name"></span> into full communion in the same ceremony</label>
                     </li>
                     <li class="orders presbyter">
                         <input type="checkbox" id="faculty.confirmation.baptism"/>
-                        <label for="faculty.confirmation.baptism">he is baptising <span class="autofill" data-autofill="recipient.name"></span>, with a mandate from the diocesan bishop, in the same ceremony</label>
+                        <label for="faculty.confirmation.baptism">he is baptising <span data-autofill="recipient.name"></span>, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
                     <li class="orders presbyter">
                         <input type="checkbox" id="faculty.confirmation.reception"/>
-                        <label for="faculty.confirmation.reception">he is receiving <span class="autofill" data-autofill="recipient.name"></span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
+                        <label for="faculty.confirmation.reception">he is receiving <span data-autofill="recipient.name"></span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
                     <li class="orders presbyter">
                         <input type="checkbox" id="faculty.confirmation.extension"/>
-                        <label for="faculty.confirmation.extension">the priest or bishop who has the faculty has, for a grave reason, extended it to <span class="autofill" data-autofill="minister.name"></span></label>
+                        <label for="faculty.confirmation.extension">the priest or bishop who has the faculty has, for a grave reason, extended it to <span data-autofill="minister.name"></span></label>
                     </li>
                     <li class="orders presbyter">
                         <input type="checkbox" id="faculty.confirmation.db"/>
@@ -336,7 +336,7 @@
                     </li>
                     <li class="orders presbyter">
                         <input type="checkbox" id="faculty.confirmation.death"/>
-                        <label for="faculty.confirmation.death"><span class="autofill" data-autofill="recipient.name"></span> is in danger of death</label>
+                        <label for="faculty.confirmation.death"><span data-autofill="recipient.name"></span> is in danger of death</label>
                     </li>
                 </ul>
             </div>
@@ -367,11 +367,18 @@
         <h1>Sacramental register</h1>
         <div id="register.baptism">
             <h2>Baptismal register</h2>
-            <p>In the baptismal register of <span class="autofill" data-autofill="ceremony.place"></span>, record at least the following information:</p>
+            <p>In the baptismal register of <span data-autofill="ceremony.place"></span>, record at least the following information:</p>
             <ul>
-                <li>Name of recipient: <span class="autofill" data-autofill="recipient.name"></span></li>
-                <li>Name of minister: <span class="autofill" data-autofill="minister.name"></span></li>
-                <li>Place of baptism: <span class="autofill" data-autofill="ceremony.place"></span></li>
+                <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
+                <li>Recipient's date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Recipient's place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Name of minister: <span data-autofill="minister.name"></span></li>
+                <li>Names of the recipient's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
+                <li id="register.baptism.sponsors">Names of the sponsors: <span data-autofill="ceremony.sponsors.first"></span>, <span data-autofill="ceremony.sponsors.second"></span></li>
+                <li id="register.baptism.sponsor">Name of the sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
+                <li id="register.baptism.witness">Name of the Christian witness: <span data-autofill="ceremony.sponsors.second"></span></li>
+                <li>Place of baptism: <span data-autofill="ceremony.place"></span></li>
+                <li>Date of baptism: <span data-autofill="ceremony.date"></span></li>
             </ul>
             <p id="register.baptism.index" class="note">
                 If your register has an index, remember to update it.
