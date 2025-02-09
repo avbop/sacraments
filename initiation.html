@@ -427,10 +427,15 @@
                 <li>Person's place of birth: <span data-autofill="recipient.birthplace"></span></li>
                 <li>Person's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
                 <li>Minister of baptism: <span data-autofill="recipient.priorbaptism.minister"></span></li>
-                <li id="register.baptism.sponsors">Names of the sponsors: <span data-autofill="recipient.priorbaptism.sponsors"></span></li>
+                <li>Names of the baptismal sponsors: <span data-autofill="recipient.priorbaptism.sponsors"></span></li>
                 <li>Place of baptism: <span data-autofill="recipient.priorbaptism.place"></span></li>
                 <li>Date of baptism: <span data-autofill="recipient.priorbaptism.date"></span></li>
-                <li id="register.reception.annotation.confirmedandreceived">Annotation: Received into the <span data-autofill="ceremony.churchascription"></span> and confirmed on <span data-autofill="ceremony.date"></span> at <span data-autofill="ceremony.place"></span> by <span data-autofill="minister.name"></span>.</li>
+                <li id="register.reception.annotation.confirmedandreceived">
+                    Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
+                    and confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.</li>
                 <li id="register.reception.annotation.onlyreceived">
                     Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
                     on <span data-autofill="ceremony.date"></span>
@@ -448,21 +453,12 @@
                     <li>Names of the recipient's parents at birth: <span data-autofill="recipient.birthparents.father"></span>, <span data-autofill="recipient.birthparents.mother"></span></li>
                 </ul>
             </div>
-            <div id="register.reception.priorconfirmation">
-                <p class="note">The information regarding the prior valid confirmation should be included as an annotation in the same register.</p>
-                <ul>
-                    <li>Minister of confirmation: <span data-autofill="recipient.priorconfirmation.minister"></span></li>
-                    <li>Sponsor: <span data-autofill="recipient.priorconfirmation.sponsor"></span></li>
-                    <li>Place of confirmation: <span data-autofill="recipient.priorconfirmation.place"></span></li>
-                    <li>Date of confirmation: <span data-autofill="recipient.priorconfirmation.date"></span></li>
-                </ul>
-            </div>
         </div>
         <div id="register.communion">
             <h2>First Holy Communion register</h2>
             <p class="note">Particular law determines how and whether to record a person's first reception of Holy Communion.</p>
         </div>
-        <div id="register.notification">
+        <div id="register.notification.tobaptism">
             <h2>Notification</h2>
             <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter something like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
 
@@ -470,7 +466,32 @@
 
             <p>
             I recently had the privilege of confirming <span data-autofill="recipient.name"></span>, who was baptised in your parish.
-            I ask that you please record the following information and write me to confirm that the record has been made.
+            I ask that you please record the confirmation in the baptismal register and write me to verify that the record has been made.
+            </p>
+
+            <ul>
+                <li>Recipient: <span data-autofill="recipient.name"></span></li>
+                <li>Recipient's date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Recipient's place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Recipient's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
+                <li>Minister of confirmation: <span data-autofill="minister.name"></span></li>
+                <li>Sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
+                <li>Place of confirmation: <span data-autofill="ceremony.place"></span></li>
+                <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
+            </ul>
+
+            <p>Yours devotedly in Christ,</p>
+            <p><span data-autofill="minister.name"></span>
+        </div>
+        <div id="register.notification.tofullcommunion">
+            <h2>Notification</h2>
+            <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter something like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
+
+            <p>Dear Father N.,</p>
+
+            <p>
+            I recently had the privilege of confirming <span data-autofill="recipient.name"></span>, who was received into the full communion of the Church in your parish.
+            I ask that you please record the confirmation in the appropriate register and write me to verify that the record has been made.
             </p>
 
             <ul>
