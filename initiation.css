@@ -89,6 +89,7 @@ footer {
     border-top: thin solid black;
     font-style: italic;
     text-align: right;
+    margin-top: 3em;
 }
 
 .hide {

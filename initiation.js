@@ -147,8 +147,6 @@ function updateForm() {
     // This function runs every time the form is modified.
     // Run through the entire form and show/hide/update as needed.
 
-    console.log('Updating form...');
-
     // Complete autofill information.
     autofill();
 
