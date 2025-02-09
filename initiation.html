@@ -273,74 +273,74 @@
 
         <div id="faculty.reception">
             <h2>Reception into full communion</h2>
-            <div class="orders presbyter bishop">
+            <div data-orders="presbyter bishop">
                 <span data-autofill="minister.name"></span>
                 has the faculty to receive
                 <span data-autofill="recipient.name"></span>
                 into the full communion of the Catholic Church because:
                 <ul class="blanklist">
-                    <li class="orders bishop presbyter">
+                    <li data-orders="bishop presbyter">
                         <input type="checkbox" id="faculty.reception.db"/>
                         <label for="faculty.reception.db">he is the diocesan bishop or is equivalent in law to a diocesan bishop</label>
                     </li>
-                    <li class="orders bishop presbyter">
+                    <li data-orders="bishop presbyter">
                         <input type="checkbox" id="faculty.reception.granted"/>
                         <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
                     </li>
                 </ul>
             </div>
-            <div class="orders deacon warning">
+            <div data-orders="deacon" class="warning">
                 <p>Because of the requirement that Confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
             </div>
         </div>
 
         <div id="faculty.confirmation">
             <h2>Confirmation</h2>
-            <div class="orders presbyter bishop">
+            <div data-orders="presbyter bishop">
                 <span data-autofill="minister.name"></span>
                 can validly confirm
                 <span data-autofill="recipient.name"></span>
                 because:
                 <ul class="blanklist">
-                    <li class="orders bishop">
+                    <li data-orders="bishop">
                         <input type="checkbox" id="faculty.confirmation.bishop" checked="checked" disabled="disabled"/>
                         <label for="faculty.confirmation.bishop">he is a bishop</label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.mandate"/>
                         <label for="faculty.confirmation.mandate">the diocesan bishop has granted him the faculty</label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
                         <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<i>parochus</i>) and is legitimately baptising <span data-autofill="recipient.name"></span> in the same ceremony</label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.parochusreception"/>
                         <label for="faculty.confirmation.parochusreception">he is the pastor/parish priest (<i>parochus</i>) and is legitimately receiving <span data-autofill="recipient.name"></span> into full communion in the same ceremony</label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.baptism"/>
                         <label for="faculty.confirmation.baptism">he is baptising <span data-autofill="recipient.name"></span>, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.reception"/>
                         <label for="faculty.confirmation.reception">he is receiving <span data-autofill="recipient.name"></span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.extension"/>
                         <label for="faculty.confirmation.extension">the priest or bishop who has the faculty has, for a grave reason, extended it to <span data-autofill="minister.name"></span></label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.db"/>
                         <label for="faculty.confirmation.db">he is equivalent in law to a diocesan bishop and acting within his territory</label>
                     </li>
-                    <li class="orders presbyter">
+                    <li data-orders="presbyter">
                         <input type="checkbox" id="faculty.confirmation.death"/>
                         <label for="faculty.confirmation.death"><span data-autofill="recipient.name"></span> is in danger of death</label>
                     </li>
                 </ul>
             </div>
-            <div class="orders deacon warning">
+            <div class="warning" data-orders="deacon">
                 <p>A deacon can never administer Confirmation validly.</p>
             </div>
         </div>
@@ -358,7 +358,7 @@
         <ol>
             <li id="summary.reception">Reception into full communion</li>
             <li id="summary.baptism">Baptism</li>
-            <li id="summary.confirmation" class="orders presbyter bishop">Confirmation</li>
+            <li id="summary.confirmation" data-orders="presbyter bishop">Confirmation</li>
             <li id="summary.communion">First Holy Communion</li>
         </ol>
     </section>

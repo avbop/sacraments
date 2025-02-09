@@ -240,8 +240,9 @@ function updateForm() {
 
     // Show/hide sections that require orders.
     const grade = minister('grade');
-    for (let e of document.getElementsByClassName('orders')) {
-        if (e.classList.contains(grade)) {
+    for (let e of document.querySelectorAll('[data-orders]')) {
+        const orders = e.getAttribute('data-orders').split(' ');
+        if (orders.includes(grade)) {
             show(e);
         } else {
             hide(e);
