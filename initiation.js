@@ -16,14 +16,24 @@ function addFormListeners() {
 }
 
 // Hide element via CSS class.
-function hide(id) {
-    elem = document.getElementById(id);
+function hide(e) {
+    let elem = null;
+    if (typeof(e) == 'string') {
+        elem = document.getElementById(e);
+    } else {
+        elem = e;
+    }
     elem.classList.add('hide');
 }
 
 // Show element via CSS class.
-function show(id) {
-    elem = document.getElementById(id);
+function show(e) {
+    let elem = null;
+    if (typeof(e) == 'string') {
+        elem = document.getElementById(e);
+    } else {
+        elem = e;
+    }
     elem.classList.remove('hide');
 }
 
@@ -207,5 +217,15 @@ function updateForm() {
         hide('faculty.eucharist');
     } else {
         show('faculty.eucharist');
+    }
+
+    // Show/hide sections that require orders.
+    const grade = minister('grade');
+    for (let e of document.getElementsByClassName('orders')) {
+        if (e.classList.contains(grade)) {
+            show(e);
+        } else {
+            hide(e);
+        }
     }
 }
