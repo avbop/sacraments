@@ -61,8 +61,8 @@ function recipient(p) {
     switch (p) {
         case 'age':
             return calculate_age(recipient('birthday'), ceremony('date'));
-        case 'fullname':
-            const name = recipient('name');
+        case 'name':
+            const name = document.getElementById('recipient.name').value;
             if (name == '') {
                 return 'N. N.';
             } else {
@@ -85,9 +85,9 @@ function recipient(p) {
 
 function minister(p) {
     switch (p) {
-        case 'fullname':
+        case 'name':
             let name = '';
-            const grade = minister('grade');
+            const grade = document.getElementById('minister.grade').value;
             if (grade == 'bishop') {
                 name += 'Bishop';
             } else if (grade == 'presbyter') {
@@ -96,7 +96,7 @@ function minister(p) {
                 name += 'Deacon';
             }
             name += ' ';
-            const shortname = minister('name')
+            const shortname = document.getElementById('minister.name').value;
             if (shortname == '') {
                 name += 'N. N.';
             } else {
@@ -112,8 +112,25 @@ function ceremony(p) {
     switch (p) {
         case 'date':
             return new Date(document.getElementById('ceremony.date').value);
+        case 'place':
+            let n = document.getElementById('ceremony.place').value;
+            if (n && n != '') {
+                return n;
+            } else {
+                return '[unknown place]';
+            }
         default:
             return document.getElementById('ceremony.' + p).value;
+    }
+}
+
+function autofill() {
+    const safeFns = ['minister', 'recipient', 'ceremony'];
+    for (let e of document.getElementsByClassName('autofill')) {
+        let val = '[error]';
+        const keys = e.getAttribute('data-autofill').split('.');
+        val = window[keys.shift()](keys.join('.'));
+        e.innerHTML = val;
     }
 }
 
@@ -123,15 +140,8 @@ function updateForm() {
 
     console.log('Updating form...');
 
-    // Fill in names.
-    const nameMinister = minister('fullname');
-    for (let e of document.getElementsByClassName('minister.name')) {
-        e.innerHTML = nameMinister;
-    }
-    const nameRecipient = recipient('fullname');
-    for (let e of document.getElementsByClassName('recipient.name')) {
-        e.innerHTML = nameRecipient;
-    }
+    // Complete autofill information.
+    autofill();
 
     // Show calculated age.
     let age = recipient('age');

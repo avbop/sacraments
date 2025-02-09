@@ -38,6 +38,8 @@
 
 body {
     font-family: Charter, Palatino, Helvetica, serif;
+    color: black;
+    background-color: white;
 }
 
 h1 {
@@ -91,6 +93,10 @@ footer {
 
 .hide {
     display: none;
+}
+
+.autofill {
+    text-decoration: underline;
 }
 
 @media print {
