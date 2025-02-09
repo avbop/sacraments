@@ -40,6 +40,22 @@ body {
     font-family: Charter, Palatino, Helvetica, serif;
 }
 
+h1 {
+    font-size: 150%;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+h2 {
+    font-size: 125%;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 110%;
+    font-weight: bold;
+}
+
 .blanklist {
     list-style: none;
 }
