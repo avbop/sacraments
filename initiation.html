@@ -229,20 +229,110 @@
         </div>
     </section>
 
-    <section id="faculty.baptism">
-        <h1>Faculty to baptise</h1>
-    </section>
+    <section id="faculty">
+        <h1>Faculties</h1>
 
-    <section id="faculty.reception">
-        <h1>Faculty to receive into full communion</h1>
-    </section>
+        <div id="faculty.baptism">
+            <h2>Baptism</h2>
+            <span class="minister.name">N.M.</span>
+            has the faculty to baptize
+            <span class="recipient.name">N.R.</span>
+            because:
+            <ul class="blanklist">
+                <li>
+                    <input type="checkbox" id="faculty.baptism.granted"/>
+                    <label for="faculty.baptism.granted">the faculty has been explicitly granted by the diocesan bishop</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.insideterritory"/>
+                    <label for="faculty.baptism.insideterritory">the baptism will occur within his ministerial territory</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.outsideterritorypermission"/>
+                    <label for="faculty.baptism.outsideterritorypermission">the baptism will occur outside his ministerial territory, but he has permission from an authority of that territory</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.outsideterritorynecessity"/>
+                    <label for="faculty.baptism.outsideterritorynecessity">the baptism will occur outside his ministerial territory, but this is a case of necessity</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.extraordinary"/>
+                    <label for="faculty.baptism.extraordinary">the recipient is in danger of death or other extraordinary circumstances apply</label>
+                </li>
+            </ul>
+        </div>
 
-    <section id="faculty.confirmation">
-        <h1>Faculty to confirm</h1>
-    </section>
+        <div id="faculty.reception">
+            <h2>Reception into full communion</h2>
+            <span class="minister.name">N.M.</span>
+            has the faculty to receive
+            <span class="recipient.name">N.R.</span>
+            into the full communion of the Catholic Church because:
+            <ul class="blanklist">
+                <li>
+                    <input type="checkbox" id="faculty.reception.db"/>
+                    <label for="faculty.reception.db">he is the diocesan bishop or is equivalent in law to a diocesan bishop</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.reception.granted"/>
+                    <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
+                </li>
+            </ul>
+            <p class="note faculty.reception.deaconwarning">Because of the requirement that Confirmation immediately follow reception into full communion, a deacon cannot receive <span class="recipient.name">N.R.</span> into the Church.</p>
+        </div>
 
-    <section id="faculty.eucharist">
-        <h1>Faculty to administer Holy Communion</h1>
+        <div id="faculty.confirmation">
+            <h2>Confirmation</h2>
+            <span class="minister.name">N.M.</span>
+            can validly confirm
+            <span class="recipient.name">N.R.</span>
+            because:
+            <ul class="blanklist">
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.bishop" checked="checked" disabled="disabled"/>
+                    <label for="faculty.confirmation.bishop">he is a bishop</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.db"/>
+                    <label for="faculty.confirmation.db">he is equivalent in law to a diocesan bishop and acting within his territory</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.mandate"/>
+                    <label for="faculty.confirmation.mandate">the diocesan bishop has granted him the faculty</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
+                    <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<i>parochus</i>) and is legitimately baptising <span class="recipient.name">N.R.</span> in the same ceremony</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.parochusreception"/>
+                    <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<i>parochus</i>) and is legitimately receiving <span class="recipient.name">N.R.</span> into full communion in the same ceremony</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.baptism"/>
+                    <label for="faculty.confirmation.baptism">he is baptising <span class="recipient.name">N.R.</span>, with a mandate from the diocesan bishop, in the same ceremony</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.reception"/>
+                    <label for="faculty.confirmation.baptism">he is receiving <span class="recipient.name">N.R.</span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.extension"/>
+                    <label for="faculty.confirmation.extension">the priest or bishop who has the faculty has, for a grave reason, extended it to <span class="minister.name">N.M.</span></label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.confirmation.death"/>
+                    <label for="faculty.confirmation.death"><span class="recipient.name">N.R.</span> is in danger of death</label>
+                </li>
+            </ul>
+            <p class="note faculty.confirmation.deaconwarning">A deacon can never administer Confirmation validly.</p>
+        </div>
+
+        <div id="faculty.eucharist">
+            <h2>Holy Communion</h2>
+            <p>Any Catholic bishop, priest, or deacon has the faculty to administer Holy Communion.</p>
+            <p>An extraordinary minister might be deputed to administer Holy Communion, in accord with the norm of law.</p>
+        </div>
     </section>
 
     <section id="summary">
