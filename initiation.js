@@ -266,8 +266,12 @@ function showAge() {
 }
 
 function showHideSacraments() {
+    const needsBaptism = recipient('needsBaptism');
+    const needsReception = recipient('needsReception');
+    const needsConfirmation = recipient('needsConfirmation');
+    const needsCommunion = recipient('needsCommunion');
     // Show baptism-related things.
-    if (recipient('needsBaptism')) {
+    if (needsBaptism) {
         show('register.baptism');
         show('faculty.baptism');
         show('summary.baptism');
@@ -277,7 +281,7 @@ function showHideSacraments() {
         hide('summary.baptism');
     }
     // Show reception-related things.
-    if (recipient('needsReception')) {
+    if (needsReception) {
         show('register.reception');
         show('faculty.reception');
         show('summary.reception');
@@ -287,7 +291,7 @@ function showHideSacraments() {
         hide('summary.reception');
     }
     // Show confirmation-related things.
-    if (recipient('needsConfirmation')) {
+    if (needsConfirmation) {
         show('register.confirmation');
         show('faculty.confirmation');
         show('summary.confirmation');
@@ -297,7 +301,7 @@ function showHideSacraments() {
         hide('summary.confirmation');
     }
     // Show Communion-related things.
-    if (recipient('needsCommunion')) {
+    if (needsCommunion) {
         show('faculty.communion');
         show('summary.communion');
         show('register.communion');
@@ -306,14 +310,17 @@ function showHideSacraments() {
         hide('summary.communion');
         hide('register.communion');
     }
-    // If a baptised infant, explain that nothing is to be done.
-    const baptisedInfant = recipient('baptised') && recipient('age') < 7;
-    for (let e of document.getElementsByClassName('infant-info')) {
-        if (baptisedInfant) {
-            show(e)
-        } else {
-            hide(e)
-        }
+    // If nothing is to be done, hide everything and show info.
+    if (!needsBaptism && !needsReception && !needsConfirmation && !needsCommunion) {
+        hide('summary')
+        hide('register')
+        hide('faculty')
+        show('nothing')
+    } else {
+        show('summary')
+        show('register')
+        show('faculty')
+        hide('nothing')
     }
 }
 
@@ -370,24 +377,7 @@ function showHideAscription() {
     }
 }
 
-function updateForm() {
-    // This function runs every time the form is modified.
-    // Run through the entire form and show/hide/update as needed.
-
-    // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
-    showHideOrders();
-
-    // This must follow showHideOrders(): see comment above.
-    showHideSacraments();
-
-    showHideConfirmationNotification();
-
-    showHideAscription();
-
-    autofill();
-
-    showAge();
-
+function showHidePriorSacraments() {
     // Show/hide baptism info.
     if (recipient('baptised')) {
         // Collect info about prior baptism.
@@ -398,7 +388,7 @@ function updateForm() {
     } else {
         // Don't collect info about (non-existent) prior baptism.
         hide('recipient.priorbaptisminfo');
-        // Without baptism, can't receive other sacraments.
+        // Without baptism, can't have received other sacraments.
         document.getElementById('recipient.confirmed').disabled = true;
         document.getElementById('recipient.confirmed').checked = false;
         document.getElementById('recipient.communioned').disabled = true;
@@ -429,18 +419,54 @@ function updateForm() {
     } else {
         hide('recipient.priorfullcommunioninfo');
     }
+}
 
+function showHideSponsors() {
     // Show/hide sponsor info.
-    if (recipient('baptised')) { // If baptised, they're going to be at most confirmed, so at most one sponsor.
+    if (recipient('baptised')) {
+        // If baptised, they're going to be at most confirmed, so at most one sponsor.
         hide('ceremony.sponsors.secondP');
     } else {
         show('ceremony.sponsors.secondP');
     }
-    if (recipient('confirmed')) { // If confirmed, they're by definition also baptised, so no sponsors are needed.
+    if (recipient('confirmed')) {
+        // If confirmed, they're by definition also baptised, so no sponsors are needed.
         hide('ceremony.sponsors');
     } else {
         show('ceremony.sponsors');
     }
+    if (ceremony('sponsors.secondtype') == 'witness') {
+        hide('register.baptism.sponsors');
+        show('register.baptism.sponsor');
+        show('register.baptism.witness');
+    } else {
+        show('register.baptism.sponsors');
+        hide('register.baptism.sponsor');
+        hide('register.baptism.witness');
+    }
+}
+
+function updateForm() {
+    // This function runs every time the form is modified.
+    // Run through the entire form and show/hide/update as needed.
+
+    // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
+    showHideOrders();
+
+    showHidePriorSacraments();
+
+    // This must follow showHideOrders(): see comment above.
+    showHideSacraments();
+
+    showHideConfirmationNotification();
+
+    showHideAscription();
+
+    autofill();
+
+    showAge();
+
+    showHideSponsors();
 
     showHideAdoption();
 

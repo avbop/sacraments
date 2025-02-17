@@ -214,13 +214,14 @@
             </p>
             <p id="ceremony.sponsors.secondP">
                 Full name of <select id="ceremony.sponsors.secondtype">
-                    <option>Catholic sponsor</option>
-                    <option>Christian witness</option>
+                    <option value="sponsor">Catholic sponsor</option>
+                    <option value="witness">Christian witness</option>
                 </select> (if any):
                 <input type="text" id="ceremony.sponsors.second"/>
-                <p class="note">
+                <br/>
+                <span class="note">
                 Note: the second sponsor (godparent) is optional. There may not be more than two sponsors for baptism.
-                </p>
+                </span>
             </p>
         </div>
 
@@ -369,25 +370,17 @@
             <li>An extraordinary minister might be deputed to administer Holy Communion, in accord with the norm of law.</li>
             </ul>
         </div>
-
-        <div id="faculty.baptisedinfant" class="info infant-info">
-            Someone under the age of 7 who has already received baptism needs no additional rites.
-        </div>
     </section>
 
     <section id="summary">
         <h1>Summary</h1>
-        <p id="summary.intro">Based on the current information, the ceremony will follow the following order:</p>
+        <p>Based on the current information, the ceremony will follow the following order:</p>
         <ol>
             <li id="summary.reception">Reception into full communion</li>
             <li id="summary.baptism">Baptism</li>
             <li id="summary.confirmation" data-orders="presbyter bishop">Confirmation</li>
             <li id="summary.communion">First Holy Communion</li>
         </ol>
-        <div id="summary.baptisedinfant" class="info infant-info">
-            Someone under the age of 7 who has already received baptism needs no additional rites.
-        </div>
-    </section>
     </section>
 
     <section id="register">
@@ -538,10 +531,9 @@
             <p>Yours devotedly in Christ,</p>
             <p><span data-autofill="minister.name"></span>
         </div>
-        <div id="register.baptisedinfant" class="info infant-info">
-            Someone under the age of 7 who has already received baptism needs no additional rites.
-        </div>
     </section>
+    <section id="nothing">
+        <div class="info">Based on the above information, no additional rites are needed at this time.</div>
     </section>
     </form>
     </main>
