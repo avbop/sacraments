@@ -185,7 +185,7 @@ function autofill() {
         const keys = data.split('.');
         val = window[keys.shift()](keys.join('.'));
         if (val instanceof Date) {
-            e.innerHTML = val.toDateString();
+            e.innerHTML = val.toLocaleDateString();
             continue;
         }
         if (val && val != '') {
