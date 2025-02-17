@@ -478,10 +478,6 @@
                 </ul>
             </div>
         </div>
-        <div id="register.communion">
-            <h2>First Holy Communion register</h2>
-            <p class="note">Particular law determines how and whether to record a person's first reception of Holy Communion.</p>
-        </div>
         <div id="register.notification.tobaptism">
             <h2>Notification</h2>
             <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
@@ -531,6 +527,34 @@
 
             <p>Yours devotedly in Christ,</p>
             <p><span data-autofill="minister.name"></span>
+        </div>
+        <div id="register.notification.baptisedsameparish">
+            <h2>Baptismal register</h2>
+            In the baptismal register of <span data-autofill="recipient.priorbaptism.place"></span>, at the entry for <span data-autofill="recipient.name"></span>'s baptism on <span data-autofill="recipient.priorbaptism.date"></span>, the following annotation should be added:
+            <ul>
+                <li>
+                    Confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.
+                </li>
+            </ul>
+        </div>
+        <div id="register.notification.receivedsameparish">
+            <h2>Register of reception into full communion</h2>
+            At <span data-autofill="recipient.priorfullcommunion.place"></span>, in the register of reception into full communion (which may be the same as the baptismal register), at the entry for <span data-autofill="recipient.name"></span>'s reception into full communion on <span data-autofill="recipient.priorfullcommunion.date"></span>, the following annotation should be added:
+            <ul>
+                <li>
+                    Confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.
+                </li>
+            </ul>
+        </div>
+        <div id="register.communion">
+            <h2>First Holy Communion register</h2>
+            <p class="note">Particular law determines how and whether to record a person's first reception of Holy Communion.</p>
         </div>
     </section>
     <section id="nothing">

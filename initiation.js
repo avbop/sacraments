@@ -328,6 +328,8 @@ function showHideConfirmationNotification() {
     // Set default state.
     hide('register.notification.tobaptism');
     hide('register.notification.tofullcommunion');
+    hide('register.notification.baptisedsameparish');
+    hide('register.notification.receivedsameparish');
     show('register.baptism.baptismonly');
     hide('register.baptism.baptismandconfirmation');
     show('register.reception.onlyreceived');
@@ -356,6 +358,8 @@ function showHideConfirmationNotification() {
             const actualPlace = ceremony('place');
             if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
                 show('register.notification.tobaptism');
+            } else {
+                show('register.notification.baptisedsameparish');
             }
         } else {
             // Received into full communion.
@@ -363,6 +367,8 @@ function showHideConfirmationNotification() {
             const actualPlace = ceremony('place');
             if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
                 show('register.notification.tofullcommunion');
+            } else {
+                show('register.notification.receivedsameparish');
             }
         }
     }
