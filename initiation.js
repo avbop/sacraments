@@ -106,6 +106,24 @@ function recipient(p) {
             return document.getElementById('recipient.confirmed').checked;
         case 'communioned':
             return document.getElementById('recipient.communioned').checked;
+        case 'needsBaptism':
+            // Baptism: if and only if not already baptised.
+            return !document.getElementById('recipient.baptised').checked;
+        case 'needsConfirmation':
+            // Confirmation: if and only if not already confirmed.
+            return !document.getElementById('recipient.confirmed').checked;
+        case 'needsCommunion':
+            // Communion: if and only if not already received first Communion.
+            return !document.getElementById('recipient.communioned').checked;
+        case 'needsReception':
+            // Reception: if baptised non-Catholic and not already received.
+            const actualAscription = recipient('ascription');
+            if (!recipient('needsBaptism')) {
+                if (actualAscription != 'latin' && actualAscription != 'eastern') {
+                    return true;
+                }
+            }
+            return false;
         default:
             return document.getElementById('recipient.' + p).value;
     }
@@ -155,7 +173,6 @@ function ceremony(p) {
 function autofill() {
     // Complete autofill information.
     // data-autofill should match the id of one of the info-collecting fields.
-    const dateKeys = ['date', 'birthdate'];
     for (let e of document.querySelectorAll('[data-autofill]')) {
         let val = '[error]';
         const data = e.getAttribute('data-autofill');
@@ -240,32 +257,63 @@ function showAge() {
     }
 }
 
-function updateForm() {
-    // This function runs every time the form is modified.
-    // Run through the entire form and show/hide/update as needed.
-
-    // Calculate which rites are needed.
-    let needsBaptism = false;
-    let needsReception = false;
-    let needsConfirmation = false;
-    let needsCommunion = false;
-    // Baptism: if and only if not already baptised.
-    needsBaptism = !recipient('baptised');
-    // Confirmation: if and only if not already confirmed.
-    needsConfirmation = !recipient('confirmed');
-    // Communion: if and only if not already received first Communion.
-    needsCommunion = !recipient('communioned');
-    // Reception: if baptised non-Catholic and not already received.
-    const actualAscription = recipient('ascription');
-    if (actualAscription != 'latin' && actualAscription != 'eastern') {
-        needsReception = true;
+function showHideSacraments() {
+    if (recipient('needsBaptism')) {
+        show('register.baptism');
+        show('faculty.baptism');
+        show('summary.baptism');
+    } else {
+        hide('register.baptism');
+        hide('faculty.baptism');
+        hide('summary.baptism');
     }
+    if (recipient('needsReception')) {
+        show('register.reception');
+        show('faculty.reception');
+        show('summary.reception');
+    } else {
+        hide('register.reception');
+        hide('faculty.reception');
+        hide('summary.reception');
+    }
+    if (recipient('needsConfirmation')) {
+        show('register.confirmation');
+        show('faculty.confirmation');
+        show('summary.confirmation');
+    } else {
+        hide('register.confirmation');
+        hide('faculty.confirmation');
+        hide('summary.confirmation');
+    }
+    if (recipient('needsCommunion')) {
+        show('faculty.communion');
+        show('summary.communion');
+    } else {
+        hide('faculty.communion');
+        hide('summary.communion');
+    }
+}
 
-    if (needsBaptism || needsReception) {
+function showHideAscription() {
+    // Only show ascription if needed.
+    if (recipient('needsBaptism') || recipient('needsReception')) {
         show('ceremony.ascription');
     } else {
         hide('ceremony.ascription');
     }
+}
+
+function updateForm() {
+    // This function runs every time the form is modified.
+    // Run through the entire form and show/hide/update as needed.
+
+    // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
+    showHideOrders();
+
+    // This must follow showHideOrders(): see comment above.
+    showHideSacraments();
+
+    showHideAscription();
 
     autofill();
 
@@ -326,25 +374,6 @@ function updateForm() {
     }
 
     showHideAdoption();
-
-    // Show/hide faculties sections.
-    if (recipient('baptised')) {
-        hide('faculty.baptism');
-    } else {
-        show('faculty.baptism');
-    }
-    if (recipient('confirmed')) {
-        hide('faculty.confirmation');
-    } else {
-        show('faculty.confirmation');
-    }
-    if (recipient('communioned')) {
-        hide('faculty.eucharist');
-    } else {
-        show('faculty.eucharist');
-    }
-
-    showHideOrders();
 
     showHideEastern();
 }
