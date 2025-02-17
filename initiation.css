@@ -60,6 +60,14 @@ h3 {
 
 .blanklist {
     list-style: none;
+    padding-left: 3.0em;
+    text-indent: -1.8em;
+}
+
+.blanklist input {
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0.3em;
 }
 
 .note {
