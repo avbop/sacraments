@@ -125,6 +125,8 @@ function ceremony(p) {
 }
 
 function autofill() {
+    // Complete autofill information.
+    // data-autofill should match the id of one of the info-collecting fields.
     const dateKeys = ['date', 'birthdate'];
     for (let e of document.querySelectorAll('[data-autofill]')) {
         let val = '[error]';
@@ -143,13 +145,46 @@ function autofill() {
     }
 }
 
-function updateForm() {
-    // This function runs every time the form is modified.
-    // Run through the entire form and show/hide/update as needed.
+function showHideOrders() {
+    // Show/hide sections that require orders.
+    // data-orders is a space-separated list of deacon, presbyter, bishop.
+    const grade = minister('grade');
+    for (let e of document.querySelectorAll('[data-orders]')) {
+        const orders = e.getAttribute('data-orders').split(' ');
+        if (orders.includes(grade)) {
+            show(e);
+        } else {
+            hide(e);
+        }
+    }
+}
 
-    // Complete autofill information.
-    autofill();
+function showHideEasternWarnings() {
+    // Show/hide Eastern Church warnings.
+    const ascription = ceremony('churchascription')
+    const currentchurch = recipient('currentchurch')
+    if (ascription != 'Latin Catholic Church') {
+        show('ceremony.ascription.easternwarning');
+    } else {
+        hide('ceremony.ascription.easternwarning');
+    }
+    if (currentchurch == 'eastern') {
+        show('recipient.priorbaptism.easternwarning');
+    } else {
+        hide('recipient.priorbaptism.easternwarning');
+    }
+}
 
+function showHideAdoption() {
+    // Show/hide adoption info.
+    if (recipient('adopted')) {
+        show('recipient.birthinfo');
+    } else {
+        hide('recipient.birthinfo');
+    }
+}
+
+function showAge() {
     // Show calculated age.
     let age = recipient('age');
     if (age != NaN && age >= 0) {
@@ -157,6 +192,15 @@ function updateForm() {
     } else {
         document.getElementById('ceremony.age').innerHTML = '';
     }
+}
+
+function updateForm() {
+    // This function runs every time the form is modified.
+    // Run through the entire form and show/hide/update as needed.
+
+    autofill();
+
+    showAge();
 
     // Show/hide baptism info.
     if (recipient('baptised')) {
@@ -212,12 +256,7 @@ function updateForm() {
         show('ceremony.sponsors');
     }
 
-    // Show/hide adoption info.
-    if (recipient('adopted')) {
-        show('recipient.birthinfo');
-    } else {
-        hide('recipient.birthinfo');
-    }
+    showHideAdoption();
 
     // Show/hide faculties sections.
     if (recipient('baptised')) {
@@ -236,28 +275,7 @@ function updateForm() {
         show('faculty.eucharist');
     }
 
-    // Show/hide sections that require orders.
-    const grade = minister('grade');
-    for (let e of document.querySelectorAll('[data-orders]')) {
-        const orders = e.getAttribute('data-orders').split(' ');
-        if (orders.includes(grade)) {
-            show(e);
-        } else {
-            hide(e);
-        }
-    }
+    showHideOrders();
 
-    // Show/hide Eastern Church warnings.
-    const ascription = ceremony('churchascription')
-    const currentchurch = recipient('currentchurch')
-    if (ascription != 'Latin Catholic Church') {
-        show('ceremony.ascription.easternwarning');
-    } else {
-        hide('ceremony.ascription.easternwarning');
-    }
-    if (currentchurch == 'eastern') {
-        show('recipient.priorbaptism.easternwarning');
-    } else {
-        hide('recipient.priorbaptism.easternwarning');
-    }
+    showHideEasternWarnings();
 }
