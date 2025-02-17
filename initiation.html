@@ -130,6 +130,10 @@
                     <option value="protestant">Other non-Catholic Christian community</option>
                 </select>
             </p>
+            <p id="recipient.priorbaptism.ascriptionP">
+            <label for="recipient.priorbaptism.ascription">Which Eastern Catholic Church <i>sui iuris</i> is this person a member of?</label>
+                <input type="text" id="recipient.priorbaptism.ascription"/>
+            </p>
             <p id="recipient.priorbaptism.easternwarning" class="warning">This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.</p>
         </div>
 
@@ -225,10 +229,16 @@
                 <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
                 <input type="text" id="ceremony.churchascription" value="Latin Catholic Church" />
             </p>
-            <p id="ceremony.ascription.easternwarning" class="warning">This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.</p>
+            <p id="ceremony.ascription.easternwarning" class="warning">
+                This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.
+            </p>
+            <p id="ceremony.ascription.corresponding" class="note">
+                A member of an Eastern non-Catholic Church, when received into the full communion of the Catholic Church, is ascribed to the corresponding Catholic Church <i>sui iuris</i>.
+            </p>
+            <p id="ceremony.ascription.usuallylatin" class="note">
+                This is most likely the Latin Catholic Church.
+            </p>
             <p class="note">
-            This is most likely the
-            <a href="#" onclick="document.getElementById('ceremony.churchascription').value = 'Latin Catholic Church';updateForm();return false;">Latin Catholic Church</a>.
                 Contact your diocesan offices for clarification if:
                 <ul class="note">
                     <li>the parents of the person receiving sacraments are of Eastern Catholic or Eastern Orthodox descent;</li>

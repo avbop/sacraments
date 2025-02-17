@@ -37,7 +37,7 @@ function show(e) {
     elem.classList.remove('hide');
 }
 
-function calculate_age(bday, sacday) {
+function calculateAge(bday, sacday) {
     // To calculate the canonical age, we don't actually want elapsed time.
     // Rather, we need to manually parse year, month, day.
     const bornYear = bday.getFullYear();
@@ -57,10 +57,38 @@ function calculate_age(bday, sacday) {
     }
 }
 
+function calculateAscription() {
+    if (!recipient('baptised')) {
+        return 'none';
+    }
+    const baptismChurch = recipient('priorbaptism.church')
+    const currentChurch = recipient('currentchurch')
+    if (baptismChurch == 'latin' || baptismChurch == 'eastern') {
+        if (currentChurch == 'latin') {
+            return 'latin';
+        } else if (currentChurch == 'eastern') {
+            return 'eastern';
+        } else {
+            return baptismChurch;
+        }
+    } else {
+        if (currentChurch == 'latin') {
+            return 'latin';
+        } else if (currentChurch == 'eastern') {
+            return 'eastern';
+        } else {
+            return currentChurch;
+        }
+
+    }
+}
+
 function recipient(p) {
     switch (p) {
         case 'age':
-            return calculate_age(recipient('birthdate'), ceremony('date'));
+            return calculateAge(recipient('birthdate'), ceremony('date'));
+        case 'ascription':
+            return calculateAscription();
         case 'name':
             const name = document.getElementById('recipient.name').value;
             if (name == '') {
@@ -159,19 +187,37 @@ function showHideOrders() {
     }
 }
 
-function showHideEasternWarnings() {
-    // Show/hide Eastern Church warnings.
-    const ascription = ceremony('churchascription')
-    const currentchurch = recipient('currentchurch')
-    if (ascription != 'Latin Catholic Church') {
+function showHideEastern() {
+    // Show/hide Eastern Church elements.
+    const currentchurch = recipient('currentchurch');
+    const actualAscription = recipient('ascription');
+    let intendedAscription = ceremony('churchascription');
+    const correspondingValue = 'corresponding Eastern Catholic Church';
+    if (actualAscription == 'orthodox') {
+        if (intendedAscription == 'Latin Catholic Church') {
+            document.getElementById('ceremony.churchascription').value = correspondingValue;
+            intendedAscription = correspondingValue;
+        }
+        show('ceremony.ascription.corresponding');
+    } else {
+        hide('ceremony.ascription.corresponding');
+    }
+    if (intendedAscription != 'Latin Catholic Church') {
         show('ceremony.ascription.easternwarning');
     } else {
         hide('ceremony.ascription.easternwarning');
     }
-    if (currentchurch == 'eastern') {
+    if (actualAscription == 'eastern' || actualAscription == 'orthodox') {
+        hide('ceremony.ascription.usuallylatin');
         show('recipient.priorbaptism.easternwarning');
     } else {
+        show('ceremony.ascription.usuallylatin');
         hide('recipient.priorbaptism.easternwarning');
+    }
+    if (actualAscription == 'eastern') {
+        show('recipient.priorbaptism.ascriptionP');
+    } else {
+        hide('recipient.priorbaptism.ascriptionP');
     }
 }
 
@@ -197,6 +243,29 @@ function showAge() {
 function updateForm() {
     // This function runs every time the form is modified.
     // Run through the entire form and show/hide/update as needed.
+
+    // Calculate which rites are needed.
+    let needsBaptism = false;
+    let needsReception = false;
+    let needsConfirmation = false;
+    let needsCommunion = false;
+    // Baptism: if and only if not already baptised.
+    needsBaptism = !recipient('baptised');
+    // Confirmation: if and only if not already confirmed.
+    needsConfirmation = !recipient('confirmed');
+    // Communion: if and only if not already received first Communion.
+    needsCommunion = !recipient('communioned');
+    // Reception: if baptised non-Catholic and not already received.
+    const actualAscription = recipient('ascription');
+    if (actualAscription != 'latin' && actualAscription != 'eastern') {
+        needsReception = true;
+    }
+
+    if (needsBaptism || needsReception) {
+        show('ceremony.ascription');
+    } else {
+        hide('ceremony.ascription');
+    }
 
     autofill();
 
@@ -277,5 +346,5 @@ function updateForm() {
 
     showHideOrders();
 
-    showHideEasternWarnings();
+    showHideEastern();
 }
