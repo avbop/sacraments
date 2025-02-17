@@ -397,9 +397,18 @@
                 <li id="register.baptism.witness">Name of the Christian witness: <span data-autofill="ceremony.sponsors.second"></span></li>
                 <li>Place of baptism: <span data-autofill="ceremony.place"></span></li>
                 <li>Date of baptism: <span data-autofill="ceremony.date"></span></li>
-                <li>Annotation: Ascribed to the <span data-autofill="ceremony.churchascription"></span>.</li>
+                <li id="register.baptism.baptismonly">
+                    Annotation: Ascribed to the <span data-autofill="ceremony.churchascription"></span>.
+                </li>
+                <li id="register.baptism.baptismandconfirmation">
+                    Annotation: Ascribed to the <span data-autofill="ceremony.churchascription"></span>.
+                    Confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.
+                </li>
             </ul>
-            <div id="register.baptism.adoption">
+            <div id="register.baptism.birthinfo">
                 <p class="note">Depending on the particular law established by the episcopal conference, it might also be necessary to record the names of the recipient's birth parents.</p>
                 <ul>
                     <li>Names of the recipient's parents at birth: <span data-autofill="recipient.birthparents.father"></span>, <span data-autofill="recipient.birthparents.mother"></span></li>
@@ -442,13 +451,13 @@
                 <li>Names of the baptismal sponsors: <span data-autofill="recipient.priorbaptism.sponsors"></span></li>
                 <li>Place of baptism: <span data-autofill="recipient.priorbaptism.place"></span></li>
                 <li>Date of baptism: <span data-autofill="recipient.priorbaptism.date"></span></li>
-                <li id="register.reception.annotation.confirmedandreceived">
+                <li id="register.reception.confirmedandreceived">
                     Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
                     and confirmed on
                     <span data-autofill="ceremony.date"></span>
                     at <span data-autofill="ceremony.place"></span>
                     by <span data-autofill="minister.name"></span>.</li>
-                <li id="register.reception.annotation.onlyreceived">
+                <li id="register.reception.onlyreceived">
                     Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
                     on <span data-autofill="ceremony.date"></span>
                     at <span data-autofill="ceremony.place"></span>
@@ -472,7 +481,7 @@
         </div>
         <div id="register.notification.tobaptism">
             <h2>Notification</h2>
-            <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter something like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
+            <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
 
             <p>Dear Father N.,</p>
 
@@ -497,7 +506,7 @@
         </div>
         <div id="register.notification.tofullcommunion">
             <h2>Notification</h2>
-            <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter something like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
+            <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
 
             <p>Dear Father N.,</p>
 

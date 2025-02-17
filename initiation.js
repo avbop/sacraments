@@ -158,13 +158,6 @@ function ceremony(p) {
     switch (p) {
         case 'date':
             return new Date(document.getElementById('ceremony.date').value);
-        case 'place':
-            let n = document.getElementById('ceremony.place').value;
-            if (n && n != '') {
-                return n;
-            } else {
-                return '[unknown place]';
-            }
         default:
             return document.getElementById('ceremony.' + p).value;
     }
@@ -242,8 +235,10 @@ function showHideAdoption() {
     // Show/hide adoption info.
     if (recipient('adopted')) {
         show('recipient.birthinfo');
+        show('register.baptism.birthinfo');
     } else {
         hide('recipient.birthinfo');
+        hide('register.baptism.birthinfo');
     }
 }
 
@@ -258,6 +253,7 @@ function showAge() {
 }
 
 function showHideSacraments() {
+    // Show baptism-related things.
     if (recipient('needsBaptism')) {
         show('register.baptism');
         show('faculty.baptism');
@@ -267,6 +263,7 @@ function showHideSacraments() {
         hide('faculty.baptism');
         hide('summary.baptism');
     }
+    // Show reception-related things.
     if (recipient('needsReception')) {
         show('register.reception');
         show('faculty.reception');
@@ -276,6 +273,7 @@ function showHideSacraments() {
         hide('faculty.reception');
         hide('summary.reception');
     }
+    // Show confirmation-related things.
     if (recipient('needsConfirmation')) {
         show('register.confirmation');
         show('faculty.confirmation');
@@ -285,12 +283,57 @@ function showHideSacraments() {
         hide('faculty.confirmation');
         hide('summary.confirmation');
     }
+    // Show Communion-related things.
     if (recipient('needsCommunion')) {
         show('faculty.communion');
         show('summary.communion');
     } else {
         hide('faculty.communion');
         hide('summary.communion');
+    }
+}
+
+function showHideConfirmationNotification() {
+    // Set default state.
+    hide('register.notification.tobaptism');
+    hide('register.notification.tofullcommunion');
+    show('register.baptism.baptismonly');
+    hide('register.baptism.baptismandconfirmation');
+    show('register.reception.onlyreceived');
+    hide('register.reception.confirmedandreceived');
+    const needsConfirmation = recipient('needsConfirmation');
+    // If not doing confirmation, skip all of this.
+    if (!needsConfirmation) {
+        return;
+    }
+    const actualAscription = recipient('ascription');
+    const needsBaptism = recipient('needsBaptism');
+    const needsReception = recipient('needsReception');
+    if (needsBaptism) {
+        // Baptism and confirmation together in this ceremony.
+        show('register.baptism.baptismandconfirmation');
+        hide('register.baptism.baptismonly');
+    } else if (needsReception) {
+        // Reception and confirmation together in this ceremony.
+        show('register.reception.confirmedandreceived');
+        hide('register.reception.onlyreceived');
+    } else if (actualAscription == 'latin' || actualAscription == 'eastern') {
+        // If Catholic, possibly notify.
+        if (recipient('priorbaptism.church') == 'latin' || recipient('priorbaptism.church') == 'eastern') {
+            // Baptised Catholic.
+            const priorPlace = recipient('priorbaptism.place');
+            const actualPlace = ceremony('place');
+            if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
+                show('register.notification.tobaptism');
+            }
+        } else {
+            // Received into full communion.
+            const priorPlace = recipient('priorfullcommunion.place');
+            const actualPlace = ceremony('place');
+            if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
+                show('register.notification.tofullcommunion');
+            }
+        }
     }
 }
 
@@ -312,6 +355,8 @@ function updateForm() {
 
     // This must follow showHideOrders(): see comment above.
     showHideSacraments();
+
+    showHideConfirmationNotification();
 
     showHideAscription();
 
