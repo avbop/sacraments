@@ -107,20 +107,33 @@ function recipient(p) {
         case 'communioned':
             return document.getElementById('recipient.communioned').checked;
         case 'needsBaptism':
-            // Baptism: if and only if not already baptised.
+            // Baptism: if not already baptised.
             return !document.getElementById('recipient.baptised').checked;
         case 'needsConfirmation':
-            // Confirmation: if and only if not already confirmed.
-            return !document.getElementById('recipient.confirmed').checked;
+            // Confirmation: if not already confirmed and not an infant.
+            if (!recipient('confirmed')) {
+                if (isNaN(recipient('age')) || recipient('age') >= 7) {
+                    return true;
+                }
+            }
+            return false;
         case 'needsCommunion':
-            // Communion: if and only if not already received first Communion.
-            return !document.getElementById('recipient.communioned').checked;
+            // Communion: if not already received first Communion, and not an infant.
+            if (!recipient('communioned')) {
+                if (isNaN(recipient('age')) || recipient('age') >= 7) {
+                    return true;
+                }
+            }
+            return false;
         case 'needsReception':
-            // Reception: if baptised non-Catholic and not already received.
+            // Reception: if baptised non-Catholic, not already received, and at least 14.
             const actualAscription = recipient('ascription');
+            const age = recipient('age');
             if (!recipient('needsBaptism')) {
                 if (actualAscription != 'latin' && actualAscription != 'eastern') {
-                    return true;
+                    if (isNaN(age) || age >= 14) {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -287,9 +300,20 @@ function showHideSacraments() {
     if (recipient('needsCommunion')) {
         show('faculty.communion');
         show('summary.communion');
+        show('register.communion');
     } else {
         hide('faculty.communion');
         hide('summary.communion');
+        hide('register.communion');
+    }
+    // If a baptised infant, explain that nothing is to be done.
+    const baptisedInfant = recipient('baptised') && recipient('age') < 7;
+    for (let e of document.getElementsByClassName('infant-info')) {
+        if (baptisedInfant) {
+            show(e)
+        } else {
+            hide(e)
+        }
     }
 }
 

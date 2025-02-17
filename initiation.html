@@ -10,6 +10,7 @@
     <script type="text/javascript">
         window.addEventListener('load', (event) => {
             updateForm();
+            document.getElementById('ceremony.date').valueAsDate = new Date();
             addFormListeners();
         });
     </script>
@@ -368,17 +369,25 @@
             <li>An extraordinary minister might be deputed to administer Holy Communion, in accord with the norm of law.</li>
             </ul>
         </div>
+
+        <div id="faculty.baptisedinfant" class="info infant-info">
+            Someone under the age of 7 who has already received baptism needs no additional rites.
+        </div>
     </section>
 
     <section id="summary">
         <h1>Summary</h1>
-        Based on the current information, the ceremony will follow the following order:
+        <p id="summary.intro">Based on the current information, the ceremony will follow the following order:</p>
         <ol>
             <li id="summary.reception">Reception into full communion</li>
             <li id="summary.baptism">Baptism</li>
             <li id="summary.confirmation" data-orders="presbyter bishop">Confirmation</li>
             <li id="summary.communion">First Holy Communion</li>
         </ol>
+        <div id="summary.baptisedinfant" class="info infant-info">
+            Someone under the age of 7 who has already received baptism needs no additional rites.
+        </div>
+    </section>
     </section>
 
     <section id="register">
@@ -529,6 +538,10 @@
             <p>Yours devotedly in Christ,</p>
             <p><span data-autofill="minister.name"></span>
         </div>
+        <div id="register.baptisedinfant" class="info infant-info">
+            Someone under the age of 7 who has already received baptism needs no additional rites.
+        </div>
+    </section>
     </section>
     </form>
     </main>
