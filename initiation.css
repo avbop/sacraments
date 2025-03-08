@@ -36,10 +36,17 @@
     src: url('fonts/charter_bold_italic.woff2') format('woff2');
 }
 
-body {
+body, input {
     font-family: Charter, Palatino, Helvetica, serif;
     color: black;
     background-color: white;
+}
+
+input {
+    padding: 0.5em;
+    margin: 0.5em;
+    font-size: 100%;
+    width: 15em;
 }
 
 h1 {
@@ -83,6 +90,7 @@ h3 {
     padding: 1em;
     margin-left: auto;
     margin-right: auto;
+    border: thin solid black;
 }
 
 .info {
@@ -94,6 +102,7 @@ h3 {
     padding: 1em;
     margin-left: auto;
     margin-right: auto;
+    border: thin solid black;
 }
 
 .latin {
@@ -115,6 +124,16 @@ footer {
     text-decoration: underline;
 }
 
+section {
+    border: thin solid black;
+    margin: 2em;
+    padding: 2em;
+}
+
+#register, #summary {
+    background-color: #ddd;
+}
+
 @media print {
     a {
         color: black;
@@ -123,5 +142,25 @@ footer {
     
     footer {
         display: none;
+    }
+
+    input[type=text] {
+        border: thin solid black;
+        width: 95%;
+        height: 2em;
+    }
+
+    input[type=date] {
+        width: 10em;
+        height: 2em;
+        border: thin solid black;
+    }
+
+    #register, #summary {
+        border: thick outset black;
+    }
+
+    .warning {
+        border: thick outset black;
     }
 }
