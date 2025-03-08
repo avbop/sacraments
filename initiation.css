@@ -1,43 +1,43 @@
 /* This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). */
 
 @font-face {
-    font-family: Charter;
+    font-family: Source Serif;
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
     font-display: swap;
-    src: url('fonts/charter_regular.woff2') format('woff2');
+    src: url('fonts/SourceSerif4Variable-Roman.ttf.woff2') format('truetype');
 }
 
 @font-face {
-    font-family: Charter;
+    font-family: Source Serif;
     font-style: italic;
     font-weight: normal;
     font-stretch: normal;
     font-display: swap;
-    src: url('fonts/charter_italic.woff2') format('woff2');
+    src: url('fonts/SourceSerif4Variable-Italic.ttf.woff2') format('truetype');
 }
 
 @font-face {
-    font-family: Charter;
+    font-family: Source Serif;
     font-style: normal;
     font-weight: bold;
     font-stretch: normal;
     font-display: swap;
-    src: url('fonts/charter_bold.woff2') format('woff2');
+    src: url('fonts/SourceSerif4Variable-Roman.ttf.woff2') format('truetype');
 }
 
 @font-face {
-    font-family: Charter;
+    font-family: Source Serif;
     font-style: italic;
     font-weight: bold;
     font-stretch: normal;
     font-display: swap;
-    src: url('fonts/charter_bold_italic.woff2') format('woff2');
+    src: url('fonts/SourceSerif4Variable-Italic.ttf.woff2') format('truetype');
 }
 
 body, input {
-    font-family: Charter, Palatino, Helvetica, serif;
+    font-family: Source Serif, Palatino, serif;
     color: black;
     background-color: white;
 }

@@ -1,3 +1,3 @@
-These files were obtained from [https://practicaltypography.com/charter.html](https://practicaltypography.com/charter.html).
+This project uses the [Source Serif font](https://github.com/adobe-fonts/source-serif).
 
-As an exception to the general rule of this project, this font is not in the public domain, but its licence allows unrestricted use and redistribution.
+As an exception to the general rule of this project, the Source Serif font is not in the public domain, but its [licence](LICENSE.md) permits distribution in this context.

@@ -33,4 +33,4 @@ As time and effort allow, the project may be extended to briefly propose ideas r
 # Licence
 This file is released to the public domain and is marked with [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
-The font used for this project, Charter, is free to use and redistribute without limitations, but it is not in the public domain. See [its licence](fonts/Charter license.txt) for details. BITSTREAM CHARTER is a registered trademark of Bitstream Inc.
+The font used for this project, Source Serif, is free to use and redistribute, but it is not in the public domain. See [its licence](fonts/LICENSE.md) for details.
