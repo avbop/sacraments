@@ -59,27 +59,27 @@ function calculateAge(bday, sacday) {
 
 function calculateAscription() {
     if (!recipient('baptised')) {
+        // If not baptised, not ascribed anywhere.
         return 'none';
     }
     const baptismChurch = recipient('priorbaptism.church')
     const currentChurch = recipient('currentchurch')
     if (baptismChurch == 'latin' || baptismChurch == 'eastern') {
-        if (currentChurch == 'latin') {
-            return 'latin';
-        } else if (currentChurch == 'eastern') {
-            return 'eastern';
+        // Baptised Catholic: must still be Catholic.
+        if (currentChurch == 'latin' || currentChurch == 'eastern') {
+            return currentChurch;
         } else {
             return baptismChurch;
         }
-    } else {
-        if (currentChurch == 'latin') {
-            return 'latin';
-        } else if (currentChurch == 'eastern') {
-            return 'eastern';
+    } else if (baptismChurch == 'orthodox') {
+        // Baptised Orthodox: if haven't become Catholic, they're still Orthodox.
+        if (currentChurch != 'latin' && currentChurch != 'eastern') {
+            return baptismChurch;
         } else {
             return currentChurch;
         }
-
+    } else {
+        return currentChurch;
     }
 }
 
@@ -212,7 +212,6 @@ function showHideOrders() {
 
 function showHideEastern() {
     // Show/hide Eastern Church elements.
-    const currentchurch = recipient('currentchurch');
     const actualAscription = recipient('ascription');
     let intendedAscription = ceremony('churchascription');
     const correspondingValue = 'corresponding Eastern Catholic Church';
