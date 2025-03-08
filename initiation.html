@@ -25,11 +25,12 @@
         </div>
     </header>
     <main>
+    <h1>Sacraments of Initiation</h1>
     <form autocomplete="off" method="post" action="" onsubmit="return false;">
     <section id="recipient">
-        <h1>Recipient</h1>
+        <h2>Recipient</h2>
         <div id="recipient.basics">
-            <h2>Biographical details</h2>
+            <h3>Biographical details</h3>
             <p>
                 <label for="recipient.name">Recipient's full name:</label>
                 <input type="text" id="recipient.name"/>
@@ -77,7 +78,7 @@
         </div>
        
         <div id="recipient.birthinfo">
-            <h2>Birth information</h2>
+            <h3>Birth information</h3>
             <p class="note">Fill in the following with as much information as is known.</p>
             <p>
                 <label for="recipient.birthname">Recipient's full name at birth:</label>
@@ -94,7 +95,7 @@
         </div>
 
         <div id="recipient.priorbaptisminfo">
-            <h2>Baptism information</h2>
+            <h3>Baptism information</h3>
             <p>
                 <label for="recipient.priorbaptism.date">Recipient's date of baptism:</label>
                 <input type="date" id="recipient.priorbaptism.date"/>
@@ -135,7 +136,7 @@
         </div>
 
         <div id="recipient.priorfullcommunioninfo">
-            <h2>Information about reception into full communion</h2>
+            <h3>Information about reception into full communion</h3>
             <p>
                 <label for="recipient.priorfullcommunion.date">Date recipient was received into full communion:</label>
                 <input type="date" id="recipient.priorfullcommunion.date"/>
@@ -151,7 +152,7 @@
         </div>
 
         <div id="recipient.priorconfirmationinfo">
-            <h2>Confirmation information</h2>
+            <h3>Confirmation information</h3>
             <p>
                 <label for="recipient.priorconfirmation.date">Recipient's date of confirmation:</label>
                 <input type="date" id="recipient.priorconfirmation.date"/>
@@ -172,7 +173,7 @@
     </section>
 
     <section id="minister">
-        <h1>Minister</h1>
+        <h2>Minister</h2>
         <p>
             <label for="minister.name">The name of the Catholic minister who will administer these sacraments is:</label>
             <input type="text" id="minister.name" />
@@ -188,9 +189,9 @@
     </section>
 
     <section id="ceremony">
-        <h1>Ceremony</h1>
+        <h2>Ceremony</h2>
         <div>
-            <h2>Calendar</h2>
+            <h3>Calendar</h3>
             <p>
                 <label for="ceremony.date">Date of reception of sacraments:</label>
                 <input type="date" id="ceremony.date"/>
@@ -203,7 +204,7 @@
         </div>
 
         <div id="ceremony.sponsors">
-            <h2>Sponsors (godparents)</h2>
+            <h3>Sponsors (godparents)</h3>
             <p id="ceremony.sponsors.firstP">
                 <label for="ceremony.sponsors.first">Full name of Catholic sponsor:</label>
                 <input type="text" id="ceremony.sponsors.first"/>
@@ -222,7 +223,7 @@
         </div>
 
         <div id="ceremony.ascription">
-            <h2>Ascription</h2>
+            <h3>Ascription</h3>
             <p>
                 <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
                 <input type="text" id="ceremony.churchascription" value="Latin Catholic Church" />
@@ -249,10 +250,10 @@
     </section>
 
     <section id="faculty">
-        <h1>Faculties</h1>
+        <h2>Faculties</h2>
 
         <div id="faculty.baptism">
-            <h2>Baptism</h2>
+            <h3>Baptism</h3>
             <span data-autofill="minister.name"></span>
             has the faculty to baptize
             <span data-autofill="recipient.name"></span>
@@ -282,7 +283,7 @@
         </div>
 
         <div id="faculty.reception">
-            <h2>Reception into full communion</h2>
+            <h3>Reception into full communion</h3>
             <div data-orders="presbyter bishop">
                 <span data-autofill="minister.name"></span>
                 has the faculty to receive
@@ -305,7 +306,7 @@
         </div>
 
         <div id="faculty.confirmation">
-            <h2>Confirmation</h2>
+            <h3>Confirmation</h3>
             <div data-orders="presbyter bishop">
                 <span data-autofill="minister.name"></span>
                 can validly confirm
@@ -360,7 +361,7 @@
         </div>
 
         <div id="faculty.communion">
-            <h2>Holy Communion</h2>
+            <h3>Holy Communion</h3>
             <ul>
             <li>Any cleric has the faculty to administer Holy Communion.</li>
             <li>An extraordinary minister might be deputed to administer Holy Communion, in accord with the norm of law.</li>
@@ -369,7 +370,7 @@
     </section>
 
     <section id="summary">
-        <h1>Summary</h1>
+        <h2>Summary</h2>
         <p>Based on the current information, the ceremony will follow the following order:</p>
         <ol>
             <li id="summary.reception">Reception into full communion</li>
@@ -380,9 +381,9 @@
     </section>
 
     <section id="register">
-        <h1>Recording</h1>
+        <h2>Recording</h2>
         <div id="register.baptism">
-            <h2>Baptismal register</h2>
+            <h3>Baptismal register</h3>
             <p>In the baptismal register of <span data-autofill="ceremony.place"></span>, record at least the following information:</p>
             <ul>
                 <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
@@ -416,7 +417,7 @@
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.reception">
-            <h2>Register of reception into full communion</h2>
+            <h3>Register of reception into full communion</h3>
             <p class="note">
             Particular law determines where this information is to be kept.
             This is usually either a dedicated register for receptions into full communion or the baptismal register.
@@ -450,7 +451,7 @@
             </ul>
         </div>
         <div id="register.confirmation">
-            <h2>Confirmation register</h2>
+            <h3>Confirmation register</h3>
             <p class="note">
             Particular law determines where the confirmation register is kept.
             This is most commonly either the diocesan offices or the parish that prepared <span data-autofill="recipient.name"></span> for confirmation.
@@ -469,7 +470,7 @@
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.notification.tobaptism">
-            <h2>Notification</h2>
+            <h3>Notification</h3>
             <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
 
             <p>Dear Father N.,</p>
@@ -494,7 +495,7 @@
             <p><span data-autofill="minister.name"></span>
         </div>
         <div id="register.notification.tofullcommunion">
-            <h2>Notification</h2>
+            <h3>Notification</h3>
             <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
 
             <p>Dear Father N.,</p>
@@ -519,7 +520,7 @@
             <p><span data-autofill="minister.name"></span>
         </div>
         <div id="register.notification.baptisedsameparish">
-            <h2>Baptismal register</h2>
+            <h3>Baptismal register</h3>
             In the baptismal register of <span data-autofill="recipient.priorbaptism.place"></span>, at the entry for <span data-autofill="recipient.name"></span>'s baptism on <span data-autofill="recipient.priorbaptism.date"></span>, the following annotation should be added:
             <ul>
                 <li>
@@ -531,7 +532,7 @@
             </ul>
         </div>
         <div id="register.notification.receivedsameparish">
-            <h2>Register of reception into full communion</h2>
+            <h3>Register of reception into full communion</h3>
             At <span data-autofill="recipient.priorfullcommunion.place"></span>, in the register of reception into full communion (which may be the same as the baptismal register), at the entry for <span data-autofill="recipient.name"></span>'s reception into full communion on <span data-autofill="recipient.priorfullcommunion.date"></span>, the following annotation should be added:
             <ul>
                 <li>
@@ -543,7 +544,7 @@
             </ul>
         </div>
         <div id="register.communion">
-            <h2>First Holy Communion register</h2>
+            <h3>First Holy Communion register</h3>
             <p class="note">Particular law determines how and whether to record a person's first reception of Holy Communion.</p>
         </div>
     </section>

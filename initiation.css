@@ -50,18 +50,20 @@ input {
 }
 
 h1 {
-    font-size: 150%;
+    font-size: 175%;
     font-weight: bold;
     font-variant: small-caps;
+    text-align: center;
 }
 
 h2 {
-    font-size: 125%;
+    font-size: 150%;
+    font-variant: small-caps;
     font-weight: bold;
 }
 
 h3 {
-    font-size: 110%;
+    font-size: 125%;
     font-weight: bold;
 }
 
