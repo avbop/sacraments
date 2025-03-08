@@ -1,15 +1,15 @@
 /* This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). */
 
 :root {
-    --bg-body: #D7EAEA;
+    --bg-body: #EBE7DB;
     --bg-content: white;
     --bg-input: white;
-    --bg-footnote: #9994B3;
+    --bg-footnote: #5C5CFF;
     --text: black;
     --border: black;
-    --warning: #F4743B;
-    --info: #F4D35E;
-    --autofill: #73ABE7;
+    --warning: #FD3538;
+    --info: #CFAE84;
+    --autofill: #71FEE9;
     --result: var(--autofill)
 }
 
@@ -165,7 +165,18 @@ header, footer, main {
 }
 
 header {
-    padding: 3em;
+    padding: 6em;
+    background-image: url('img/baptism.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+header h1 {
+    background-color: rgba(256, 256, 256, 0.9);
+    color: black;
+    padding: 1em;
 }
 
 #register, #summary {

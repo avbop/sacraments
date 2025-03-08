@@ -31,6 +31,6 @@ As time and effort allow, the project may be extended to briefly propose ideas r
     - Exception: fonts, images, and other media used by, but not produced for, this project might have their own licences. Only information with a licence compatible with this project will be used.
 
 # Licence
-This file is released to the public domain and is marked with [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
-
-The font used for this project, Source Serif, is free to use and redistribute, but it is not in the public domain. See [its licence](fonts/LICENSE.md) for details.
+- This file is released to the public domain and is marked with [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- The font used for this project, Source Serif, is free to use and redistribute, but it is not in the public domain. See [its licence](fonts/LICENSE.md) for details.
+- The image used in the header is © 2012 [Lawrence Lew, O.P.](https://www.flickr.com/photos/paullew/8185251426/in/album-72157594314281446), licensed [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/).
