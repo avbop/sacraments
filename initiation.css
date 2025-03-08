@@ -1,15 +1,16 @@
 /* This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). */
 
 :root {
-    --bg-body: #eee;
+    --bg-body: #D7EAEA;
     --bg-content: white;
     --bg-input: white;
+    --bg-footnote: #9994B3;
     --text: black;
     --border: black;
-    --warning: orange;
-    --info: #87ceeb;
-    --autofill: #ddd;
-    --result: white;
+    --warning: #F4743B;
+    --info: #F4D35E;
+    --autofill: #73ABE7;
+    --result: var(--autofill)
 }
 
 @font-face {
@@ -55,6 +56,15 @@ body, input {
 
 body {
     background-color: var(--bg-body);
+}
+
+aside {
+    background-color: var(--bg-footnote);
+    position: absolute;
+    right: 20px;
+    border: thin solid black;
+    margin: 1em;
+    padding: 1em;
 }
 
 input {
@@ -114,7 +124,6 @@ h3 {
 .info {
     background-color: var(--info);
     color: var(--text);
-    font-weight: bold;
     width: 75%;
     text-align: center;
     padding: 1em;
@@ -155,19 +164,37 @@ header, footer, main {
     margin-left: auto;
 }
 
+header {
+    padding: 3em;
+}
+
 #register, #summary {
-    border: thick double black;
+    border: thin solid  black;
+    background-color: var(--result);
 }
 
 #register div {
     border: thin solid black;
     margin: 1em;
     padding: 1em;
+    background-color: var(--bg-content);
+}
+
+#register div [data-autofill] {
+    background-color: var(--bg-content);
 }
 
 a {
     color: var(--text);
     text-decoration: underline;
+}
+
+header section {
+    border: none;
+}
+
+#instructions {
+    background-color: var(--info);
 }
 
 @media print {
@@ -180,7 +207,7 @@ a {
         text-decoration: none;
     }
     
-    footer {
+    header, footer, aside, #instructions {
         display: none;
     }
 
@@ -202,10 +229,6 @@ a {
 
     .warning {
         border: thick dashed black;
-    }
-
-    #instructions {
-        display: none;
     }
 
     #register {
