@@ -185,7 +185,16 @@ function autofill() {
         const keys = data.split('.');
         val = window[keys.shift()](keys.join('.'));
         if (val instanceof Date) {
-            e.innerHTML = val.toLocaleDateString();
+            const fmt = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            if (!isNaN(val)) {
+                e.innerHTML = new Intl.DateTimeFormat(undefined, fmt).format(val);
+            } else {
+                e.innerHTML = "[unknown date]";
+            }
             continue;
         }
         if (val && val != '') {
