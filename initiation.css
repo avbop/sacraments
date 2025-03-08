@@ -1,5 +1,17 @@
 /* This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). */
 
+:root {
+    --bg-body: #eee;
+    --bg-content: white;
+    --bg-input: white;
+    --text: black;
+    --border: black;
+    --warning: orange;
+    --info: #87ceeb;
+    --autofill: #ddd;
+    --result: white;
+}
+
 @font-face {
     font-family: Source Serif;
     font-style: normal;
@@ -38,8 +50,11 @@
 
 body, input {
     font-family: Source Serif, Palatino, serif;
-    color: black;
-    background-color: white;
+    color: var(--text);
+}
+
+body {
+    background-color: var(--bg-body);
 }
 
 input {
@@ -47,6 +62,7 @@ input {
     margin: 0.25em;
     font-size: 100%;
     width: 15em;
+    background-color: var(--bg-input);
 }
 
 h1 {
@@ -84,8 +100,8 @@ h3 {
 }
 
 .warning {
-    background-color: orange;
-    color: black;
+    background-color: var(--warning);
+    color: var(--text);
     font-weight: bold;
     width: 75%;
     text-align: center;
@@ -96,8 +112,8 @@ h3 {
 }
 
 .info {
-    background-color: #87ceeb;
-    color: black;
+    background-color: var(--info);
+    color: var(--text);
     font-weight: bold;
     width: 75%;
     text-align: center;
@@ -123,13 +139,14 @@ footer {
 }
 
 [data-autofill] {
-    background-color: #ddd;
+    background-color: var(--autofill);
 }
 
 section {
     border: thin solid black;
     margin: 2em;
     padding: 2em;
+    background-color: var(--bg-content);
 }
 
 header, footer, main {
@@ -149,7 +166,7 @@ header, footer, main {
 }
 
 a {
-    color: black;
+    color: var(--text);
     text-decoration: underline;
 }
 
@@ -160,7 +177,6 @@ a {
     }
 
     a {
-        color: black;
         text-decoration: none;
     }
     
@@ -200,5 +216,9 @@ a {
         max-width: 100%;
         margin-right: auto;
         margin-left: auto;
+    }
+
+    [data-autofill] {
+        text-decoration: underline;
     }
 }
