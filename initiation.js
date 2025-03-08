@@ -236,11 +236,6 @@ function showHideEastern() {
         show('ceremony.ascription.usuallylatin');
         hide('recipient.priorbaptism.easternwarning');
     }
-    if (actualAscription == 'eastern') {
-        show('recipient.priorbaptism.ascriptionP');
-    } else {
-        hide('recipient.priorbaptism.ascriptionP');
-    }
 }
 
 function showHideAdoption() {
