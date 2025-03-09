@@ -5,6 +5,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <title>Sacraments of Initiation</title>
     <script type="text/javascript" src="initiation.js"></script>
     <script type="text/javascript">
@@ -30,7 +31,6 @@
         <p>This form will update automatically as it is changed. Based on the information that it has, it produces <a href="#register">instructions</a> for updating sacramental registers.</p>
         <p>For privacy reasons, this form will not retain any information that is entered into it. If you need to keep a copy, it is recommended that you use your browser's &ldquo;Save as PDF&rdquo; or &ldquo;Print as PDF&rdquo; function.</p>
     </section>
-    <aside>Can. 4000: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec nisl tincidunt erat aliquet venenatis. Nam leo magna, consectetur quis scelerisque vitae, commodo ac eros. Duis elementum quam at arcu laoreet, lacinia euismod nulla varius. Duis lorem leo, rutrum eget lorem id, dictum tempus sapien. Aenean ullamcorper commodo auctor. Fusce bibendum est sed turpis rhoncus porttitor. Pellentesque mollis justo a orci laoreet, a euismod ipsum pellentesque. Duis ante mi, consequat eget viverra et, commodo nec dui. Nunc quis bibendum tellus. Suspendisse elementum, nulla ut venenatis finibus, libero justo sollicitudin erat, vitae dapibus elit diam hendrerit nisi. Curabitur vel turpis a nunc vulputate sodales. Fusce efficitur turpis nec felis eleifend auctor.</aside>
     <section id="recipient">
         <h2>Recipient</h2>
         <div id="recipient.basics">
@@ -47,7 +47,6 @@
                 <label for="recipient.birthplace">Recipient's place of birth:</label>
                 <input type="text" id="recipient.birthplace"/>
             </p>
-            <aside>Can. 3000.</aside>
             <p>
                 <label for="recipient.parents.mother">Recipient's mother's full maiden name:</label>
                 <input type="text" id="recipient.parents.mother"/>
@@ -63,6 +62,11 @@
                     <option>Yes</option>
                 </select>
             </p>
+            <aside>
+                Baptism conferred outside the Catholic Church is often valid, if it is done by the washing of water and using the proper Trinitarian formula (see canons 849 and 845).<br/>
+                The Catholic Church recognises the validity of the sacrament of confirmation as conferred by most Eastern non-Catholic Churches (see canons 882 and 845). Likewise, the Church recognises that any validly-ordained priest, even a non-Catholic priest, can validly confect the Most Holy Eucharist (see canon 844 §2).</br>
+                In cases of uncertainty, consult a canonist.
+            </aside>
             <p>
                 Which sacraments has this person (validly) received?
                 <ul class="blanklist">
@@ -229,6 +233,7 @@
 
         <div id="ceremony.ascription">
             <h3>Ascription</h3>
+            <aside>Canons 111 and 112.</aside>
             <p>
                 <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
                 <input type="text" id="ceremony.churchascription" value="Latin Catholic Church" />
@@ -389,6 +394,7 @@
         <h2>Recording</h2>
         <div id="register.baptism">
             <h3>Baptismal register</h3>
+            <aside>Canons 535 §2 and 877.</aside>
             <p>In the baptismal register of <span data-autofill="ceremony.place"></span>, record at least the following information:</p>
             <ul>
                 <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
@@ -413,6 +419,7 @@
                 </li>
             </ul>
             <div id="register.baptism.birthinfo">
+                <aside>Canon 877 §3.</aside>
                 <p class="note">Depending on the particular law established by the episcopal conference, it might also be necessary to record the recipient's birth information.</p>
                 <ul>
                     <li>Name of the recipient at birth: <span data-autofill="recipient.birthname"></span></li>
@@ -423,6 +430,7 @@
         </div>
         <div id="register.reception">
             <h3>Register of reception into full communion</h3>
+            <aside>Canons 535 §2 and 877 (by analogy to the baptismal register); see also local OCIA norms.</aside>
             <p class="note">
             Particular law determines where this information is to be kept.
             This is usually either a dedicated register for receptions into full communion or the baptismal register.
@@ -457,6 +465,7 @@
         </div>
         <div id="register.confirmation">
             <h3>Confirmation register</h3>
+            <aside>Canon 895.</aside>
             <p class="note">
             Particular law determines where the confirmation register is kept.
             This is most commonly either the diocesan offices or the parish that prepared <span data-autofill="recipient.name"></span> for confirmation.
@@ -476,8 +485,10 @@
         </div>
         <div id="register.notification.tobaptism">
             <h3>Notification</h3>
+            <aside>Canon 895.</aside>
             <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
 
+            <aside>Canons 535 §§1 and 2</aside>
             <p>Dear Father N.,</p>
 
             <p>
@@ -501,8 +512,10 @@
         </div>
         <div id="register.notification.tofullcommunion">
             <h3>Notification</h3>
+            <aside>Canon 895.</aside>
             <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
 
+            <aside>Canons 535 §§1 and 2</aside>
             <p>Dear Father N.,</p>
 
             <p>
@@ -526,6 +539,7 @@
         </div>
         <div id="register.notification.baptisedsameparish">
             <h3>Baptismal register</h3>
+            <aside>Canon 895.</aside>
             In the baptismal register of <span data-autofill="recipient.priorbaptism.place"></span>, at the entry for <span data-autofill="recipient.name"></span>'s baptism on <span data-autofill="recipient.priorbaptism.date"></span>, the following annotation should be added:
             <ul>
                 <li>
@@ -538,6 +552,7 @@
         </div>
         <div id="register.notification.receivedsameparish">
             <h3>Register of reception into full communion</h3>
+            <aside>Canon 895.</aside>
             At <span data-autofill="recipient.priorfullcommunion.place"></span>, in the register of reception into full communion (which may be the same as the baptismal register), at the entry for <span data-autofill="recipient.name"></span>'s reception into full communion on <span data-autofill="recipient.priorfullcommunion.date"></span>, the following annotation should be added:
             <ul>
                 <li>
@@ -550,6 +565,7 @@
         </div>
         <div id="register.communion">
             <h3>First Holy Communion register</h3>
+            <aside>See the silence of canons 897–958 on recording reception of the Most Holy Eucharist, by contrast with the pattern for those sacraments that are to be recorded (e.g., canon 877).</aside>
             <p class="note">Particular law determines how and whether to record a person's first reception of Holy Communion.</p>
         </div>
     </section>
