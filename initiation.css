@@ -305,9 +305,13 @@ header section {
 @media screen and (max-width: 70em) {
     aside {
         width: 1.5em;
+        height: 1.5em;
     }
     aside:before {
-        content: "🕮 \A";
+        content: "( ∗ )   ";
+    }
+    aside:hover:before {
+        content: "";
     }
 }
 
