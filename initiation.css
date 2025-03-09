@@ -4,12 +4,13 @@
     --bg-body: #EBE7DB;
     --bg-content: white;
     --bg-input: white;
-    --bg-footnote: #5C5CFF;
+    --bg-footnote: #C26187;
+    --bg-footnote-bright: #DDA7BC;
     --text: black;
     --border: black;
     --warning: #FD3538;
     --info: #CFAE84;
-    --autofill: #71FEE9;
+    --autofill: #E3F1DE;
     --result: var(--autofill)
 }
 
@@ -65,6 +66,11 @@ aside {
     border: thin solid black;
     margin: 1em;
     padding: 1em;
+    font-size: 80%;
+}
+
+aside:hover {
+    background-color: var(--bg-footnote-bright);
 }
 
 input {
