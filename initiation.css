@@ -67,10 +67,18 @@ aside {
     margin: 1em;
     padding: 1em;
     font-size: 80%;
+    height: 2em;
+    width: 10em;
+    max-width: 25em;
+    overflow: clip;
+    transition: 0.5s;
 }
 
 aside:hover {
     background-color: var(--bg-footnote-bright);
+    font-size: 100%;
+    height: auto;
+    width: auto;
 }
 
 input {
