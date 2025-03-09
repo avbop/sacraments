@@ -57,6 +57,9 @@ body, input {
 
 body {
     background-color: var(--bg-body);
+}
+
+.info, #instructions, aside {
     text-align: justify;
 }
 
@@ -188,13 +191,12 @@ header {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    color: white;
 }
 
 header h1 {
     background-color: rgba(256, 256, 256, 0.9);
     color: black;
-    padding: 1em;
+    padding: 0.5em;
 }
 
 #register, #summary {
@@ -264,7 +266,7 @@ header section {
         break-before: always;
     }
 
-    header, footer, main {
+    main {
         max-width: 100%;
         margin-right: auto;
         margin-left: auto;
@@ -279,12 +281,10 @@ header section {
     header {
         background-image: none;
         padding: 0em;
-        margin: 0.5em;
     }
 
     header h1 {
         padding: 0em;
-        margin: 0.5em;
         background-color: var(--bg-body);
     }
 
