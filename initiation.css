@@ -5,7 +5,7 @@
     --bg-content: white;
     --bg-input: white;
     --bg-footnote: #C26187;
-    --bg-footnote-bright: #DDA7BC;
+    --bg-footnote-bright: #F4E2E9;
     --text: black;
     --border: black;
     --warning: #FD3538;
@@ -57,28 +57,32 @@ body, input {
 
 body {
     background-color: var(--bg-body);
+    text-align: justify;
 }
 
 aside {
     background-color: var(--bg-footnote);
     position: absolute;
-    right: 20px;
+    right: 1em;
     border: thin solid black;
     margin: 1em;
     padding: 1em;
     font-size: 80%;
-    height: 2em;
+    height: 1em;
     width: 10em;
-    max-width: 25em;
     overflow: clip;
     transition: 0.5s;
 }
+
 
 aside:hover {
     background-color: var(--bg-footnote-bright);
     font-size: 100%;
     height: auto;
     width: auto;
+    min-width: 10em;
+    max-width: 25em;
+    z-index: 1;
 }
 
 input {
@@ -298,7 +302,16 @@ header section {
     }
 }
 
-@media screen and (max-width: 50em) {
+@media screen and (max-width: 70em) {
+    aside {
+        width: 1.5em;
+    }
+    aside:before {
+        content: "🕮 \A";
+    }
+}
+
+@media screen and (max-width: 60em) {
     aside {
         display: none;
     }
