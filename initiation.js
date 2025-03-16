@@ -273,6 +273,7 @@ function showHideSacraments() {
     const needsReception = recipient('needsReception');
     const needsConfirmation = recipient('needsConfirmation');
     const needsCommunion = recipient('needsCommunion');
+    const ministerGrade = minister('grade');
     // Show baptism-related things.
     if (needsBaptism) {
         show('register.baptism');
@@ -312,6 +313,12 @@ function showHideSacraments() {
         hide('faculty.communion');
         hide('summary.communion');
         hide('register.communion');
+    }
+    // If minister is a deacon and confirmation is required, don't show summary or register.
+    if (needsConfirmation && ministerGrade == 'deacon') {
+        show('summary.deaconwarning')
+    } else {
+        hide('summary.deaconwarning')
     }
     // If nothing is to be done, hide everything and show info.
     if (!needsBaptism && !needsReception && !needsConfirmation && !needsCommunion) {
