@@ -122,7 +122,7 @@
                 <input type="text" id="recipient.priorbaptism.sponsors"/>
             </p>
             <p>
-                <label for="recipient.priorbaptism.church">Church or denomination into which the recipient was baptised:</label>
+                <label for="recipient.priorbaptism.church">Church or denomination into which the recipient was baptised:</label><br/>
                 <select id="recipient.priorbaptism.church">
                     <option value="unknown" selected="true">Unknown</option>
                     <option value="latin">Latin Catholic Church</option>
@@ -132,7 +132,7 @@
                 </select>
             </p>
             <p>
-                <label for="recipient.currentchurch">To which Church or Christian community does this person currently belong?</label>
+                <label for="recipient.currentchurch">Of which Church or Christian community does this person currently consider himself or herself to be a member?</label><br/>
                 <select id="recipient.currentchurch">
                     <option value="unknown" selected="true">Unknown</option>
                     <option value="latin">Latin Catholic Church</option>
@@ -233,7 +233,12 @@
 
         <div id="ceremony.ascription">
             <h3>Ascription</h3>
-            <aside>Canons 111 and 112.</aside>
+            <aside>
+                Canons 111 and 112.
+                See also CCEO canon 35.
+                Note that a person, once ascribed to a Church, cannot cease to be ascribed.
+                For example, someone who was baptised Eastern Orthodox but now considers himself to be Presbyterian is still considered to be ascribed to the Eastern Orthodox Church in which he was baptised.
+            </aside>
             <p>
                 <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
                 <select id="ceremony.churchascription">
@@ -263,11 +268,8 @@
                     <option>Ukrainian Catholic Church</option>
                 </select>
             </p>
-            <p id="ceremony.ascription.easternwarning" class="warning">
-                This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.
-            </p>
             <p id="ceremony.ascription.corresponding" class="info">
-                A member of an Eastern non-Catholic Church, when received into the full communion of the Catholic Church, is ascribed to the corresponding Catholic Church <span class="latin">sui iuris</span>.
+                A member of an Eastern non-Catholic Church, when received into the full communion of the Catholic Church, is ascribed to the corresponding Eastern Catholic Church <span class="latin">sui iuris</span>.
             </p>
             <p id="ceremony.ascription.usuallylatin" class="note">
                 This is most likely the Latin Catholic Church.
@@ -280,6 +282,9 @@
                     <li>the person has expressed interest in joining one of the Eastern Catholic Churches; or</li>
                     <li>you are otherwise unsure.</li>
                 </ul>
+            </p>
+            <p id="ceremony.ascription.easternwarning" class="warning">
+                This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.
             </p>
         </div>
     </section>

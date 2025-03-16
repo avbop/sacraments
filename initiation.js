@@ -256,6 +256,9 @@ function showHideEastern() {
             document.getElementById('ceremony.ascription.corresponding').classList.add('warning');
             document.getElementById('ceremony.ascription.corresponding').classList.remove('info');
             intendedAscription = correspondingValue;
+        } else {
+            document.getElementById('ceremony.ascription.corresponding').classList.add('info');
+            document.getElementById('ceremony.ascription.corresponding').classList.remove('warning');
         }
         show('ceremony.ascription.corresponding');
     } else {
