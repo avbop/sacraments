@@ -300,52 +300,6 @@ function showHideSacraments() {
     const needsConfirmation = recipient('needsConfirmation');
     const needsCommunion = recipient('needsCommunion');
     const ministerGrade = minister('grade');
-    // Show baptism-related things.
-    if (needsBaptism) {
-        show('register.baptism');
-        show('faculty.baptism');
-        show('summary.baptism');
-    } else {
-        hide('register.baptism');
-        hide('faculty.baptism');
-        hide('summary.baptism');
-    }
-    // Show reception-related things.
-    if (needsReception) {
-        show('register.reception');
-        show('faculty.reception');
-        show('summary.reception');
-    } else {
-        hide('register.reception');
-        hide('faculty.reception');
-        hide('summary.reception');
-    }
-    // Show confirmation-related things.
-    if (needsConfirmation) {
-        show('register.confirmation');
-        show('faculty.confirmation');
-        show('summary.confirmation');
-    } else {
-        hide('register.confirmation');
-        hide('faculty.confirmation');
-        hide('summary.confirmation');
-    }
-    // Show Communion-related things.
-    if (needsCommunion) {
-        show('faculty.communion');
-        show('summary.communion');
-        show('register.communion');
-    } else {
-        hide('faculty.communion');
-        hide('summary.communion');
-        hide('register.communion');
-    }
-    // If minister is a deacon and confirmation is required, don't show summary or register.
-    if (needsConfirmation && ministerGrade == 'deacon') {
-        show('summary.deaconwarning')
-    } else {
-        hide('summary.deaconwarning')
-    }
     // If nothing is to be done, hide everything and show info.
     if (!needsBaptism && !needsReception && !needsConfirmation && !needsCommunion) {
         hide('summary')
@@ -370,9 +324,15 @@ function showHideConfirmationNotification() {
     hide('register.baptism.baptismandconfirmation');
     show('register.reception.onlyreceived');
     hide('register.reception.confirmedandreceived');
+    // Only show record of prior confirmation if relevant.
+    if (recipient('confirmed')) {
+        show('register.reception.priorconfirmation');
+    } else {
+        hide('register.reception.priorconfirmation');
+    }
     const needsConfirmation = recipient('needsConfirmation');
     // If not doing confirmation, skip all of this.
-    if (!needsConfirmation) {
+    if (!needsConfirmation || minister('grade') == 'deacon') {
         return;
     }
     const actualAscription = recipient('ascription');

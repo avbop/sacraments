@@ -21,7 +21,7 @@
 <body>
     <div style="color: black; background-color: var(--warning); width: 95%; margin: 2em; padding: 23m; text-align: center; font-weight: bold; font-size: 125%; border: thick solid black;"><p>This project is incomplete and should be assumed to give inaccurate information.</p></div>
     <header>
-        <noscript class="warning">Warning: this document will not work without JavaScript enabled.</noscript>
+        <noscript class="warning">This document will not work without JavaScript enabled.</noscript>
         <h1>Sacraments of Initiation</h1>
     </header>
     <main>
@@ -262,7 +262,7 @@
     <section id="faculty">
         <h2>Faculties</h2>
 
-        <div id="faculty.baptism">
+        <div id="faculty.baptism" data-rites="baptism">
             <h3>Baptism</h3>
             <span data-autofill="minister.name"></span>
             has the faculty to baptize
@@ -292,9 +292,9 @@
             </ul>
         </div>
 
-        <div id="faculty.reception">
+        <div id="faculty.reception" data-rites="reception">
             <h3>Reception into full communion</h3>
-            <div data-orders="presbyter bishop">
+            <div>
                 <span data-autofill="minister.name"></span>
                 has the faculty to receive
                 <span data-autofill="recipient.name"></span>
@@ -304,18 +304,18 @@
                         <input type="checkbox" id="faculty.reception.db"/>
                         <label for="faculty.reception.db">he is the diocesan bishop or is equivalent in law to a diocesan bishop</label>
                     </li>
-                    <li data-orders="bishop presbyter">
+                    <li>
                         <input type="checkbox" id="faculty.reception.granted"/>
                         <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
                     </li>
                 </ul>
             </div>
-            <div data-orders="deacon" class="warning">
+            <div data-orders="deacon" data-rites="confirmation" class="warning">
                 <p>Because of the requirement that Confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
             </div>
         </div>
 
-        <div id="faculty.confirmation">
+        <div id="faculty.confirmation" data-rites="confirmation">
             <h3>Confirmation</h3>
             <div data-orders="presbyter bishop">
                 <aside>Canons 882–888. The faculty mentioned in canon 884 §2 is omitted because it would normally only occur in the context of the ceremony itself, not at the planning stage with which this form is intended to assist.</aside>
@@ -363,11 +363,11 @@
                 </ul>
             </div>
             <div class="warning" data-orders="deacon">
-                <p>A deacon can never administer Confirmation validly.</p>
+                <p>A deacon can never administer confirmation validly.</p>
             </div>
         </div>
 
-        <div id="faculty.communion">
+        <div id="faculty.communion" data-rites="communion">
             <h3>Holy Communion</h3>
             <ul>
             <li>Any cleric has the faculty to administer Holy Communion.</li>
@@ -380,19 +380,17 @@
         <h2>Summary</h2>
         <p>Based on the current information, the ceremony should proceed in this order:</p>
         <ol>
-            <li id="summary.reception">Reception into full communion</li>
-            <li id="summary.baptism">Baptism</li>
-            <li id="summary.confirmation" data-orders="presbyter bishop">Confirmation</li>
-            <li id="summary.communion">First Holy Communion</li>
+            <li id="summary.reception" data-rites="reception">Reception into full communion</li>
+            <li id="summary.baptism" data-rites="baptism">Baptism</li>
+            <li id="summary.confirmation" data-rites="confirmation">Confirmation</li>
+            <li id="summary.communion" data-rites="communion">First Holy Communion</li>
         </ol>
-        <p class="warning" id="summary.deaconwarning">
-            Because <span data-autofill="minister.name"></span> is a deacon, he will not be able to be the celebrant of these rites.
-        </p>
+        <p class="warning" data-orders="deacon" data-rites="confirmation">A deacon will not be able to be the celebrant of these rites.</p>
     </section>
 
     <section id="register">
         <h2>Recording</h2>
-        <div id="register.baptism">
+        <div id="register.baptism" data-rites="baptism">
             <h3>Baptismal register</h3>
             <aside>Canons 535 §2 and 877.</aside>
             <p>In the baptismal register of <span data-autofill="ceremony.place"></span>, record at least the following information:</p>
@@ -429,7 +427,7 @@
             <p class="note" id="register.baptism.marriagenote">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
-        <div id="register.reception">
+        <div id="register.reception" data-rites="reception">
             <h3>Register of reception into full communion</h3>
             <aside>Canons 535 §2 and 877 (by analogy to the baptismal register); see also local OCIA norms.</aside>
             <p class="note">
@@ -457,16 +455,16 @@
                     on <span data-autofill="ceremony.date"></span>
                     at <span data-autofill="ceremony.place"></span>
                     by <span data-autofill="minister.name"></span>.
-                    Confirmed on <span data-autofill="recipient.priorconfirmation.date"></span>
+                    <span id="register.reception.priorconfirmation">Confirmed on <span data-autofill="recipient.priorconfirmation.date"></span>
                     at <span data-autofill="recipient.priorconfirmation.place"></span>
                     by <span data-autofill="recipient.priorconfirmation.minister"></span>,
-                    with <span data-autofill="recipient.priorconfirmation.sponsor"></span> as sponsor.
+                    with <span data-autofill="recipient.priorconfirmation.sponsor"></span> as sponsor.</span>
                 </li>
             </ul>
             <p class="note" id="register.reception.marriagenote">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
-        <div id="register.confirmation">
+        <div id="register.confirmation" data-orders="presbyter bishop" data-rites="confirmation">
             <h3>Confirmation register</h3>
             <aside>Canon 895.</aside>
             <p class="note">
@@ -511,7 +509,7 @@
             </ul>
 
             <p>Yours devotedly in Christ,</p>
-            <p><span data-autofill="minister.name"></span>
+            <p><span data-autofill="minister.name"></span></p>
         </div>
         <div id="register.notification.tofullcommunion">
             <h3>Notification</h3>
@@ -538,7 +536,7 @@
             </ul>
 
             <p>Yours devotedly in Christ,</p>
-            <p><span data-autofill="minister.name"></span>
+            <p><span data-autofill="minister.name"></span></p>
         </div>
         <div id="register.notification.baptisedsameparish">
             <h3>Baptismal register</h3>
@@ -566,7 +564,7 @@
                 </li>
             </ul>
         </div>
-        <div id="register.communion">
+        <div id="register.communion" data-rites="communion">
             <h3>First Holy Communion register</h3>
             <aside>See the silence of canons 897–958 on recording reception of the Most Holy Eucharist, by contrast with the pattern for those sacraments that are to be recorded (e.g., canon 877).</aside>
             <p class="note">Particular law determines how and whether to record a person's first reception of Holy Communion.</p>
