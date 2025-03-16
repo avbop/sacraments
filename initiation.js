@@ -462,6 +462,17 @@ function showHideSponsors() {
     }
 }
 
+function showHideMarriageNote() {
+    // If person is newly baptised or received and of marriageable age, show note about recording marriage.
+    if (recipient('age') >= 14) {
+        show('register.baptism.marriagenote');
+        show('register.reception.marriagenote');
+    } else {
+        hide('register.baptism.marriagenote');
+        hide('register.reception.marriagenote');
+    }
+}
+
 function updateForm() {
     // This function runs every time the form is modified.
     // Run through the entire form and show/hide/update as needed.
@@ -478,13 +489,15 @@ function updateForm() {
 
     showHideAscription();
 
-    autofill();
-
-    showAge();
-
     showHideSponsors();
 
     showHideAdoption();
 
     showHideEastern();
+
+    showHideMarriageNote();
+
+    showAge();
+
+    autofill();
 }
