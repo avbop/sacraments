@@ -249,10 +249,12 @@ function showHideEastern() {
     // Show/hide Eastern Church elements.
     const actualAscription = recipient('ascription');
     let intendedAscription = ceremony('churchascription');
-    const correspondingValue = 'corresponding Eastern Catholic Church';
+    const correspondingValue = ' ';
     if (actualAscription == 'orthodox') {
         if (intendedAscription == 'Latin Catholic Church') {
             document.getElementById('ceremony.churchascription').value = correspondingValue;
+            document.getElementById('ceremony.ascription.corresponding').classList.add('warning');
+            document.getElementById('ceremony.ascription.corresponding').classList.remove('info');
             intendedAscription = correspondingValue;
         }
         show('ceremony.ascription.corresponding');
