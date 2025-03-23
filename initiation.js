@@ -428,10 +428,10 @@ function showHidePriorSacraments() {
     }
 
     // Hide note about collecting certificates if the form's inputs are shown.
-    if (recipient('baptised') && recipient('confirmed')) {
-        hide('recipient.certificatesnote');
+    if (recipient('baptised') || recipient('confirmed')) {
+        document.getElementById('recipient.certificatesnote').classList.remove('print-only');
     } else {
-        show('recipient.certificatesnote');
+        document.getElementById('recipient.certificatesnote').classList.add('print-only');
     }
 }
 
