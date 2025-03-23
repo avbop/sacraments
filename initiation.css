@@ -228,17 +228,29 @@ header section {
     background-color: var(--info);
 }
 
+.temp-hide {
+    display: none;
+}
+
+#register button {
+    float: right;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+@media screen {
+    .print-only {
+        display: none;
+    }
+}
+
 @media print {
     * {
         background-color: white !important;
         color: black !important;
     }
 
-    a {
-        text-decoration: none;
-    }
-    
-    header, footer, aside, #instructions {
+    .screen-only, header, footer, aside {
         display: none;
     }
 
@@ -254,26 +266,31 @@ header section {
         border: thin solid black;
     }
 
-    #register, #summary {
-        border: thick double black;
-    }
-
     .warning {
         border: thick dashed black;
     }
 
-    #register {
-        break-before: always;
-    }
-
     main {
-        max-width: 100%;
+        max-width: 60em;
         margin-right: auto;
         margin-left: auto;
     }
 
     [data-autofill] {
         text-decoration: underline;
+    }
+
+    #register [data-autofill] {
+        text-decoration: none;
+    }
+
+    #register {
+        border: none;
+    }
+
+    #register div {
+        margin-left: 0em;
+        margin-right: 0em;
     }
 }
 

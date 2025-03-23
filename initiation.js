@@ -426,6 +426,13 @@ function showHidePriorSacraments() {
     } else {
         hide('recipient.priorfullcommunioninfo');
     }
+
+    // Hide note about collecting certificates if the form's inputs are shown.
+    if (recipient('baptised') || recipient('confirmed')) {
+        document.getElementById('recipient.certificatesnote').classList.remove('print-only');
+    } else {
+        document.getElementById('recipient.certificatesnote').classList.add('print-only');
+    }
 }
 
 function showHideSponsors() {
@@ -491,4 +498,23 @@ function updateForm() {
     showAge();
 
     autofill();
+}
+
+function printRegister() {
+    for (let e of document.querySelectorAll('section')) {
+        if (e.id == 'register') {
+            e.classList.remove('screen-only');
+        } else {
+            e.classList.add('temp-hide');
+        }
+    }
+    window.print();
+    for (let e of document.querySelectorAll('section')) {
+        if (e.id == 'register') {
+            e.classList.add('screen-only');
+        } else {
+            e.classList.remove('temp-hide');
+        }
+    }
+    document.getElementById('register').scrollIntoView();
 }
