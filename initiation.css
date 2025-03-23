@@ -228,17 +228,19 @@ header section {
     background-color: var(--info);
 }
 
+@media screen {
+    .print-only {
+        display: none;
+    }
+}
+
 @media print {
     * {
         background-color: white !important;
         color: black !important;
     }
 
-    a {
-        text-decoration: none;
-    }
-    
-    header, footer, aside, #instructions {
+    header, footer, aside, #instructions, #faculty, #summary {
         display: none;
     }
 
