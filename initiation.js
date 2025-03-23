@@ -492,3 +492,22 @@ function updateForm() {
 
     autofill();
 }
+
+function printRegister() {
+    for (let e of document.querySelectorAll('section')) {
+        if (e.id == 'register') {
+            e.classList.remove('screen-only');
+        } else {
+            e.classList.add('temp-hide');
+        }
+    }
+    window.print();
+    for (let e of document.querySelectorAll('section')) {
+        if (e.id == 'register') {
+            e.classList.add('screen-only');
+        } else {
+            e.classList.remove('temp-hide');
+        }
+    }
+    document.getElementById('register').scrollIntoView();
+}
