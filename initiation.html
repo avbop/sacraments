@@ -128,23 +128,25 @@
             </p>
             <p>
                 <label for="recipient.priorbaptism.church">Church or denomination into which the recipient was baptised:</label><br/>
-                <select id="recipient.priorbaptism.church">
+                <select id="recipient.priorbaptism.church" class="screen-only">
                     <option value="unknown" selected="true">Unknown</option>
                     <option value="latin">Latin Catholic Church</option>
                     <option value="eastern">an Eastern Catholic Church</option>
                     <option value="orthodox">an Eastern non-Catholic Church</option>
                     <option value="protestant">Other non-Catholic Christian community</option>
                 </select>
+                <input type="text" class="print-only"/>
             </p>
             <p>
                 <label for="recipient.currentchurch">Of which Church or Christian community does this person currently consider himself or herself to be a member?</label><br/>
-                <select id="recipient.currentchurch">
+                <select id="recipient.currentchurch" class="screen-only">
                     <option value="unknown" selected="true">Unknown</option>
                     <option value="latin">Latin Catholic Church</option>
                     <option value="eastern">an Eastern Catholic Church</option>
                     <option value="orthodox">an Eastern non-Catholic Church</option>
                     <option value="protestant">Other non-Catholic Christian community</option>
                 </select>
+                <input type="text" class="print-only"/>
             </p>
             <p id="recipient.priorbaptism.easternwarning" class="warning">This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.</p>
         </div>
@@ -273,7 +275,7 @@
             </aside>
             <p>
                 <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
-                <select id="ceremony.churchascription">
+                <select id="ceremony.churchascription" class="screen-only">
                     <option>Albanian Catholic Church</option>
                     <option>Armenian Catholic Church</option>
                     <option>Belarussian Catholic Church</option>
@@ -299,6 +301,7 @@
                     <option>Syro-Malankara Catholic Church</option>
                     <option>Ukrainian Catholic Church</option>
                 </select>
+                <input type="text" class="print-only"/>
             </p>
             <p id="ceremony.ascription.corresponding" class="info">
                 A member of an Eastern non-Catholic Church, when received into the full communion of the Catholic Church, is ascribed to the corresponding Eastern Catholic Church <span class="latin">sui iuris</span>.
