@@ -426,6 +426,13 @@ function showHidePriorSacraments() {
     } else {
         hide('recipient.priorfullcommunioninfo');
     }
+
+    // Hide note about collecting certificates if the form's inputs are shown.
+    if (recipient('baptised') && recipient('confirmed')) {
+        hide('recipient.certificatesnote');
+    } else {
+        show('recipient.certificatesnote');
+    }
 }
 
 function showHideSponsors() {
