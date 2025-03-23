@@ -188,7 +188,7 @@
             <label for="minister.name">The name of the Catholic minister who will administer these sacraments is:</label>
             <input type="text" id="minister.name" />
         </p>
-        <p>
+        <p class="screen-only">
             <label for="minister.grade">He is a:</label>
             <select id="minister.grade">
                 <option value="deacon">Deacon</option>
@@ -196,6 +196,21 @@
                 <option value="bishop">Bishop</option>
             </select>
         </p>
+        <p class="print-only">He is a:</p>
+        <ul class="blanklist print-only">
+            <li>
+                <input type="radio" name="minister.grade.print"/>
+                <label>Deacon</label>
+            </li>
+            <li>
+                <input type="radio" name="minister.grade.print"/>
+                <label>Priest</label>
+            </li>
+            <li>
+                <input type="radio" name="minister.grade.print"/>
+                <label>Bishop</label>
+            </li>
+        </ul>
     </section>
 
     <section id="ceremony">
@@ -216,20 +231,31 @@
         <div id="ceremony.sponsors">
             <h3>Sponsors (godparents)</h3>
             <p id="ceremony.sponsors.firstP">
-                <label for="ceremony.sponsors.first">Full name of Catholic sponsor:</label>
+                <label for="ceremony.sponsors.first">Full name of first sponsor:</label>
                 <input type="text" id="ceremony.sponsors.first"/>
             </p>
+            <p class="note">This first sponsor must be a Catholic who has received all three sacraments of initiation and actively lives the faith.</p>
             <p id="ceremony.sponsors.secondP">
-                Full name of <select id="ceremony.sponsors.secondtype">
-                    <option value="sponsor">Catholic sponsor</option>
-                    <option value="witness">Christian witness</option>
-                </select> (if any):
+                Full name of second sponsor (if any):
                 <input type="text" id="ceremony.sponsors.second"/>
                 <br/>
-                <span class="note">
-                Note: the second sponsor (godparent) is optional. There may not be more than two sponsors for baptism.
-                </span>
+                This second sponsor will serve as a:
+                <select id="ceremony.sponsors.secondtype" class="screen-only">
+                    <option value="sponsor">Catholic sponsor</option>
+                    <option value="witness">Christian witness</option>
+                </select>
+                <ul class="blanklist print-only">
+                    <li>
+                        <input type="radio" name="ceremony.sponsors.print"/>
+                        <label>Catholic sponsor</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="ceremony.sponsors.print"/>
+                        <label>Christian witness</label>
+                    </li>
+                </ul>
             </p>
+            <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. There may not be more than two sponsors for baptism.</p>
         </div>
 
         <div id="ceremony.ascription">
