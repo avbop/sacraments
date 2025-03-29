@@ -450,14 +450,34 @@ function showHideSponsors() {
     }
 }
 
-function showHideMarriageNote() {
-    // If person is newly baptised or received and of marriageable age, show note about recording marriage.
-    if (recipient('age') >= 14) {
-        show('register.baptism.marriagenote');
-        show('register.reception.marriagenote');
+function showHideByAge() {
+    // Show or hide elements based on the age stored in data-max-age and data-min-age.
+    // If age is null, show everything.
+    // The ages are inclusive: eg data-max-age=13 will show for 13 and not show for 14.
+    const age = recipient('age');
+    if (age != NaN && age >= 0) {
+        // If age is sane, decide whether to hide or show.
+        for (let e of document.querySelectorAll('[data-max-age]')) {
+            maxage = e.getAttribute('data-max-age');
+            if (age <= maxage) {
+                show(e);
+            } else {
+                hide(e);
+            }
+        }
+        for (let e of document.querySelectorAll('[data-min-age]')) {
+            minage = e.getAttribute('data-min-age');
+            if (age >= minage) {
+                show(e);
+            } else {
+                hide(e);
+            }
+        }
     } else {
-        hide('register.baptism.marriagenote');
-        hide('register.reception.marriagenote');
+        // If age is null or negative, show everything.
+        for (let e of document.querySelectorAll('[data-max-age],[data-min-age]')) {
+            show(e);
+        }
     }
 }
 
@@ -483,7 +503,7 @@ function updateForm() {
 
     showHideEastern();
 
-    showHideMarriageNote();
+    showHideByAge();
 
     autofill();
 }

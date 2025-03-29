@@ -340,31 +340,34 @@
         <h2>Faculties</h2>
 
         <div id="faculty.baptism" data-rites="baptism">
+            <aside>
+                Canon 850.
+            </aside>
             <h3>Baptism</h3>
             <span data-autofill="minister.name"></span>
             has the faculty to baptize
             <span data-autofill="recipient.name"></span>
             because:
             <ul class="blanklist">
-                <li>
+                <li data-max-age="13">
                     <input type="checkbox" id="faculty.baptism.insideterritory"/>
                     <label for="faculty.baptism.insideterritory">the baptism will occur within his ministerial territory</label>
                 </li>
-                <li>
+                <li data-max-age="13">
                     <input type="checkbox" id="faculty.baptism.outsideterritorypermission"/>
                     <label for="faculty.baptism.outsideterritorypermission">the baptism will occur outside his ministerial territory, but he has permission from an authority of that territory</label>
+                </li>
+                <li data-max-age="13">
+                    <input type="checkbox" id="faculty.baptism.outsideterritorynecessity"/>
+                    <label for="faculty.baptism.outsideterritorynecessity">the baptism will occur outside his ministerial territory, but this is a case of necessity</label>
                 </li>
                 <li>
                     <input type="checkbox" id="faculty.baptism.granted"/>
                     <label for="faculty.baptism.granted">the faculty has been explicitly granted by the diocesan bishop</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="faculty.baptism.outsideterritorynecessity"/>
-                    <label for="faculty.baptism.outsideterritorynecessity">the baptism will occur outside his ministerial territory, but this is a case of necessity</label>
-                </li>
-                <li>
                     <input type="checkbox" id="faculty.baptism.extraordinary"/>
-                    <label for="faculty.baptism.extraordinary">the recipient is in danger of death or other extraordinary circumstances apply</label>
+                    <label for="faculty.baptism.extraordinary"><span data-autofill="recipient.name"></span> is in danger of death or this is another case of urgent necessity</label>
                 </li>
             </ul>
         </div>
@@ -499,7 +502,7 @@
                     <li>Names of the recipient's parents at birth: <span data-autofill="recipient.birthparents.father"></span>, <span data-autofill="recipient.birthparents.mother"></span></li>
                 </ul>
             </div>
-            <p class="note" id="register.baptism.marriagenote">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
+            <p class="note" id="register.baptism.marriagenote" data-min-age="14">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.reception" data-rites="reception">
@@ -536,7 +539,7 @@
                     with <span data-autofill="recipient.priorconfirmation.sponsor"></span> as sponsor.</span>
                 </li>
             </ul>
-            <p class="note" id="register.reception.marriagenote">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
+            <p class="note" id="register.reception.marriagenote" data-min-age="14">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.confirmation" data-orders="presbyter bishop" data-rites="confirmation">
