@@ -89,6 +89,9 @@ function recipient(p) {
             return calculateAge(recipient('birthdate'), ceremony('date'));
         case 'ascription':
             return calculateAscription();
+        case 'isCatholic':
+            const ascription = recipient('ascription');
+            return (ascription == 'latin' || ascription == 'eastern');
         case 'name':
             const name = document.getElementById('recipient.name').value;
             if (name == '') {
@@ -110,18 +113,22 @@ function recipient(p) {
             // Baptism: if not already baptised.
             return !document.getElementById('recipient.baptised').checked;
         case 'needsConfirmation':
-            // Confirmation: if not already confirmed and not an infant.
+            // Confirmation: if not already confirmed, and not an infant, and Catholic or about to become Catholic.
             if (!recipient('confirmed')) {
                 if (isNaN(recipient('age')) || recipient('age') >= 7) {
-                    return true;
+                    if (recipient('isCatholic') || recipient('needsReception') || recipient('needsBaptism')) {
+                        return true;
+                    }
                 }
             }
             return false;
         case 'needsCommunion':
-            // Communion: if not already received first Communion, and not an infant.
+            // Communion: if not already received first Communion, and not an infant, and Catholic or about to become Catholic.
             if (!recipient('communioned')) {
                 if (isNaN(recipient('age')) || recipient('age') >= 7) {
-                    return true;
+                    if (recipient('isCatholic') || recipient('needsReception') || recipient('needsBaptism')) {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -297,15 +304,15 @@ function showHideSacraments() {
     const ministerGrade = minister('grade');
     // If nothing is to be done, hide everything and show info.
     if (!needsBaptism && !needsReception && !needsConfirmation && !needsCommunion) {
-        hide('summary')
-        hide('register')
-        hide('faculty')
-        show('nothing')
+        hide('summary');
+        hide('register');
+        hide('faculty');
+        show('nothing');
     } else {
-        show('summary')
-        show('register')
-        show('faculty')
-        hide('nothing')
+        show('summary');
+        show('register');
+        show('faculty');
+        hide('nothing');
     }
 }
 
@@ -427,18 +434,19 @@ function showHidePriorSacraments() {
 
 function showHideSponsors() {
     // Show/hide sponsor info.
-    if (recipient('baptised')) {
-        // If baptised, they're going to be at most confirmed, so at most one sponsor.
-        hide('ceremony.sponsors.secondP');
-    } else {
+    // If they need baptism, show both sponsors.
+    if (recipient('needsBaptism')) {
         show('ceremony.sponsors.secondP');
+    } else {
+        hide('ceremony.sponsors.secondP');
     }
-    if (recipient('confirmed')) {
-        // If confirmed, they're by definition also baptised, so no sponsors are needed.
+    // If no sacraments with sponsors, hide both sponsors.
+    if (!recipient('needsConfirmation') && !recipient('needsBaptism')) {
         hide('ceremony.sponsors');
     } else {
         show('ceremony.sponsors');
     }
+    // Show sponsor or Christian witness in register.
     if (ceremony('sponsors.secondtype') == 'witness') {
         hide('register.baptism.sponsors');
         show('register.baptism.sponsor');
