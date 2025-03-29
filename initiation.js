@@ -457,17 +457,16 @@ function showHideByAge() {
     const age = recipient('age');
     if (age != NaN && age >= 0) {
         // If age is sane, decide whether to hide or show.
-        for (let e of document.querySelectorAll('[data-max-age]')) {
-            maxage = e.getAttribute('data-max-age');
-            if (age <= maxage) {
-                show(e);
-            } else {
-                hide(e);
+        for (let e of document.querySelectorAll('[data-max-age],[data-min-age]')) {
+            let maxage = e.getAttribute('data-max-age');
+            let minage = e.getAttribute('data-min-age');
+            if (maxage == null) {
+                maxage = Infinity;
             }
-        }
-        for (let e of document.querySelectorAll('[data-min-age]')) {
-            minage = e.getAttribute('data-min-age');
-            if (age >= minage) {
+            if (minage == null) {
+                minage = -1;
+            }
+            if (age <= maxage && age >= minage) {
                 show(e);
             } else {
                 hide(e);
