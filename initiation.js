@@ -492,10 +492,11 @@ function updateForm() {
     // This function runs every time the form is modified.
     // Run through the entire form and show/hide/update as needed.
 
+    // This must precede showHideRitesAndOrders: it can change whether someone has received confirmation or Holy Communion.
+    showHidePriorSacraments();
+
     // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
     showHideRitesAndOrders();
-
-    showHidePriorSacraments();
 
     // This must follow showHideRitesAndOrders(): see comment above.
     showHideSacraments();
