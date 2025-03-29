@@ -5,12 +5,657 @@
 <html>
 
 <head>
-    <title>Redirect</title>
-    <meta http-equiv="refresh" content="0; url=initiation.html" />
+    <meta charset="utf-8">
+    <title>Sacraments of Initiation</title>
+    <script type="text/javascript" src="initiation.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', (event) => {
+            updateForm();
+            document.getElementById('ceremony.date').valueAsDate = new Date();
+            addFormListeners();
+        });
+    </script>
+    <link rel="stylesheet" href="initiation.css"/>
 </head>
 
 <body>
-    <a href="initiation.html">Redirect</a>
+    <div style="color: black; background-color: var(--warning); width: 95%; margin: 2em; padding: 23m; text-align: center; font-weight: bold; font-size: 125%; border: thick solid black;"><p>This project is incomplete and should be assumed to give inaccurate information.</p></div>
+    <header>
+        <noscript class="warning">This document will not work without JavaScript enabled.</noscript>
+        <h1>Sacraments of Initiation</h1>
+    </header>
+    <main>
+    <form autocomplete="off" method="post" action="" onsubmit="return false;">
+    <section id="instructions" class="screen-only">
+        <p>Instructions: Fill out the form as completely as possible. If you do not yet have all of the required information, you can print this document, meet with the person receiving the sacraments (and/or his or her parents or guardians), and obtain from them the missing information; then, you can return to this form to fill it out completely.</p>
+        <p>This form will update automatically as it is changed. Based on the information that it has, it produces <a href="#register">instructions</a> for updating sacramental registers.</p>
+        <p>For privacy reasons, this form will not retain any information that is entered into it, and it does not send any information anywhere else.</p>
+    </section>
+    <section id="recipient">
+        <h2>Recipient</h2>
+        <div id="recipient.basics">
+            <h3>Biographical details</h3>
+            <p>
+                <label for="recipient.name">Recipient's full name:</label>
+                <input type="text" id="recipient.name"/>
+            </p>
+            <p>
+                <label for="recipient.birthdate">Recipient's date of birth:</label>
+                <input type="date" id="recipient.birthdate"/>
+            </p>
+            <p>
+                <label for="recipient.birthplace">Recipient's place of birth:</label>
+                <input type="text" id="recipient.birthplace"/>
+            </p>
+            <p>
+                <label for="recipient.parents.mother">Recipient's mother's full maiden name:</label>
+                <input type="text" id="recipient.parents.mother"/>
+            </p>
+            <p>
+                <label for="recipient.parents.father">Recipient's father's full name:</label>
+                <input type="text" id="recipient.parents.father"/>
+            </p>
+            <p class="screen-only">
+                Is this person adopted?
+                <select id="recipient.adopted">
+                    <option selected="true">No</option>
+                    <option>Yes</option>
+                </select>
+            </p>
+            <p class="print-only note">
+                If this person is adopted, collect the full names of his or her birth parents, if possible and if permitted by the norms issued by the local episcopal conference.
+            </p>
+            <aside>
+                Baptism conferred outside the Catholic Church is often valid, if it is done by the washing of water and using the proper Trinitarian formula (see canons 849 and 845).<br/>
+                The Catholic Church recognises the validity of the sacrament of confirmation as conferred by most Eastern non-Catholic Churches (see canons 882 and 845). Likewise, the Church recognises that any validly-ordained priest, even a non-Catholic priest, can validly confect the Most Holy Eucharist (see canon 844 §2).</br>
+                In cases of uncertainty, consult a canonist.
+            </aside>
+            <p>
+                Which sacraments has this person (validly) received?
+                <ul class="blanklist">
+                    <li>
+                        <input type="checkbox" id="recipient.baptised"/>
+                        <label for="recipient.baptised">Baptism</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="recipient.confirmed"/>
+                        <label for="recipient.confirmed">Confirmation</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="recipient.communioned"/>
+                        <label for="recipient.communioned">Holy Communion</label>
+                    </li>
+                </ul>
+            </p>
+            <p id="recipient.certificatesnote" class="print-only info">If the person has received baptism or confirmation, even if outside the Catholic Church, he or she should provide a sacramental certificate or similar type of record.</p>
+        </div>
+       
+        <div id="recipient.birthinfo">
+            <aside>Canon 877 §3. Norms regarding whether or not to record an adopted person's birth parents are to be set by the episcopal conference.</aside>
+            <h3>Birth information</h3>
+            <p class="note">Fill in the following with as much information as is known.</p>
+            <p>
+                <label for="recipient.birthname">Recipient's full name at birth:</label>
+                <input type="text" id="recipient.birthname"/>
+            </p>
+            <p>
+                <label for="recipient.birthparents.mother">Recipient's birth mother's full maiden name:</label>
+                <input type="text" id="recipient.birthparents.mother"/>
+            </p>
+            <p>
+                <label for="recipient.birthparents.father">Recipient's birth father's full name:</label>
+                <input type="text" id="recipient.birthparents.father"/>
+            </p>
+        </div>
+
+        <div id="recipient.priorbaptisminfo">
+            <h3>Baptism information</h3>
+            <p>
+                <label for="recipient.priorbaptism.date">Recipient's date of baptism:</label>
+                <input type="date" id="recipient.priorbaptism.date"/>
+            </p>
+            <p>
+                <label for="recipient.priorbaptism.place">Name of the building and city where baptism was received:</label>
+                <input type="text" id="recipient.priorbaptism.place"/>
+            </p>
+            <p>
+                <label for="recipient.priorbaptism.minister">Full name and title of the person who performed the baptism:</label>
+                <input type="text" id="recipient.priorbaptism.minister" />
+            </p>
+            <p>
+                <label for="recipient.priorbaptism.sponsors">Full names of the sponsors (godparents):</label>
+                <input type="text" id="recipient.priorbaptism.sponsors"/>
+            </p>
+            <p>
+                <label for="recipient.priorbaptism.church">Church or denomination into which the recipient was baptised:</label><br/>
+                <select id="recipient.priorbaptism.church" class="screen-only">
+                    <option value="unknown" selected="true">Unknown</option>
+                    <option value="latin">Latin Catholic Church</option>
+                    <option value="eastern">an Eastern Catholic Church</option>
+                    <option value="orthodox">an Eastern non-Catholic Church</option>
+                    <option value="protestant">Other non-Catholic Christian community</option>
+                </select>
+                <input type="text" class="print-only"/>
+            </p>
+            <p>
+                <label for="recipient.currentchurch">Of which Church or Christian community does this person currently consider himself or herself to be a member?</label><br/>
+                <select id="recipient.currentchurch" class="screen-only">
+                    <option value="unknown" selected="true">Unknown</option>
+                    <option value="latin">Latin Catholic Church</option>
+                    <option value="eastern">an Eastern Catholic Church</option>
+                    <option value="orthodox">an Eastern non-Catholic Church</option>
+                    <option value="protestant">Other non-Catholic Christian community</option>
+                </select>
+                <input type="text" class="print-only"/>
+            </p>
+            <p id="recipient.priorbaptism.easternwarning" class="warning">This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.</p>
+        </div>
+
+        <div id="recipient.priorfullcommunioninfo">
+            <h3>Information about reception into full communion</h3>
+            <p>
+                <label for="recipient.priorfullcommunion.date">Date recipient was received into full communion:</label>
+                <input type="date" id="recipient.priorfullcommunion.date"/>
+            </p>
+            <p>
+                <label for="recipient.priorfullcommunion.place">Name and city of the Catholic parish where this person was received into full communion:</label>
+                <input type="text" id="recipient.priorfullcommunion.place"/>
+            </p>
+            <p>
+                <label for="recipient.priorfullcommunion.minister">Full name of the minister who received this person into full communion:</label>
+                <input type="text" id="recipient.priorfullcommunion.minister"/>
+            </p>
+        </div>
+
+        <div id="recipient.priorconfirmationinfo">
+            <h3>Confirmation information</h3>
+            <p>
+                <label for="recipient.priorconfirmation.date">Recipient's date of confirmation:</label>
+                <input type="date" id="recipient.priorconfirmation.date"/>
+            </p>
+            <p>
+                <label for="recipient.priorconfirmation.minister">Full name and title of the priest or bishop who administered the confirmation:</label>
+                <input type="text" id="recipient.priorconfirmation.minister" />
+            </p>
+            <p>
+                <label for="recipient.priorconfirmation.place">Name of the building and city where the confirmation was received:</label>
+                <input type="text" id="recipient.priorconfirmation.place"/>
+            </p>
+            <p>
+                <label for="recipient.priorconfirmation.sponsor">Full name of the sponsor:</label>
+                <input type="text" id="recipient.priorconfirmation.sponsor"/>
+            </p>
+        </div>
+    </section>
+
+    <section id="minister">
+        <h2>Minister</h2>
+        <p>
+            <label for="minister.name">The name of the Catholic minister who will administer these sacraments is:</label>
+            <input type="text" id="minister.name" />
+        </p>
+        <p class="screen-only">
+            <label for="minister.grade">He is a:</label>
+            <select id="minister.grade">
+                <option value="deacon">Deacon</option>
+                <option value="presbyter" selected="true">Priest</option>
+                <option value="bishop">Bishop</option>
+            </select>
+        </p>
+        <p class="print-only">He is a:</p>
+        <ul class="blanklist print-only">
+            <li>
+                <input type="radio" name="minister.grade.print"/>
+                <label>Deacon</label>
+            </li>
+            <li>
+                <input type="radio" name="minister.grade.print"/>
+                <label>Priest</label>
+            </li>
+            <li>
+                <input type="radio" name="minister.grade.print"/>
+                <label>Bishop</label>
+            </li>
+        </ul>
+    </section>
+
+    <section id="ceremony">
+        <h2>Ceremony</h2>
+        <div>
+            <h3>Calendar</h3>
+            <aside>
+                Canons 200–203: the recipient’s canonical age on the day of the ceremony will be
+                <span data-autofill="recipient.age"></span>.
+            </aside>
+            <p>
+                <label for="ceremony.date">Date of reception of sacraments:</label>
+                <input type="date" min="1983-11-27" id="ceremony.date"/>
+            </p>
+            <p>
+                <label for="ceremony.place">Name and city of place of reception of sacraments:</label>
+                <input type="text" id="ceremony.place" />
+            </p>
+        </div>
+
+        <div id="ceremony.sponsors">
+            <h3>Sponsors (godparents)</h3>
+            <div id="ceremony.sponsors.firstP">
+                <p>
+                    <label for="ceremony.sponsors.first">Full name of sponsor:</label>
+                    <input type="text" id="ceremony.sponsors.first"/>
+                </p>
+                <p class="note">The sponsor (godparent) must be a Catholic who has received all three sacraments of initiation and actively lives the faith.</p>
+            </div>
+            <div id="ceremony.sponsors.secondP">
+                <p>
+                    Full name of second sponsor (if any):
+                    <input type="text" id="ceremony.sponsors.second"/>
+                    <br/>
+                    This second sponsor will serve as a:
+                    <select id="ceremony.sponsors.secondtype" class="screen-only">
+                        <option value="sponsor">Catholic sponsor</option>
+                        <option value="witness">Christian witness</option>
+                    </select>
+                    <ul class="blanklist print-only">
+                        <li>
+                            <input type="radio" name="ceremony.sponsors.print"/>
+                            <label>Catholic sponsor</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="ceremony.sponsors.print"/>
+                            <label>Christian witness</label>
+                        </li>
+                    </ul>
+                <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. There may not be more than two sponsors for baptism.</p>
+            </div>
+        </div>
+
+        <div id="ceremony.ascription">
+            <h3>Ascription</h3>
+            <aside>
+                Canons 111 and 112.
+                See also CCEO canon 35.
+                Note that a person, once ascribed to a Church, cannot cease to be ascribed.
+                For example, someone who was baptised Eastern Orthodox but now considers himself to be Presbyterian is still considered to be ascribed to the Eastern Orthodox Church in which he was baptised.
+                Similarly, someone who has once been ascribed to any Catholic Church <span class="latin">sui iuris</span> can never change ascription to a non-Catholic Church.
+            </aside>
+            <p>
+                <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
+                <select id="ceremony.churchascription" class="screen-only">
+                    <option>Albanian Catholic Church</option>
+                    <option>Armenian Catholic Church</option>
+                    <option>Belarussian Catholic Church</option>
+                    <option>Bulgarian Catholic Church</option>
+                    <option>Chaldean Catholic Church</option>
+                    <option>Coptic Catholic Church</option>
+                    <option>Eritrean Catholic Church</option>
+                    <option>Ethiopian Catholic Church</option>
+                    <option>Greek Catholic Church</option>
+                    <option>Hungarian Catholic Church</option>
+                    <option>Italo-Albanian Catholic Church</option>
+                    <option>Križevci Catholic Church</option>
+                    <option selected="selected">Latin Catholic Church</option>
+                    <option>Macedonian Catholic Church</option>
+                    <option>Maronite Catholic Church</option>
+                    <option>Melkite Catholic Church</option>
+                    <option>Romanian Catholic Church</option>
+                    <option>Russian Catholic Church</option>
+                    <option>Ruthenian Catholic Church</option>
+                    <option>Slovak Catholic Church</option>
+                    <option>Syrian Catholic Church</option>
+                    <option>Syro-Malabar Catholic Church</option>
+                    <option>Syro-Malankara Catholic Church</option>
+                    <option>Ukrainian Catholic Church</option>
+                </select>
+                <input type="text" class="print-only"/>
+            </p>
+            <p id="ceremony.ascription.corresponding" class="info">
+                A member of an Eastern non-Catholic Church, when received into the full communion of the Catholic Church, is ascribed to the corresponding Eastern Catholic Church <span class="latin">sui iuris</span>.
+            </p>
+            <div id="ceremony.ascription.usuallylatin" class="note">
+                <p>
+                    This is most likely the Latin Catholic Church.
+                </p>
+                <p>
+                    Contact a canonist for clarification if:
+                    <ul class="note">
+                        <li>the parents of the person receiving sacraments are of Eastern Catholic or Eastern Orthodox descent;</li>
+                        <li>the person is or has been a member of an Eastern Orthodox Church;</li>
+                        <li>the person has expressed interest in joining one of the Eastern Catholic Churches; or</li>
+                        <li>you are otherwise unsure.</li>
+                    </ul>
+                </p>
+            </div>
+            <p id="ceremony.ascription.easternwarning" class="warning">
+                This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.
+            </p>
+        </div>
+    </section>
+
+    <section id="print-instructions-return" class="print-only info">
+        <p>After collecting the relevant information, return to <a href="https://avbop.github.io/sacraments/initiation.html">https://avbop.github.io/sacraments/initiation.html</a> to complete the preparation and generate the information for recording the sacraments.</p>
+    </section>
+
+    <section id="faculty" class="screen-only">
+        <h2>Faculties</h2>
+
+        <div id="faculty.baptism" data-rites="baptism">
+            <h3>Baptism</h3>
+            <span data-autofill="minister.name"></span>
+            has the faculty to baptize
+            <span data-autofill="recipient.name"></span>
+            because:
+            <ul class="blanklist">
+                <li>
+                    <input type="checkbox" id="faculty.baptism.insideterritory"/>
+                    <label for="faculty.baptism.insideterritory">the baptism will occur within his ministerial territory</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.outsideterritorypermission"/>
+                    <label for="faculty.baptism.outsideterritorypermission">the baptism will occur outside his ministerial territory, but he has permission from an authority of that territory</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.granted"/>
+                    <label for="faculty.baptism.granted">the faculty has been explicitly granted by the diocesan bishop</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.outsideterritorynecessity"/>
+                    <label for="faculty.baptism.outsideterritorynecessity">the baptism will occur outside his ministerial territory, but this is a case of necessity</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="faculty.baptism.extraordinary"/>
+                    <label for="faculty.baptism.extraordinary">the recipient is in danger of death or other extraordinary circumstances apply</label>
+                </li>
+            </ul>
+        </div>
+
+        <div id="faculty.reception" data-rites="reception">
+            <h3>Reception into full communion</h3>
+            <div>
+                <span data-autofill="minister.name"></span>
+                has the faculty to receive
+                <span data-autofill="recipient.name"></span>
+                into the full communion of the Catholic Church because:
+                <ul class="blanklist">
+                    <li data-orders="bishop presbyter">
+                        <input type="checkbox" id="faculty.reception.db"/>
+                        <label for="faculty.reception.db">he is the diocesan bishop or is equivalent in law to a diocesan bishop</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="faculty.reception.granted"/>
+                        <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
+                    </li>
+                </ul>
+            </div>
+            <p data-orders="deacon" data-rites="confirmation" class="warning">Because of the requirement that confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
+        </div>
+
+        <div id="faculty.confirmation" data-rites="confirmation">
+            <h3>Confirmation</h3>
+            <div data-orders="presbyter bishop">
+                <aside>Canons 882–888. The faculty mentioned in canon 884 §2 is omitted because it would normally only occur in the context of the ceremony itself, not at the planning stage with which this form is intended to assist.</aside>
+                <span data-autofill="minister.name"></span>
+                can validly confirm
+                <span data-autofill="recipient.name"></span>
+                because:
+                <ul class="blanklist">
+                    <li data-orders="bishop">
+                        <input type="checkbox" id="faculty.confirmation.bishop" checked="checked" disabled="disabled"/>
+                        <label for="faculty.confirmation.bishop">he is a bishop</label>
+                    </li>
+                    <li data-orders="presbyter">
+                        <input type="checkbox" id="faculty.confirmation.mandate"/>
+                        <label for="faculty.confirmation.mandate">the diocesan bishop has granted him the faculty</label>
+                    </li>
+                    <li data-orders="presbyter" data-rites="baptism">
+                        <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
+                        <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately baptising <span data-autofill="recipient.name"></span> in the same ceremony</label>
+                    </li>
+                    <li data-orders="presbyter" data-rites="reception">
+                        <input type="checkbox" id="faculty.confirmation.parochusreception"/>
+                        <label for="faculty.confirmation.parochusreception">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately receiving <span data-autofill="recipient.name"></span> into full communion in the same ceremony</label>
+                    </li>
+                    <li data-orders="presbyter" data-rites="baptism">
+                        <input type="checkbox" id="faculty.confirmation.baptism"/>
+                        <label for="faculty.confirmation.baptism">he is baptising <span data-autofill="recipient.name"></span>, with a mandate from the diocesan bishop, in the same ceremony</label>
+                    </li>
+                    <li data-orders="presbyter" data-rites="reception">
+                        <input type="checkbox" id="faculty.confirmation.reception"/>
+                        <label for="faculty.confirmation.reception">he is receiving <span data-autofill="recipient.name"></span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
+                    </li>
+                    <li data-orders="presbyter">
+                        <input type="checkbox" id="faculty.confirmation.eastern"/>
+                        <label for="faculty.confirmation.eastern">he is an Eastern Catholic priest who has the faculty to confirm</label>
+                    </li>
+                    <li data-orders="presbyter">
+                        <input type="checkbox" id="faculty.confirmation.db"/>
+                        <label for="faculty.confirmation.db">he is equivalent in law to a diocesan bishop and acting within his territory</label>
+                    </li>
+                    <li data-orders="presbyter">
+                        <input type="checkbox" id="faculty.confirmation.death"/>
+                        <label for="faculty.confirmation.death"><span data-autofill="recipient.name"></span> is in danger of death</label>
+                    </li>
+                </ul>
+            </div>
+            <p class="warning" data-orders="deacon">A deacon can never administer confirmation validly.</p>
+        </div>
+
+        <div id="faculty.communion" data-rites="communion">
+            <h3>Holy Communion</h3>
+            <ul>
+            <li>Any cleric has the faculty to administer Holy Communion.</li>
+            <li>An extraordinary minister might be deputed to administer Holy Communion, in accord with the norm of law.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="summary" class="screen-only">
+        <h2>Summary</h2>
+        <p>Based on the current information, the ceremony should proceed in this order:</p>
+        <ol>
+            <li id="summary.reception" data-rites="reception">Reception into full communion</li>
+            <li id="summary.baptism" data-rites="baptism">Baptism</li>
+            <li id="summary.confirmation" data-rites="confirmation">Confirmation</li>
+            <li id="summary.communion" data-rites="communion">First Holy Communion</li>
+        </ol>
+        <p class="warning" data-orders="deacon" data-rites="confirmation">A deacon will not be able to be the celebrant of these rites.</p>
+    </section>
+
+    <section id="register" class="screen-only">
+        <button onclick="printRegister();" class="screen-only">&#128424; Print</button>
+        <h2 class="screen-only">Recording</h2>
+        <h2 class="print-only">Recording Sacraments for <span data-autofill="recipient.name"></span></h2>
+        <div id="register.baptism" data-rites="baptism">
+            <h3>Baptismal register</h3>
+            <aside>Canons 535 §2 and 877.</aside>
+            <p>In the baptismal register of <span data-autofill="ceremony.place"></span>, record at least the following information:</p>
+            <ul>
+                <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
+                <li>Recipient's date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Recipient's place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Name of minister: <span data-autofill="minister.name"></span></li>
+                <li>Names of the recipient's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
+                <li id="register.baptism.sponsors">Names of the sponsors: <span data-autofill="ceremony.sponsors.first"></span>, <span data-autofill="ceremony.sponsors.second"></span></li>
+                <li id="register.baptism.sponsor">Name of the sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
+                <li id="register.baptism.witness">Name of the Christian witness: <span data-autofill="ceremony.sponsors.second"></span></li>
+                <li>Place of baptism: <span data-autofill="ceremony.place"></span></li>
+                <li>Date of baptism: <span data-autofill="ceremony.date"></span></li>
+                <li id="register.baptism.baptismonly">
+                    Annotation: Ascribed by baptism to the <span data-autofill="ceremony.churchascription"></span>.
+                </li>
+                <li id="register.baptism.baptismandconfirmation">
+                    Annotation: Ascribed by baptism to the <span data-autofill="ceremony.churchascription"></span>.
+                    Confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.
+                </li>
+            </ul>
+            <div id="register.baptism.birthinfo">
+                <aside>Canon 877 §3.</aside>
+                <p class="note">Depending on the particular law established by the episcopal conference, it might also be necessary to record the recipient's birth information.</p>
+                <ul>
+                    <li>Name of the recipient at birth: <span data-autofill="recipient.birthname"></span></li>
+                    <li>Names of the recipient's parents at birth: <span data-autofill="recipient.birthparents.father"></span>, <span data-autofill="recipient.birthparents.mother"></span></li>
+                </ul>
+            </div>
+            <p class="note" id="register.baptism.marriagenote">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
+            <p class="note">If the register has an index, remember to update it.</p>
+        </div>
+        <div id="register.reception" data-rites="reception">
+            <h3>Register of reception into full communion</h3>
+            <aside>Canons 535 §2 and 877 (by analogy to the baptismal register); see also local OCIA norms.</aside>
+            <p class="note">
+            Particular law determines where this information is to be kept.
+            This is usually either a dedicated register for receptions into full communion or the baptismal register.
+            There, at least the following information should be recorded:
+            </p>
+            <ul>
+                <li>Person received into full communion: <span data-autofill="recipient.name"></span></li>
+                <li>Person's date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Person's place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Person's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
+                <li>Minister of baptism: <span data-autofill="recipient.priorbaptism.minister"></span></li>
+                <li>Names of the baptismal sponsors: <span data-autofill="recipient.priorbaptism.sponsors"></span></li>
+                <li>Place of baptism: <span data-autofill="recipient.priorbaptism.place"></span></li>
+                <li>Date of baptism: <span data-autofill="recipient.priorbaptism.date"></span></li>
+                <li id="register.reception.confirmedandreceived">
+                    Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
+                    and confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.</li>
+                <li id="register.reception.onlyreceived">
+                    Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
+                    on <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.
+                    <span id="register.reception.priorconfirmation">Confirmed on <span data-autofill="recipient.priorconfirmation.date"></span>
+                    at <span data-autofill="recipient.priorconfirmation.place"></span>
+                    by <span data-autofill="recipient.priorconfirmation.minister"></span>,
+                    with <span data-autofill="recipient.priorconfirmation.sponsor"></span> as sponsor.</span>
+                </li>
+            </ul>
+            <p class="note" id="register.reception.marriagenote">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
+            <p class="note">If the register has an index, remember to update it.</p>
+        </div>
+        <div id="register.confirmation" data-orders="presbyter bishop" data-rites="confirmation">
+            <h3>Confirmation register</h3>
+            <aside>Canon 895.</aside>
+            <p class="note">
+            Particular law determines where the confirmation register is kept.
+            This is most commonly either the diocesan offices or the parish that prepared <span data-autofill="recipient.name"></span> for confirmation.
+            There, at least the following information is to be recorded:
+            </p>
+            <ul>
+                <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
+                <li>Recipient's date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Recipient's place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Recipient's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
+                <li>Minister of confirmation: <span data-autofill="minister.name"></span></li>
+                <li>Sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
+                <li>Place of confirmation: <span data-autofill="ceremony.place"></span></li>
+                <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
+            </ul>
+            <p class="note">If the register has an index, remember to update it.</p>
+        </div>
+        <div id="register.notification.tobaptism">
+            <h3>Notification</h3>
+            <aside>Canon 895.</aside>
+            <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
+
+            <aside>Canons 535 §§1 and 2</aside>
+            <p>Dear Father N.,</p>
+
+            <p>
+            I recently had the privilege of confirming <span data-autofill="recipient.name"></span>, who was baptised in your parish.
+            I ask that you please record the confirmation in the baptismal register and write me to verify that the record has been made.
+            </p>
+
+            <ul>
+                <li>Recipient: <span data-autofill="recipient.name"></span></li>
+                <li>Recipient's date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Recipient's place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Recipient's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
+                <li>Minister of confirmation: <span data-autofill="minister.name"></span></li>
+                <li>Sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
+                <li>Place of confirmation: <span data-autofill="ceremony.place"></span></li>
+                <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
+            </ul>
+
+            <p>Yours devotedly in Christ,</p>
+            <p><span data-autofill="minister.name"></span></p>
+        </div>
+        <div id="register.notification.tofullcommunion">
+            <h3>Notification</h3>
+            <aside>Canon 895.</aside>
+            <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
+
+            <aside>Canons 535 §§1 and 2</aside>
+            <p>Dear Father N.,</p>
+
+            <p>
+            I recently had the privilege of confirming <span data-autofill="recipient.name"></span>, who was received into the full communion of the Church in your parish.
+            I ask that you please record the confirmation in the appropriate register and write me to verify that the record has been made.
+            </p>
+
+            <ul>
+                <li>Recipient: <span data-autofill="recipient.name"></span></li>
+                <li>Recipient's date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Recipient's place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Recipient's parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
+                <li>Minister of confirmation: <span data-autofill="minister.name"></span></li>
+                <li>Sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
+                <li>Place of confirmation: <span data-autofill="ceremony.place"></span></li>
+                <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
+            </ul>
+
+            <p>Yours devotedly in Christ,</p>
+            <p><span data-autofill="minister.name"></span></p>
+        </div>
+        <div id="register.notification.baptisedsameparish">
+            <h3>Baptismal register</h3>
+            <aside>Canon 895.</aside>
+            In the baptismal register of <span data-autofill="recipient.priorbaptism.place"></span>, at the entry for <span data-autofill="recipient.name"></span>'s baptism on <span data-autofill="recipient.priorbaptism.date"></span>, the following annotation should be added:
+            <ul>
+                <li>
+                    Confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.
+                </li>
+            </ul>
+        </div>
+        <div id="register.notification.receivedsameparish">
+            <h3>Register of reception into full communion</h3>
+            <aside>Canon 895.</aside>
+            At <span data-autofill="recipient.priorfullcommunion.place"></span>, in the register of reception into full communion (which may be the same as the baptismal register), at the entry for <span data-autofill="recipient.name"></span>'s reception into full communion on <span data-autofill="recipient.priorfullcommunion.date"></span>, the following annotation should be added:
+            <ul>
+                <li>
+                    Confirmed on
+                    <span data-autofill="ceremony.date"></span>
+                    at <span data-autofill="ceremony.place"></span>
+                    by <span data-autofill="minister.name"></span>.
+                </li>
+            </ul>
+        </div>
+        <div id="register.communion" data-rites="communion">
+            <h3>First Holy Communion register</h3>
+            <aside>See the silence of canons 897–958 on recording reception of the Most Holy Eucharist, by contrast with the pattern for those sacraments that are to be recorded (e.g., canon 877).</aside>
+            <p class="note">Particular law determines how and whether to record a person's first reception of Holy Communion.</p>
+        </div>
+    </section>
+    <section id="nothing">
+        <p class="info">Based on the above information, no additional rites are needed at this time.</p>
+    </section>
+    </form>
+    </main>
+
+    <footer>
+        <p>Contributions and feedback are welcomed via <a href="https://github.com/avbop/sacraments">Github</a>.</p>
+        <p>Image © 2012 <a href="https://www.flickr.com/photos/paullew/8185251426/in/album-72157594314281446">Lawrence Lew, O.P.</a> (<a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a>).
+    </footer>
+    <div style="color: black; background-color: var(--warning); width: 95%; margin: 2em; padding: 23m; text-align: center; font-weight: bold; font-size: 125%; border: thick solid black;"><p>This project is incomplete and should be assumed to give inaccurate information.</p></div>
 </body>
 
 </html>
