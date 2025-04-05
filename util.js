@@ -138,6 +138,10 @@ function autofill() {
             }
             continue;
         }
+        if (Number.isInteger(val)) {
+            e.innerHTML = val;
+            continue;
+        }
         if (val && val != '') {
             e.innerHTML = val;
             continue;
