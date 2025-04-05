@@ -11,8 +11,8 @@
     <script type="text/javascript" src="register.js"></script>
     <script type="text/javascript">
         window.addEventListener('load', (event) => {
-            updateForm();
             document.getElementById('ceremony.date').valueAsDate = new Date();
+            updateForm();
             addFormListeners();
         });
     </script>
@@ -339,6 +339,9 @@
         </p>
         <p class="warning" id="register.warnings.baptismrequired">
             A person must have been baptised before being received into full communion, receiving confirmation, or receiving Holy Communion.
+        </p>
+        <p class="warning" id="register.warnings.baptismandreception">
+            Someone who has been baptised Catholic should not also be received into full communion.
         </p>
         <div id="register.baptism" data-rites="baptism">
             <h3>Baptismal register</h3>
