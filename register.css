@@ -1,0 +1,38 @@
+/* This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). */
+
+#register {
+    border: thin solid black;
+    background-color: var(--result);
+}
+
+#register div {
+    border: thin solid black;
+    margin: 1em;
+    padding: 1em;
+    background-color: var(--bg-content);
+}
+
+#register div [data-autofill] {
+    background-color: var(--bg-content);
+}
+
+@media print {
+    #register [data-autofill] {
+        text-decoration: none;
+    }
+
+    #register {
+        border: none;
+    }
+
+    #register div {
+        margin-left: 0em;
+        margin-right: 0em;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    #register div {
+        padding: 0.5em;
+    }
+}
