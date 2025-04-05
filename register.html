@@ -38,6 +38,150 @@
             Please print or otherwise save this page to keep the information entered into it.
         </p>
     </section>
+    
+    <section id="minister" class="screen-only">
+        <h2>Minister</h2>
+        <p>
+            <label for="minister.name">The name of the Catholic minister who administered the rites is:</label>
+            <input type="text" id="minister.name" />
+        </p>
+        <p>
+            <label for="minister.grade">At the time, he was a:</label>
+            <select id="minister.grade">
+                <option value="deacon">Deacon</option>
+                <option value="presbyter" selected="true">Priest</option>
+                <option value="bishop">Bishop</option>
+            </select>
+        </p>
+    </section>
+
+    <section id="ceremony" class="screen-only">
+        <h2>Ceremony</h2>
+        <div>
+            <h3>Calendar</h3>
+            <aside>
+                Canons 200–203. The recipient’s canonical age on the day of the ceremony was
+                <span data-autofill="recipient.age"></span>.
+            </aside>
+            <p>
+                <label for="ceremony.date">Date of reception of sacraments:</label>
+                <input type="date" min="1983-11-27" id="ceremony.date"/>
+            </p>
+            <p>
+                <label for="ceremony.place">Name and city of place of reception of sacraments:</label>
+                <input type="text" id="ceremony.place" />
+            </p>
+        </div>
+        
+        <div>
+            <h3>Rites</h3>
+            <p>Which rites did you administer to this person?</p>
+            <ul class="blanklist">
+                <li>
+                    <input type="checkbox" id="ceremony.baptised"/>
+                    <label for="ceremony.baptised">Baptism</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="ceremony.received"/>
+                    <label for="ceremony.received">Reception into full communion</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="ceremony.confirmed"/>
+                    <label for="ceremony.confirmed">Confirmation</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="ceremony.communioned"/>
+                    <label for="ceremony.communioned">First Holy Communion</label>
+                </li>
+            </ul>
+        </div>
+
+        <div id="ceremony.sponsors" data-rites="baptism confirmation">
+            <aside>
+                Canons 872–874 and 892–893.
+            </aside>
+            <h3>Sponsors (godparents)</h3>
+            <div id="ceremony.sponsors.firstP">
+                <p>
+                    <label for="ceremony.sponsors.first">Full name of sponsor:</label>
+                    <input type="text" id="ceremony.sponsors.first"/>
+                </p>
+            </div>
+            <div id="ceremony.sponsors.secondP" data-rites="baptism">
+                <p>
+                    Full name of second sponsor (if any):
+                    <input type="text" id="ceremony.sponsors.second"/>
+                    <br/>
+                    This second sponsor served as a:
+                    <select id="ceremony.sponsors.secondtype">
+                        <option value="sponsor">Catholic sponsor</option>
+                        <option value="witness">Christian witness</option>
+                    </select>
+                <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. There may not be more than two sponsors for baptism.</p>
+            </div>
+        </div>
+
+        <div id="ceremony.ascription" data-rites="reception baptism">
+            <h3>Ascription</h3>
+            <aside>
+                Canons 111 and 112.
+                See also CCEO canon 35.
+                Note that a person, once ascribed to a Church, cannot cease to be ascribed.
+                For example, someone who was baptised Eastern Orthodox but now considers himself to be Protestant is still considered to be ascribed to the Eastern Orthodox Church in which he was baptised.
+                Similarly, someone who has once been ascribed to any Catholic Church <span class="latin">sui iuris</span> can never change ascription to a non-Catholic Church.
+                <br/>
+                Canon 112 §1 3°. Children under the age of fourteen automatically change ascription following their parents.
+                This is generally held to apply also to children whose parents come into the full communion of the Catholic Church.
+            </aside>
+            <p>
+                <label>To which Catholic Church <span class="latin">sui iuris</span> was this person ascribed?</label>
+                <select id="ceremony.churchascription">
+                    <option>Albanian Catholic Church</option>
+                    <option>Armenian Catholic Church</option>
+                    <option>Belarussian Catholic Church</option>
+                    <option>Bulgarian Catholic Church</option>
+                    <option>Chaldean Catholic Church</option>
+                    <option>Coptic Catholic Church</option>
+                    <option>Eritrean Catholic Church</option>
+                    <option>Ethiopian Catholic Church</option>
+                    <option>Greek Catholic Church</option>
+                    <option>Hungarian Catholic Church</option>
+                    <option>Italo-Albanian Catholic Church</option>
+                    <option>Križevci Catholic Church</option>
+                    <option selected="selected">Latin Catholic Church</option>
+                    <option>Macedonian Catholic Church</option>
+                    <option>Maronite Catholic Church</option>
+                    <option>Melkite Catholic Church</option>
+                    <option>Romanian Catholic Church</option>
+                    <option>Russian Catholic Church</option>
+                    <option>Ruthenian Catholic Church</option>
+                    <option>Slovak Catholic Church</option>
+                    <option>Syrian Catholic Church</option>
+                    <option>Syro-Malabar Catholic Church</option>
+                    <option>Syro-Malankara Catholic Church</option>
+                    <option>Ukrainian Catholic Church</option>
+                </select>
+            </p>
+            <div id="ceremony.ascription.usuallylatin" class="note">
+                <p>
+                    This is most likely the Latin Catholic Church.
+                </p>
+                <p>
+                    Contact a canonist for clarification if:
+                    <ul class="note">
+                        <li>the parents of the person receiving sacraments are of Eastern Catholic or Eastern Orthodox descent;</li>
+                        <li>the person is or has been a member of an Eastern Orthodox Church;</li>
+                        <li>the person has expressed interest in joining one of the Eastern Catholic Churches; or</li>
+                        <li>you are otherwise unsure.</li>
+                    </ul>
+                </p>
+            </div>
+            <p id="ceremony.ascription.easternwarning" class="warning">
+                This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.
+            </p>
+        </div>
+    </section>
+    
     <section id="recipient" class="screen-only">
         <h2>Recipient</h2>
         <div id="recipient.basics">
@@ -62,39 +206,13 @@
                 <label for="recipient.parents.father">Recipient’s father’s full name:</label>
                 <input type="text" id="recipient.parents.father"/>
             </p>
-            <p class="screen-only">
+            <p>
                 Is this person adopted?
                 <select id="recipient.adopted">
                     <option selected="true">No</option>
                     <option>Yes</option>
                 </select>
             </p>
-            <p class="print-only note">
-                If this person is adopted, collect the full names of his or her birth parents, if possible and if permitted by the norms issued by the local episcopal conference.
-            </p>
-            <aside>
-                Baptism conferred outside the Catholic Church is often valid, if it is done by the washing of water and using the proper Trinitarian formula (see canons 849 and 845).<br/>
-                The Catholic Church recognises the validity of the sacrament of confirmation as conferred by most Eastern non-Catholic Churches (see canons 882 and 845). Likewise, the Church recognises that any validly-ordained priest, even a non-Catholic priest, can validly confect the Most Holy Eucharist (see canon 844 §2).</br>
-                In cases of uncertainty, consult a canonist.
-            </aside>
-            <p>
-                Which sacraments has this person (validly) received?
-                <ul class="blanklist">
-                    <li>
-                        <input type="checkbox" id="recipient.baptised"/>
-                        <label for="recipient.baptised">Baptism</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="recipient.confirmed"/>
-                        <label for="recipient.confirmed">Confirmation</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="recipient.communioned"/>
-                        <label for="recipient.communioned">Holy Communion</label>
-                    </li>
-                </ul>
-            </p>
-            <p id="recipient.certificatesnote" class="print-only info">If the person has received baptism or confirmation, even if outside the Catholic Church, he or she should provide a sacramental certificate or similar type of record.</p>
         </div>
        
         <div id="recipient.birthinfo" class="if-adopted">
@@ -115,6 +233,36 @@
             </p>
         </div>
 
+        <div>
+            <aside>
+                Baptism conferred outside the Catholic Church is often valid, if it is done by the washing of water and using the proper Trinitarian formula (see canons 849 and 845).<br/>
+                The Catholic Church recognises the validity of the sacrament of confirmation as conferred by most Eastern non-Catholic Churches (see canons 882 and 845). Likewise, the Church recognises that any validly-ordained priest, even a non-Catholic priest, can validly confect the Most Holy Eucharist (see canon 844 §2).</br>
+                In cases of uncertainty, consult a canonist.
+            </aside>
+            <h3>Previous sacraments</h3>
+            <p>
+            Which rites had this person (validly) received before the ceremony you celebrated on <span data-autofill="ceremony.date"></span>?
+            </p>
+            <ul class="blanklist">
+                <li>
+                    <input type="checkbox" id="recipient.baptised"/>
+                    <label for="recipient.baptised">Baptism</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="recipient.received"/>
+                    <label for="recipient.received">Reception into full communion</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="recipient.confirmed"/>
+                    <label for="recipient.confirmed">Confirmation</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="recipient.communioned"/>
+                    <label for="recipient.communioned">Holy Communion</label>
+                </li>
+            </ul>
+        </div>
+
         <div id="recipient.priorbaptisminfo">
             <h3>Baptism information</h3>
             <p>
@@ -133,29 +281,6 @@
                 <label for="recipient.priorbaptism.sponsors">Full names of the sponsors (godparents):</label>
                 <input type="text" id="recipient.priorbaptism.sponsors"/>
             </p>
-            <p>
-                <label for="recipient.priorbaptism.church">Church or denomination into which the recipient was baptised:</label><br/>
-                <select id="recipient.priorbaptism.church" class="screen-only">
-                    <option value="unknown" selected="true">Unknown</option>
-                    <option value="latin">Latin Catholic Church</option>
-                    <option value="eastern">an Eastern Catholic Church</option>
-                    <option value="orthodox">an Eastern non-Catholic Church</option>
-                    <option value="protestant">Other non-Catholic Christian community</option>
-                </select>
-                <input type="text" class="print-only"/>
-            </p>
-            <p>
-                <label for="recipient.currentchurch">Of which Church or Christian community does this person currently consider himself or herself to be a member?</label><br/>
-                <select id="recipient.currentchurch" class="screen-only">
-                    <option value="unknown" selected="true">Unknown</option>
-                    <option value="latin">Latin Catholic Church</option>
-                    <option value="eastern">an Eastern Catholic Church</option>
-                    <option value="orthodox">an Eastern non-Catholic Church</option>
-                    <option value="protestant">Other non-Catholic Christian community</option>
-                </select>
-                <input type="text" class="print-only"/>
-            </p>
-            <p id="recipient.priorbaptism.easternwarning" class="warning">This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.</p>
         </div>
 
         <div id="recipient.priorfullcommunioninfo">
@@ -195,160 +320,26 @@
         </div>
     </section>
 
-    <section id="minister" class="screen-only">
-        <h2>Minister</h2>
-        <p>
-            <label for="minister.name">The name of the Catholic minister who will administer these sacraments is:</label>
-            <input type="text" id="minister.name" />
-        </p>
-        <p class="screen-only">
-            <label for="minister.grade">He is a:</label>
-            <select id="minister.grade">
-                <option value="deacon">Deacon</option>
-                <option value="presbyter" selected="true">Priest</option>
-                <option value="bishop">Bishop</option>
-            </select>
-        </p>
-        <p class="print-only">He is a:</p>
-        <ul class="blanklist print-only">
-            <li>
-                <input type="radio" name="minister.grade.print"/>
-                <label>Deacon</label>
-            </li>
-            <li>
-                <input type="radio" name="minister.grade.print"/>
-                <label>Priest</label>
-            </li>
-            <li>
-                <input type="radio" name="minister.grade.print"/>
-                <label>Bishop</label>
-            </li>
-        </ul>
-    </section>
-
-    <section id="ceremony" class="screen-only">
-        <h2>Ceremony</h2>
-        <div>
-            <h3>Calendar</h3>
-            <aside>
-                Canons 200–203. The recipient’s canonical age on the day of the ceremony will be
-                <span data-autofill="recipient.age"></span>.
-            </aside>
-            <p>
-                <label for="ceremony.date">Date of reception of sacraments:</label>
-                <input type="date" min="1983-11-27" id="ceremony.date"/>
-            </p>
-            <p>
-                <label for="ceremony.place">Name and city of place of reception of sacraments:</label>
-                <input type="text" id="ceremony.place" />
-            </p>
-        </div>
-
-        <div id="ceremony.sponsors">
-            <aside>
-                Canons 872–874 and 892–893.
-            </aside>
-            <h3>Sponsors (godparents)</h3>
-            <div id="ceremony.sponsors.firstP">
-                <p>
-                    <label for="ceremony.sponsors.first">Full name of sponsor:</label>
-                    <input type="text" id="ceremony.sponsors.first"/>
-                </p>
-                <p class="note">The sponsor (godparent) must be a Catholic who has received all three sacraments of initiation and actively lives the faith.</p>
-            </div>
-            <div id="ceremony.sponsors.secondP">
-                <p>
-                    Full name of second sponsor (if any):
-                    <input type="text" id="ceremony.sponsors.second"/>
-                    <br/>
-                    This second sponsor will serve as a:
-                    <select id="ceremony.sponsors.secondtype" class="screen-only">
-                        <option value="sponsor">Catholic sponsor</option>
-                        <option value="witness">Christian witness</option>
-                    </select>
-                    <ul class="blanklist print-only">
-                        <li>
-                            <input type="radio" name="ceremony.sponsors.print"/>
-                            <label>Catholic sponsor</label>
-                        </li>
-                        <li>
-                            <input type="radio" name="ceremony.sponsors.print"/>
-                            <label>Christian witness</label>
-                        </li>
-                    </ul>
-                <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. There may not be more than two sponsors for baptism.</p>
-            </div>
-        </div>
-
-        <div id="ceremony.ascription">
-            <h3>Ascription</h3>
-            <aside>
-                Canons 111 and 112.
-                See also CCEO canon 35.
-                Note that a person, once ascribed to a Church, cannot cease to be ascribed.
-                For example, someone who was baptised Eastern Orthodox but now considers himself to be Protestant is still considered to be ascribed to the Eastern Orthodox Church in which he was baptised.
-                Similarly, someone who has once been ascribed to any Catholic Church <span class="latin">sui iuris</span> can never change ascription to a non-Catholic Church.
-                <br/>
-                Canon 112 §1 3°. Children under the age of fourteen automatically change ascription following their parents.
-                This is generally held to apply also to children whose parents come into the full communion of the Catholic Church.
-            </aside>
-            <p>
-                <label>To which Catholic Church <span class="latin">sui iuris</span> will this person be ascribed?</label>
-                <select id="ceremony.churchascription" class="screen-only">
-                    <option>Albanian Catholic Church</option>
-                    <option>Armenian Catholic Church</option>
-                    <option>Belarussian Catholic Church</option>
-                    <option>Bulgarian Catholic Church</option>
-                    <option>Chaldean Catholic Church</option>
-                    <option>Coptic Catholic Church</option>
-                    <option>Eritrean Catholic Church</option>
-                    <option>Ethiopian Catholic Church</option>
-                    <option>Greek Catholic Church</option>
-                    <option>Hungarian Catholic Church</option>
-                    <option>Italo-Albanian Catholic Church</option>
-                    <option>Križevci Catholic Church</option>
-                    <option selected="selected">Latin Catholic Church</option>
-                    <option>Macedonian Catholic Church</option>
-                    <option>Maronite Catholic Church</option>
-                    <option>Melkite Catholic Church</option>
-                    <option>Romanian Catholic Church</option>
-                    <option>Russian Catholic Church</option>
-                    <option>Ruthenian Catholic Church</option>
-                    <option>Slovak Catholic Church</option>
-                    <option>Syrian Catholic Church</option>
-                    <option>Syro-Malabar Catholic Church</option>
-                    <option>Syro-Malankara Catholic Church</option>
-                    <option>Ukrainian Catholic Church</option>
-                </select>
-                <input type="text" class="print-only"/>
-            </p>
-            <p id="ceremony.ascription.corresponding" class="info">
-                A member of an Eastern non-Catholic Church, when received into the full communion of the Catholic Church, is ascribed to the corresponding Eastern Catholic Church <span class="latin">sui iuris</span>.
-            </p>
-            <div id="ceremony.ascription.usuallylatin" class="note">
-                <p>
-                    This is most likely the Latin Catholic Church.
-                </p>
-                <p>
-                    Contact a canonist for clarification if:
-                    <ul class="note">
-                        <li>the parents of the person receiving sacraments are of Eastern Catholic or Eastern Orthodox descent;</li>
-                        <li>the person is or has been a member of an Eastern Orthodox Church;</li>
-                        <li>the person has expressed interest in joining one of the Eastern Catholic Churches; or</li>
-                        <li>you are otherwise unsure.</li>
-                    </ul>
-                </p>
-            </div>
-            <p id="ceremony.ascription.easternwarning" class="warning">
-                This form is only designed to account for the law of the Latin Catholic Church. It is strongly recommended to contact a canonist before proceeding.
-            </p>
-        </div>
-    </section>
 
     <section id="register">
         <button onclick="window.print();" class="printer screen-only">&#128424; Print</button>
         <h2 class="screen-only">Recording</h2>
         <h2 class="print-only">Recording Sacraments for <span data-autofill="recipient.name"></span></h2>
+        <p class="warning" data-orders="deacon" data-rites="confirmation">
+            A deacon can never validly confirm.
+        </p>
+        <p class="warning" id="register.warnings.doublebaptism">
+            It is impossible for a person to receive baptism more than once.
+        </p>
+        <p class="warning" id="register.warnings.doubleconfirmation">
+            It is impossible for a person to receive confirmation more than once.
+        </p>
+        <p class="warning" id="register.warnings.doublereception">
+            A person can only be received into full communion once.
+        </p>
+        <p class="warning" id="register.warnings.baptismrequired">
+            A person must have been baptised before being received into full communion, receiving confirmation, or receiving Holy Communion.
+        </p>
         <div id="register.baptism" data-rites="baptism">
             <h3>Baptismal register</h3>
             <aside>Canons 535 §2 and 877.</aside>
@@ -442,6 +433,7 @@
                 <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
             </ul>
             <p class="note">If the register has an index, remember to update it.</p>
+            <p class="note" data-orders="presbyter">It may be helpful to record as an annotation the faculty by which <span data-autofill="minister.name"></span> validly administered confirmation.</p>
         </div>
         <div id="register.notification.tobaptism">
             <h3>Notification</h3>

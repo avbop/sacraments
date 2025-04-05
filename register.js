@@ -2,6 +2,8 @@
 
 function recipient(p) {
     switch (p) {
+        case 'age':
+            return calculateAge(recipient('birthdate'), ceremony('date'));
         case 'name':
             const name = document.getElementById('recipient.name').value;
             if (name == '') {
@@ -13,6 +15,14 @@ function recipient(p) {
             return new Date(document.getElementById('recipient.birthdate').value);
         case 'adopted':
             return document.getElementById('recipient.adopted').value == 'Yes';
+        case 'baptised':
+            return document.getElementById('recipient.baptised').checked;
+        case 'received':
+            return document.getElementById('recipient.received').checked;
+        case 'confirmed':
+            return document.getElementById('recipient.confirmed').checked;
+        case 'communioned':
+            return document.getElementById('recipient.communioned').checked;
         default:
             return document.getElementById('recipient.' + p).value;
     }
@@ -36,41 +46,22 @@ function ceremony(p) {
 }
 
 function showHideEastern() {
-    // TODO: rewrite this
     // Show/hide Eastern Church elements.
-    const actualAscription = recipient('ascription');
-    let intendedAscription = ceremony('churchascription');
-    const correspondingValue = ' ';
-    if (actualAscription == 'orthodox') {
-        if (intendedAscription == 'Latin Catholic Church') {
-            document.getElementById('ceremony.churchascription').value = correspondingValue;
-            document.getElementById('ceremony.ascription.corresponding').classList.add('warning');
-            document.getElementById('ceremony.ascription.corresponding').classList.remove('info');
-            intendedAscription = correspondingValue;
-        } else {
-            document.getElementById('ceremony.ascription.corresponding').classList.add('info');
-            document.getElementById('ceremony.ascription.corresponding').classList.remove('warning');
-        }
-        show('ceremony.ascription.corresponding');
-    } else {
-        hide('ceremony.ascription.corresponding');
-    }
-    if (intendedAscription != 'Latin Catholic Church') {
+    const ascription = ceremony('churchascription');
+    if (ascription != 'Latin Catholic Church') {
         show('ceremony.ascription.easternwarning');
     } else {
         hide('ceremony.ascription.easternwarning');
     }
-    if (actualAscription == 'eastern' || actualAscription == 'orthodox') {
-        hide('ceremony.ascription.usuallylatin');
-        show('recipient.priorbaptism.easternwarning');
-    } else {
-        show('ceremony.ascription.usuallylatin');
-        hide('recipient.priorbaptism.easternwarning');
-    }
 }
 
 function showHideConfirmationNotification() {
-    // TODO: rewrite this
+    const confirmed = ceremony('confirmed');
+    const baptised = ceremony('baptised');
+    const received = ceremony('received');
+    const priorBaptism = recipient('baptised');
+    const priorReception = recipient('received');
+    const priorConfirmation = recipient('confirmed');
     // Set default state.
     hide('register.notification.tobaptism');
     hide('register.notification.tofullcommunion');
@@ -81,120 +72,113 @@ function showHideConfirmationNotification() {
     show('register.reception.onlyreceived');
     hide('register.reception.confirmedandreceived');
     // Only show record of prior confirmation if relevant.
-    if (recipient('confirmed')) {
+    if (priorConfirmation) {
         show('register.reception.priorconfirmation');
     } else {
         hide('register.reception.priorconfirmation');
     }
-    const needsConfirmation = recipient('needsConfirmation');
-    // If not doing confirmation, skip all of this.
-    if (!needsConfirmation || minister('grade') == 'deacon') {
+    // If not confirmed, skip all of this.
+    if (!confirmed || minister('grade') == 'deacon') {
         return;
     }
-    const actualAscription = recipient('ascription');
-    const needsBaptism = recipient('needsBaptism');
-    const needsReception = recipient('needsReception');
-    if (needsBaptism) {
+    if (baptised) {
         // Baptism and confirmation together in this ceremony.
         show('register.baptism.baptismandconfirmation');
         hide('register.baptism.baptismonly');
-    } else if (needsReception) {
+    } else if (received) {
         // Reception and confirmation together in this ceremony.
         show('register.reception.confirmedandreceived');
         hide('register.reception.onlyreceived');
-    } else if (actualAscription == 'latin' || actualAscription == 'eastern') {
-        // If Catholic, possibly notify.
-        if (recipient('priorbaptism.church') == 'latin' || recipient('priorbaptism.church') == 'eastern') {
-            // Baptised Catholic.
-            const priorPlace = recipient('priorbaptism.place');
-            const actualPlace = ceremony('place');
-            if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
-                show('register.notification.tobaptism');
-            } else {
-                show('register.notification.baptisedsameparish');
-            }
+    }
+    // Notify based on parish of baptism/reception.
+    if (priorBaptism && !priorReception && !received) {
+        // Baptised Catholic.
+        const priorPlace = recipient('priorbaptism.place');
+        const actualPlace = ceremony('place');
+        if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
+            show('register.notification.tobaptism');
         } else {
-            // Received into full communion.
-            const priorPlace = recipient('priorfullcommunion.place');
-            const actualPlace = ceremony('place');
-            if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
-                show('register.notification.tofullcommunion');
-            } else {
-                show('register.notification.receivedsameparish');
-            }
+            show('register.notification.baptisedsameparish');
+        }
+    }
+    if (priorReception) {
+        // Received into full communion.
+        const priorPlace = recipient('priorfullcommunion.place');
+        const actualPlace = ceremony('place');
+        if (priorPlace == '' || actualPlace == '' || priorPlace != actualPlace) {
+            show('register.notification.tofullcommunion');
+        } else {
+            show('register.notification.receivedsameparish');
         }
     }
 }
 
-function showHideAscription() {
-    // TODO: rewrite this (or, more likely, it gets taken care of by new RitesAndOrders
-    // Only show ascription if needed.
-    if (recipient('needsBaptism') || recipient('needsReception')) {
-        show('ceremony.ascription');
-    } else {
-        hide('ceremony.ascription');
-    }
-}
-
-function showHidePriorSacraments() {
-    // TODO: figure out how to account for notification of parish of baptism/reception
-    // Show/hide baptism info.
-    if (recipient('baptised')) {
+function showHideSacraments() {
+    const baptised = ceremony('baptised');
+    const received = ceremony('received');
+    const confirmed = ceremony('confirmed');
+    const communioned = ceremony('communioned');
+    const priorBaptism = recipient('baptised');
+    // Show/hide prior baptism info.
+    if (priorBaptism) {
         // Collect info about prior baptism.
         show('recipient.priorbaptisminfo');
+        // Baptism enables other sacraments.
+        document.getElementById('recipient.received').disabled = false;
+        document.getElementById('recipient.confirmed').disabled = false;
+        document.getElementById('recipient.communioned').disabled = false;
     } else {
         // Don't collect info about (non-existent) prior baptism.
         hide('recipient.priorbaptisminfo');
+        // Without baptism, can't have received other sacraments.
+        document.getElementById('recipient.received').disabled = true;
+        document.getElementById('recipient.received').checked = false;
+        document.getElementById('recipient.confirmed').disabled = true;
+        document.getElementById('recipient.confirmed').checked = false;
+        document.getElementById('recipient.communioned').disabled = true;
+        document.getElementById('recipient.communioned').checked = false;
     }
-
+    // Don't calculate these until the above has run.
+    const priorReception = recipient('received');
+    const priorConfirmation = recipient('confirmed');
     // Show/hide prior confirmation info.
-    if (recipient('confirmed')) {
+    if (priorConfirmation) {
         show('recipient.priorconfirmationinfo');
     } else {
         hide('recipient.priorconfirmationinfo');
     }
-
-    // Show/hide prior reception into full communion info.
-    // Use stacked ifs so the logic is clearer.
-    if (recipient('baptised')) {
-        const oldchurch = recipient('priorbaptism.church')
-        const newchurch = recipient('currentchurch')
-        if (oldchurch == 'unknown' || oldchurch == 'orthodox' || oldchurch == 'protestant') {
-            if (newchurch == 'latin' || newchurch == 'eastern') {
-                show('recipient.priorfullcommunioninfo');
-            } else {
-                hide('recipient.priorfullcommunioninfo');
-            }
-        } else {
-            hide('recipient.priorfullcommunioninfo');
-        }
+    // Show/hide prior reception info.
+    if (priorReception) {
+        show('recipient.priorfullcommunioninfo');
     } else {
         hide('recipient.priorfullcommunioninfo');
     }
-
-    // Hide note about collecting certificates if the form's inputs are shown.
-    if (recipient('baptised') || recipient('confirmed')) {
-        document.getElementById('recipient.certificatesnote').classList.remove('print-only');
+    // Show/hide warnings about incompatible selections.
+    if (priorBaptism && baptised) {
+        show('register.warnings.doublebaptism');
     } else {
-        document.getElementById('recipient.certificatesnote').classList.add('print-only');
+        hide('register.warnings.doublebaptism');
+    }
+    if (priorReception && received) {
+        show('register.warnings.doublereception');
+    } else {
+        hide('register.warnings.doublereception');
+    }
+    if (priorConfirmation && confirmed) {
+        show('register.warnings.doubleconfirmation');
+    } else {
+        hide('register.warnings.doubleconfirmation');
+    }
+    // If not baptised, can't receive anything else.
+    if ((!priorBaptism && !baptised)
+        && (received || confirmed || communioned)) {
+        show('register.warnings.baptismrequired');
+    } else {
+        hide('register.warnings.baptismrequired');
     }
 }
 
 function showHideSponsors() {
-    // TODO: rewrite this
-    // Show/hide sponsor info.
-    // If they need baptism, show both sponsors.
-    if (recipient('needsBaptism')) {
-        show('ceremony.sponsors.secondP');
-    } else {
-        hide('ceremony.sponsors.secondP');
-    }
-    // If no sacraments with sponsors, hide both sponsors.
-    if (!recipient('needsConfirmation') && !recipient('needsBaptism')) {
-        hide('ceremony.sponsors');
-    } else {
-        show('ceremony.sponsors');
-    }
     // Show sponsor or Christian witness in register.
     if (ceremony('sponsors.secondtype') == 'witness') {
         hide('register.baptism.sponsors');
@@ -212,22 +196,16 @@ function updateForm() {
     // Run through the entire form and show/hide/update as needed.
 
     // This must precede showHideRitesAndOrders: it can change whether someone has received confirmation or Holy Communion.
-    showHidePriorSacraments();
+    showHideSacraments();
 
     const baptism = ceremony('baptised');
     const reception = ceremony('received');
     const confirmation = ceremony('confirmed');
     const communion = ceremony('communioned');
     const grade = minister('grade');
-    // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
     showHideRitesAndOrders(baptism, reception, confirmation, communion, grade);
 
-    // This must follow showHideRitesAndOrders(): see comment above.
-    showHideSacraments();
-
     showHideConfirmationNotification();
-
-    showHideAscription();
 
     showHideSponsors();
 
