@@ -18,45 +18,20 @@ function recipient(p) {
     }
 }
 
-function showHideRitesAndOrders() {
-    // TODO: rewrite this to account for checkboxes for sacraments rather than predicted requirements
-    // TODO: use this info to add a warning if deacon attempted confirmation
-    // Show/hide sections that require specific rites or grades of holy orders.
-    // data-orders is a space-separated list of deacon, presbyter, bishop. Any of these can match (OR).
-    // data-rites is a space-separated list of baptism, reception, confirmation, communion. Any of these can match (OR).
-    // If both are present, both must match (AND).
-    const needsBaptism = recipient('needsBaptism');
-    const needsReception = recipient('needsReception');
-    const needsConfirmation = recipient('needsConfirmation');
-    const needsCommunion = recipient('needsCommunion');
-    const grade = minister('grade');
-    for (let e of document.querySelectorAll('[data-rites],[data-orders]')) {
-        let showR = false;
-        let showO = false;
-        if (e.hasAttribute('data-rites')) {
-            const rites = e.getAttribute('data-rites').split(' ');
-            if (needsBaptism && rites.includes('baptism')) {
-                showR = true;
-            }
-            if (needsReception && rites.includes('reception')) {
-                showR = true;
-            }
-            if (needsConfirmation && rites.includes('confirmation')) {
-                showR = true;
-            }
-            if (needsCommunion && rites.includes('communion')) {
-                showR = true;
-            }
-        } else {
-            showR = true;
-        }
-        if (e.hasAttribute('data-orders')) {
-            const orders = e.getAttribute('data-orders').split(' ');
-            showO = orders.includes(grade);
-        } else {
-            showO = true;
-        }
-        (showR && showO) ? show(e) : hide(e);
+function ceremony(p) {
+    switch (p) {
+        case 'date':
+            return new Date(document.getElementById('ceremony.date').value);
+        case 'baptised':
+            return document.getElementById('ceremony.baptised').checked;
+        case 'received':
+            return document.getElementById('ceremony.received').checked;
+        case 'confirmed':
+            return document.getElementById('ceremony.confirmed').checked;
+        case 'communioned':
+            return document.getElementById('ceremony.communioned').checked;
+        default:
+            return document.getElementById('ceremony.' + p).value;
     }
 }
 
@@ -167,17 +142,9 @@ function showHidePriorSacraments() {
     if (recipient('baptised')) {
         // Collect info about prior baptism.
         show('recipient.priorbaptisminfo');
-        // Baptism enables other sacraments.
-        document.getElementById('recipient.confirmed').disabled = false;
-        document.getElementById('recipient.communioned').disabled = false;
     } else {
         // Don't collect info about (non-existent) prior baptism.
         hide('recipient.priorbaptisminfo');
-        // Without baptism, can't have received other sacraments.
-        document.getElementById('recipient.confirmed').disabled = true;
-        document.getElementById('recipient.confirmed').checked = false;
-        document.getElementById('recipient.communioned').disabled = true;
-        document.getElementById('recipient.communioned').checked = false;
     }
 
     // Show/hide prior confirmation info.
@@ -247,8 +214,13 @@ function updateForm() {
     // This must precede showHideRitesAndOrders: it can change whether someone has received confirmation or Holy Communion.
     showHidePriorSacraments();
 
+    const baptism = ceremony('baptised');
+    const reception = ceremony('received');
+    const confirmation = ceremony('confirmed');
+    const communion = ceremony('communioned');
+    const grade = minister('grade');
     // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
-    showHideRitesAndOrders();
+    showHideRitesAndOrders(baptism, reception, confirmation, communion, grade);
 
     // This must follow showHideRitesAndOrders(): see comment above.
     showHideSacraments();

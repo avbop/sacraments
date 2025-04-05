@@ -82,12 +82,38 @@ function minister(p) {
     }
 }
 
-function ceremony(p) {
-    switch (p) {
-        case 'date':
-            return new Date(document.getElementById('ceremony.date').value);
-        default:
-            return document.getElementById('ceremony.' + p).value;
+function showHideRitesAndOrders(baptism, reception, confirmation, communion, grade) {
+    // Show/hide sections that require specific rites or grades of holy orders.
+    // data-orders is a space-separated list of deacon, presbyter, bishop. Any of these can match (OR).
+    // data-rites is a space-separated list of baptism, reception, confirmation, communion. Any of these can match (OR).
+    // If both are present, both must match (AND).
+    for (let e of document.querySelectorAll('[data-rites],[data-orders]')) {
+        let showR = false;
+        let showO = false;
+        if (e.hasAttribute('data-rites')) {
+            const rites = e.getAttribute('data-rites').split(' ');
+            if (baptism && rites.includes('baptism')) {
+                showR = true;
+            }
+            if (reception && rites.includes('reception')) {
+                showR = true;
+            }
+            if (confirmation && rites.includes('confirmation')) {
+                showR = true;
+            }
+            if (communion && rites.includes('communion')) {
+                showR = true;
+            }
+        } else {
+            showR = true;
+        }
+        if (e.hasAttribute('data-orders')) {
+            const orders = e.getAttribute('data-orders').split(' ');
+            showO = orders.includes(grade);
+        } else {
+            showO = true;
+        }
+        (showR && showO) ? show(e) : hide(e);
     }
 }
 

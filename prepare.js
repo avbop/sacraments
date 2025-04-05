@@ -92,43 +92,12 @@ function recipient(p) {
     }
 }
 
-function showHideRitesAndOrders() {
-    // Show/hide sections that require specific rites or grades of holy orders.
-    // data-orders is a space-separated list of deacon, presbyter, bishop. Any of these can match (OR).
-    // data-rites is a space-separated list of baptism, reception, confirmation, communion. Any of these can match (OR).
-    // If both are present, both must match (AND).
-    const needsBaptism = recipient('needsBaptism');
-    const needsReception = recipient('needsReception');
-    const needsConfirmation = recipient('needsConfirmation');
-    const needsCommunion = recipient('needsCommunion');
-    const grade = minister('grade');
-    for (let e of document.querySelectorAll('[data-rites],[data-orders]')) {
-        let showR = false;
-        let showO = false;
-        if (e.hasAttribute('data-rites')) {
-            const rites = e.getAttribute('data-rites').split(' ');
-            if (needsBaptism && rites.includes('baptism')) {
-                showR = true;
-            }
-            if (needsReception && rites.includes('reception')) {
-                showR = true;
-            }
-            if (needsConfirmation && rites.includes('confirmation')) {
-                showR = true;
-            }
-            if (needsCommunion && rites.includes('communion')) {
-                showR = true;
-            }
-        } else {
-            showR = true;
-        }
-        if (e.hasAttribute('data-orders')) {
-            const orders = e.getAttribute('data-orders').split(' ');
-            showO = orders.includes(grade);
-        } else {
-            showO = true;
-        }
-        (showR && showO) ? show(e) : hide(e);
+function ceremony(p) {
+    switch (p) {
+        case 'date':
+            return new Date(document.getElementById('ceremony.date').value);
+        default:
+            return document.getElementById('ceremony.' + p).value;
     }
 }
 
@@ -268,8 +237,13 @@ function updateForm() {
     // This must precede showHideRitesAndOrders: it can change whether someone has received confirmation or Holy Communion.
     showHidePriorSacraments();
 
+    const needsBaptism = recipient('needsBaptism');
+    const needsReception = recipient('needsReception');
+    const needsConfirmation = recipient('needsConfirmation');
+    const needsCommunion = recipient('needsCommunion');
+    const grade = minister('grade');
     // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
-    showHideRitesAndOrders();
+    showHideRitesAndOrders(needsBaptism, needsReception, needsConfirmation, needsCommunion, grade);
 
     // This must follow showHideRitesAndOrders(): see comment above.
     showHideSacraments();
