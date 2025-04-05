@@ -169,6 +169,11 @@ function showHideSacraments() {
     } else {
         hide('register.warnings.doubleconfirmation');
     }
+    if (baptised && received) {
+        show('register.warnings.baptismandreception');
+    } else {
+        hide('register.warnings.baptismandreception');
+    }
     // If not baptised, can't receive anything else.
     if ((!priorBaptism && !baptised)
         && (received || confirmed || communioned)) {
