@@ -203,37 +203,6 @@
         </div>
     </section>
 
-    <section id="minister">
-        <h2>Minister</h2>
-        <p>
-            <label for="minister.name">The name of the Catholic minister who will administer these sacraments is:</label>
-            <input type="text" id="minister.name" />
-        </p>
-        <p class="screen-only">
-            <label for="minister.grade">He is a:</label>
-            <select id="minister.grade">
-                <option value="deacon">Deacon</option>
-                <option value="presbyter" selected="true">Priest</option>
-                <option value="bishop">Bishop</option>
-            </select>
-        </p>
-        <p class="print-only">He is a:</p>
-        <ul class="blanklist print-only">
-            <li>
-                <input type="radio" name="minister.grade.print"/>
-                <label>Deacon</label>
-            </li>
-            <li>
-                <input type="radio" name="minister.grade.print"/>
-                <label>Priest</label>
-            </li>
-            <li>
-                <input type="radio" name="minister.grade.print"/>
-                <label>Bishop</label>
-            </li>
-        </ul>
-    </section>
-
     <section id="ceremony">
         <h2>Ceremony</h2>
         <div>
@@ -250,6 +219,37 @@
                 <label for="ceremony.place">Name and city of place of reception of sacraments:</label>
                 <input type="text" id="ceremony.place" />
             </p>
+        </div>
+
+        <div id="minister">
+            <h3>Minister</h3>
+            <p>
+                <label for="minister.name">The name of the Catholic minister who will administer these sacraments is:</label>
+                <input type="text" id="minister.name" />
+            </p>
+            <p class="screen-only">
+                <label for="minister.grade">He is a:</label>
+                <select id="minister.grade">
+                    <option value="deacon">Deacon</option>
+                    <option value="presbyter" selected="true">Priest</option>
+                    <option value="bishop">Bishop</option>
+                </select>
+            </p>
+            <p class="print-only">He is a:</p>
+            <ul class="blanklist print-only">
+                <li>
+                    <input type="radio" name="minister.grade.print"/>
+                    <label>Deacon</label>
+                </li>
+                <li>
+                    <input type="radio" name="minister.grade.print"/>
+                    <label>Priest</label>
+                </li>
+                <li>
+                    <input type="radio" name="minister.grade.print"/>
+                    <label>Bishop</label>
+                </li>
+            </ul>
         </div>
 
         <div id="ceremony.sponsors">

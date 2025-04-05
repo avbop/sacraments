@@ -38,22 +38,6 @@
             Please print or otherwise save this page to keep the information entered into it.
         </p>
     </section>
-    
-    <section id="minister" class="screen-only">
-        <h2>Minister</h2>
-        <p>
-            <label for="minister.name">The name of the Catholic minister who administered the rites is:</label>
-            <input type="text" id="minister.name" />
-        </p>
-        <p>
-            <label for="minister.grade">At the time, he was a:</label>
-            <select id="minister.grade">
-                <option value="deacon">Deacon</option>
-                <option value="presbyter" selected="true">Priest</option>
-                <option value="bishop">Bishop</option>
-            </select>
-        </p>
-    </section>
 
     <section id="ceremony" class="screen-only">
         <h2>Ceremony</h2>
@@ -72,10 +56,26 @@
                 <input type="text" id="ceremony.place" />
             </p>
         </div>
+
+        <div id="minister">
+            <h3>Minister</h3>
+            <p>
+                <label for="minister.name">The name of the Catholic minister who administered the rites is:</label>
+                <input type="text" id="minister.name" />
+            </p>
+            <p>
+                <label for="minister.grade">At the time, he was a:</label>
+                <select id="minister.grade">
+                    <option value="deacon">Deacon</option>
+                    <option value="presbyter" selected="true">Priest</option>
+                    <option value="bishop">Bishop</option>
+                </select>
+            </p>
+        </div>
         
         <div>
             <h3>Rites</h3>
-            <p>Which rites did you administer to this person?</p>
+            <p>Which rites were administered?</p>
             <ul class="blanklist">
                 <li>
                     <input type="checkbox" id="ceremony.baptised"/>
@@ -241,7 +241,7 @@
             </aside>
             <h3>Previous sacraments</h3>
             <p>
-            Which rites had this person (validly) received before the ceremony you celebrated on <span data-autofill="ceremony.date"></span>?
+            Which rites had this person (validly) received before the ceremony on <span data-autofill="ceremony.date"></span>?
             </p>
             <ul class="blanklist">
                 <li>
