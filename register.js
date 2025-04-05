@@ -180,14 +180,21 @@ function showHideSacraments() {
 
 function showHideSponsors() {
     // Show sponsor or Christian witness in register.
-    if (ceremony('sponsors.secondtype') == 'witness') {
+    // Only show first sponsor if name is empty.
+    if (ceremony('sponsors.second') == '') {
         hide('register.baptism.sponsors');
         show('register.baptism.sponsor');
-        show('register.baptism.witness');
-    } else {
-        show('register.baptism.sponsors');
-        hide('register.baptism.sponsor');
         hide('register.baptism.witness');
+    } else {
+        if (ceremony('sponsors.secondtype') == 'witness') {
+            hide('register.baptism.sponsors');
+            show('register.baptism.sponsor');
+            show('register.baptism.witness');
+        } else {
+            show('register.baptism.sponsors');
+            hide('register.baptism.sponsor');
+            hide('register.baptism.witness');
+        }
     }
 }
 
