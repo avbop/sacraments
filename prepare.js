@@ -175,10 +175,12 @@ function showHideSacraments() {
     if (!needsBaptism && !needsReception && !needsConfirmation && !needsCommunion) {
         hide('summary');
         hide('faculty');
+        hide('minister');
         show('nothing');
     } else {
         show('summary');
         show('faculty');
+        show('minister');
         hide('nothing');
     }
 }
@@ -271,8 +273,6 @@ function updateForm() {
 
     // This must follow showHideRitesAndOrders(): see comment above.
     showHideSacraments();
-
-    showHideConfirmationNotification();
 
     showHideAscription();
 

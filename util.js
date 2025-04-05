@@ -124,11 +124,11 @@ function showHideAdoption() {
     // Show/hide adoption info.
     const elems = document.getElementsByClassName('if-adopted');
     if (recipient('adopted')) {
-        for (e in elems) {
+        for (let e of elems) {
             show(e);
         }
     } else {
-        for (e in elems) {
+        for (let e of elems) {
             hide(e);
         }
     }
