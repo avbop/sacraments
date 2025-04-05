@@ -59,7 +59,7 @@ body {
     background-color: var(--bg-body);
 }
 
-.info, #instructions, aside {
+.info, .instructions, aside {
     text-align: justify;
 }
 
@@ -199,22 +199,6 @@ header h1 {
     padding: 0.5em;
 }
 
-#register, #summary {
-    border: thin solid  black;
-    background-color: var(--result);
-}
-
-#register div {
-    border: thin solid black;
-    margin: 1em;
-    padding: 1em;
-    background-color: var(--bg-content);
-}
-
-#register div [data-autofill] {
-    background-color: var(--bg-content);
-}
-
 a {
     color: var(--text);
     text-decoration: underline;
@@ -224,18 +208,8 @@ header section {
     border: none;
 }
 
-#instructions {
+.instructions {
     background-color: var(--info);
-}
-
-.temp-hide {
-    display: none;
-}
-
-#register button {
-    float: right;
-    margin: 0.5em;
-    padding: 0.5em;
 }
 
 @media screen {
@@ -279,19 +253,6 @@ header section {
     [data-autofill] {
         text-decoration: underline;
     }
-
-    #register [data-autofill] {
-        text-decoration: none;
-    }
-
-    #register {
-        border: none;
-    }
-
-    #register div {
-        margin-left: 0em;
-        margin-right: 0em;
-    }
 }
 
 @media screen and (max-height: 600px) {
@@ -312,10 +273,6 @@ header section {
     section {
         padding: 0.5em;
         margin: 0.5em;
-    }
-
-    #register div {
-        padding: 0.5em;
     }
 }
 
