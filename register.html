@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8">
     <title>Recording the Sacraments</title>
+    <script type="text/javascript" src="util.js"></script>
     <script type="text/javascript" src="register.js"></script>
     <script type="text/javascript">
         window.addEventListener('load', (event) => {
@@ -91,7 +92,7 @@
             <p id="recipient.certificatesnote" class="print-only info">If the person has received baptism or confirmation, even if outside the Catholic Church, he or she should provide a sacramental certificate or similar type of record.</p>
         </div>
        
-        <div id="recipient.birthinfo">
+        <div id="recipient.birthinfo" class="if-adopted">
             <aside>Canon 877 §3. Norms regarding whether or not to record an adopted person’s birth parents are to be set by the episcopal conference.</aside>
             <h3>Birth information</h3>
             <p class="note">Fill in the following with as much information as is known.</p>
@@ -339,149 +340,6 @@
         </div>
     </section>
 
-    <section id="print-instructions-return" class="print-only info">
-        <p>After collecting the relevant information, return to <a href="https://avbop.github.io/sacraments/initiation.html">https://avbop.github.io/sacraments/initiation.html</a> to complete the preparation and generate the information for recording the sacraments.</p>
-    </section>
-
-    <section id="faculty" class="screen-only">
-        <h2>Faculties</h2>
-
-        <div id="faculty.baptism" data-rites="baptism">
-            <aside>
-                Canons 850 and 861–863.
-            </aside>
-            <h3>Baptism</h3>
-            <span data-autofill="minister.name"></span>
-            has the faculty to baptize
-            <span data-autofill="recipient.name"></span>
-            because:
-            <ul class="blanklist">
-                <li data-max-age="13">
-                    <input type="checkbox" id="faculty.baptism.insideterritory"/>
-                    <label for="faculty.baptism.insideterritory">the baptism will occur within his ministerial territory</label>
-                </li>
-                <li data-max-age="13">
-                    <input type="checkbox" id="faculty.baptism.outsideterritorypermission"/>
-                    <label for="faculty.baptism.outsideterritorypermission">the baptism will occur outside his ministerial territory, but he has permission from an authority of that territory</label>
-                </li>
-                <li data-max-age="13">
-                    <input type="checkbox" id="faculty.baptism.outsideterritorynecessity"/>
-                    <label for="faculty.baptism.outsideterritorynecessity">the baptism will occur outside his ministerial territory, but this is a case of necessity</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="faculty.baptism.granted"/>
-                    <label for="faculty.baptism.granted">the faculty has been explicitly granted by the diocesan bishop</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="faculty.baptism.extraordinary"/>
-                    <label for="faculty.baptism.extraordinary"><span data-autofill="recipient.name"></span> is in danger of death or this is another case of urgent necessity</label>
-                </li>
-            </ul>
-        </div>
-
-        <div id="faculty.reception" data-rites="reception">
-            <aside>
-                Canon 863 and OCIA. The reception into full communion of someone over the age of fourteen is reserved to the diocesan bishop.
-                <br/>
-                Canon 112 §1 3°. Children under the age of fourteen whose parents are received into full communion are generally also considered to have been received into full communion. Correspondingly, there is no provision for them to make a formal act of entrance into full communion of their own accord.
-            </aside>
-            <h3>Reception into full communion</h3>
-            <div>
-                <span data-autofill="minister.name"></span>
-                has the faculty to receive
-                <span data-autofill="recipient.name"></span>
-                into the full communion of the Catholic Church because:
-                <ul class="blanklist">
-                    <li data-orders="bishop presbyter">
-                        <input type="checkbox" id="faculty.reception.db"/>
-                        <label for="faculty.reception.db">he is the diocesan bishop or is equivalent in law to a diocesan bishop</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="faculty.reception.granted"/>
-                        <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
-                    </li>
-                </ul>
-            </div>
-            <p data-orders="deacon" data-rites="confirmation" class="warning">Because of the requirement that confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
-        </div>
-
-        <div id="faculty.confirmation" data-rites="confirmation">
-            <h3>Confirmation</h3>
-            <div data-orders="presbyter bishop">
-                <aside>Canons 882–888. The faculty mentioned in canon 884 §2 is omitted because it would normally only occur in the context of the ceremony itself, not at the planning stage with which this form is intended to assist.</aside>
-                <span data-autofill="minister.name"></span>
-                can validly confirm
-                <span data-autofill="recipient.name"></span>
-                because:
-                <ul class="blanklist">
-                    <li data-orders="bishop">
-                        <input type="checkbox" id="faculty.confirmation.bishop" checked="checked" disabled="disabled"/>
-                        <label for="faculty.confirmation.bishop">he is a bishop</label>
-                    </li>
-                    <li data-orders="presbyter">
-                        <input type="checkbox" id="faculty.confirmation.mandate"/>
-                        <label for="faculty.confirmation.mandate">the diocesan bishop has granted him the faculty</label>
-                    </li>
-                    <li data-orders="presbyter" data-rites="baptism">
-                        <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
-                        <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately baptising <span data-autofill="recipient.name"></span> in the same ceremony</label>
-                    </li>
-                    <li data-orders="presbyter" data-rites="reception">
-                        <input type="checkbox" id="faculty.confirmation.parochusreception"/>
-                        <label for="faculty.confirmation.parochusreception">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately receiving <span data-autofill="recipient.name"></span> into full communion in the same ceremony</label>
-                    </li>
-                    <li data-orders="presbyter" data-rites="baptism">
-                        <input type="checkbox" id="faculty.confirmation.baptism"/>
-                        <label for="faculty.confirmation.baptism">he is baptising <span data-autofill="recipient.name"></span>, with a mandate from the diocesan bishop, in the same ceremony</label>
-                    </li>
-                    <li data-orders="presbyter" data-rites="reception">
-                        <input type="checkbox" id="faculty.confirmation.reception"/>
-                        <label for="faculty.confirmation.reception">he is receiving <span data-autofill="recipient.name"></span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
-                    </li>
-                    <li data-orders="presbyter">
-                        <input type="checkbox" id="faculty.confirmation.eastern"/>
-                        <label for="faculty.confirmation.eastern">he is an Eastern Catholic priest who has the faculty to confirm</label>
-                    </li>
-                    <li data-orders="presbyter">
-                        <input type="checkbox" id="faculty.confirmation.db"/>
-                        <label for="faculty.confirmation.db">he is equivalent in law to a diocesan bishop and acting within his territory</label>
-                    </li>
-                    <li data-orders="presbyter">
-                        <input type="checkbox" id="faculty.confirmation.death"/>
-                        <label for="faculty.confirmation.death"><span data-autofill="recipient.name"></span> is in danger of death</label>
-                    </li>
-                </ul>
-            </div>
-            <p class="warning" data-orders="deacon">A deacon can never administer confirmation validly.</p>
-        </div>
-
-        <div id="faculty.communion" data-rites="communion">
-            <aside>
-                Canon 910.
-            </aside>
-            <h3>Holy Communion</h3>
-            <ul>
-            <li>Any cleric has the faculty to administer Holy Communion.</li>
-            <li>An extraordinary minister might be deputed to administer Holy Communion, in accord with the norm of law.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="summary" class="screen-only">
-        <aside data-min-age="7">
-            Canons 852 §1, 866, 883 2°, and 885 §2. Those over the age of seven who receive baptism or are received into full communion are also to be confirmed and to make their first Holy Communion in the same liturgy.
-        </aside>
-        <h2>Summary</h2>
-        <p>Based on the current information, the ceremony should proceed in this order:</p>
-        <ol>
-            <li id="summary.reception" data-rites="reception">Reception into full communion</li>
-            <li id="summary.baptism" data-rites="baptism">Baptism</li>
-            <li id="summary.confirmation" data-rites="confirmation">Confirmation</li>
-            <li id="summary.communion" data-rites="communion">First Holy Communion</li>
-        </ol>
-        <p class="warning" data-orders="deacon" data-rites="confirmation">A deacon will not be able to be the celebrant of these rites.</p>
-    </section>
-
     <section id="register" class="screen-only">
         <button onclick="printRegister();" class="screen-only">&#128424; Print</button>
         <h2 class="screen-only">Recording</h2>
@@ -512,7 +370,7 @@
                     by <span data-autofill="minister.name"></span>.
                 </li>
             </ul>
-            <div id="register.baptism.birthinfo">
+            <div id="register.baptism.birthinfo" class="if-adopted">
                 <aside>Canon 877 §3.</aside>
                 <p class="note">Depending on the particular law established by the episcopal conference, it might also be necessary to record the recipient’s birth information.</p>
                 <ul>
@@ -665,9 +523,6 @@
             <aside>See the silence of canons 897–958 on recording reception of the Most Holy Eucharist, by contrast with the pattern for those sacraments that are to be recorded (e.g., canon 877).</aside>
             <p class="note">Particular law determines how and whether to record a person’s first reception of Holy Communion.</p>
         </div>
-    </section>
-    <section id="nothing">
-        <p class="info">Based on the above information, no additional rites are needed at this time.</p>
     </section>
     </form>
     </main>

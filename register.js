@@ -1,97 +1,7 @@
 /* This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). */
 
-function addFormListeners() {
-    const inputs = document.getElementsByTagName('input');
-    for (let i of inputs) {
-        i.addEventListener('input', (event) => {
-            updateForm();
-        });
-    }
-    const selects = document.getElementsByTagName('select');
-    for (let i of selects) {
-        i.addEventListener('input', (event) => {
-            updateForm();
-        });
-    }
-}
-
-// Hide element via CSS class.
-function hide(e) {
-    let elem = null;
-    if (typeof(e) == 'string') {
-        elem = document.getElementById(e);
-    } else {
-        elem = e;
-    }
-    elem.classList.add('hide');
-}
-
-// Show element via CSS class.
-function show(e) {
-    let elem = null;
-    if (typeof(e) == 'string') {
-        elem = document.getElementById(e);
-    } else {
-        elem = e;
-    }
-    elem.classList.remove('hide');
-}
-
-function calculateAge(bday, sacday) {
-    // To calculate the canonical age, we don't actually want elapsed time.
-    // Rather, we need to manually parse year, month, day.
-    const bornYear = bday.getFullYear();
-    const bornMonth = bday.getMonth();
-    const bornDay = bday.getDate();
-    const sacYear = sacday.getFullYear();
-    const sacMonth = sacday.getMonth();
-    const sacDay = sacday.getDate();
-    let age = sacYear - bornYear - 1;
-    if ((sacMonth > bornMonth) || (sacMonth == bornMonth && sacDay > bornDay)) {
-        age += 1;
-    }
-    if (age >= 0) {
-        return age;
-    } else {
-        return NaN;
-    }
-}
-
-function calculateAscription() {
-    if (!recipient('baptised')) {
-        // If not baptised, not ascribed anywhere.
-        return 'none';
-    }
-    const baptismChurch = recipient('priorbaptism.church')
-    const currentChurch = recipient('currentchurch')
-    if (baptismChurch == 'latin' || baptismChurch == 'eastern') {
-        // Baptised Catholic: must still be Catholic.
-        if (currentChurch == 'latin' || currentChurch == 'eastern') {
-            return currentChurch;
-        } else {
-            return baptismChurch;
-        }
-    } else if (baptismChurch == 'orthodox') {
-        // Baptised Orthodox: if haven't become Catholic, they're still Orthodox.
-        if (currentChurch != 'latin' && currentChurch != 'eastern') {
-            return baptismChurch;
-        } else {
-            return currentChurch;
-        }
-    } else {
-        return currentChurch;
-    }
-}
-
 function recipient(p) {
     switch (p) {
-        case 'age':
-            return calculateAge(recipient('birthdate'), ceremony('date'));
-        case 'ascription':
-            return calculateAscription();
-        case 'isCatholic':
-            const ascription = recipient('ascription');
-            return (ascription == 'latin' || ascription == 'eastern');
         case 'name':
             const name = document.getElementById('recipient.name').value;
             if (name == '') {
@@ -103,116 +13,14 @@ function recipient(p) {
             return new Date(document.getElementById('recipient.birthdate').value);
         case 'adopted':
             return document.getElementById('recipient.adopted').value == 'Yes';
-        case 'baptised':
-            return document.getElementById('recipient.baptised').checked;
-        case 'confirmed':
-            return document.getElementById('recipient.confirmed').checked;
-        case 'communioned':
-            return document.getElementById('recipient.communioned').checked;
-        case 'needsBaptism':
-            // Baptism: if not already baptised.
-            return !document.getElementById('recipient.baptised').checked;
-        case 'needsConfirmation':
-            // Confirmation: if not already confirmed, and not an infant, and Catholic or about to become Catholic.
-            if (!recipient('confirmed')) {
-                if (isNaN(recipient('age')) || recipient('age') >= 7) {
-                    if (recipient('isCatholic') || recipient('needsReception') || recipient('needsBaptism')) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        case 'needsCommunion':
-            // Communion: if not already received first Communion, and not an infant, and Catholic or about to become Catholic.
-            if (!recipient('communioned')) {
-                if (isNaN(recipient('age')) || recipient('age') >= 7) {
-                    if (recipient('isCatholic') || recipient('needsReception') || recipient('needsBaptism')) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        case 'needsReception':
-            // Reception: if baptised non-Catholic, not already received, and at least 14.
-            const actualAscription = recipient('ascription');
-            const age = recipient('age');
-            if (!recipient('needsBaptism')) {
-                if (actualAscription != 'latin' && actualAscription != 'eastern') {
-                    if (isNaN(age) || age >= 14) {
-                        return true;
-                    }
-                }
-            }
-            return false;
         default:
             return document.getElementById('recipient.' + p).value;
     }
 }
 
-function minister(p) {
-    switch (p) {
-        case 'name':
-            let name = '';
-            const grade = document.getElementById('minister.grade').value;
-            if (grade == 'bishop') {
-                name += 'Most Rev.';
-            } else if (grade == 'presbyter') {
-                name += 'Rev.';
-            } else if (grade == 'deacon') {
-                name += 'Deacon';
-            }
-            name += ' ';
-            const shortname = document.getElementById('minister.name').value;
-            if (shortname == '') {
-                name += '[minister]';
-            } else {
-                name += shortname;
-            }
-            return name;
-        default:
-            return document.getElementById('minister.' + p).value;
-    }
-}
-
-function ceremony(p) {
-    switch (p) {
-        case 'date':
-            return new Date(document.getElementById('ceremony.date').value);
-        default:
-            return document.getElementById('ceremony.' + p).value;
-    }
-}
-
-function autofill() {
-    // Complete autofill information.
-    // data-autofill should match the id of one of the info-collecting fields.
-    for (let e of document.querySelectorAll('[data-autofill]')) {
-        let val = '[error]';
-        const data = e.getAttribute('data-autofill');
-        const keys = data.split('.');
-        val = window[keys.shift()](keys.join('.'));
-        if (val instanceof Date) {
-            const fmt = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            };
-            if (!isNaN(val)) {
-                e.innerHTML = new Intl.DateTimeFormat(undefined, fmt).format(val);
-            } else {
-                e.innerHTML = "[unknown date]";
-            }
-            continue;
-        }
-        if (val && val != '') {
-            e.innerHTML = val;
-            continue;
-        }
-        e.innerHTML = '[not set]';
-    }
-}
-
 function showHideRitesAndOrders() {
+    // TODO: rewrite this to account for checkboxes for sacraments rather than predicted requirements
+    // TODO: use this info to add a warning if deacon attempted confirmation
     // Show/hide sections that require specific rites or grades of holy orders.
     // data-orders is a space-separated list of deacon, presbyter, bishop. Any of these can match (OR).
     // data-rites is a space-separated list of baptism, reception, confirmation, communion. Any of these can match (OR).
@@ -253,6 +61,7 @@ function showHideRitesAndOrders() {
 }
 
 function showHideEastern() {
+    // TODO: rewrite this
     // Show/hide Eastern Church elements.
     const actualAscription = recipient('ascription');
     let intendedAscription = ceremony('churchascription');
@@ -285,38 +94,8 @@ function showHideEastern() {
     }
 }
 
-function showHideAdoption() {
-    // Show/hide adoption info.
-    if (recipient('adopted')) {
-        show('recipient.birthinfo');
-        show('register.baptism.birthinfo');
-    } else {
-        hide('recipient.birthinfo');
-        hide('register.baptism.birthinfo');
-    }
-}
-
-function showHideSacraments() {
-    const needsBaptism = recipient('needsBaptism');
-    const needsReception = recipient('needsReception');
-    const needsConfirmation = recipient('needsConfirmation');
-    const needsCommunion = recipient('needsCommunion');
-    const ministerGrade = minister('grade');
-    // If nothing is to be done, hide everything and show info.
-    if (!needsBaptism && !needsReception && !needsConfirmation && !needsCommunion) {
-        hide('summary');
-        hide('register');
-        hide('faculty');
-        show('nothing');
-    } else {
-        show('summary');
-        show('register');
-        show('faculty');
-        hide('nothing');
-    }
-}
-
 function showHideConfirmationNotification() {
+    // TODO: rewrite this
     // Set default state.
     hide('register.notification.tobaptism');
     hide('register.notification.tofullcommunion');
@@ -373,6 +152,7 @@ function showHideConfirmationNotification() {
 }
 
 function showHideAscription() {
+    // TODO: rewrite this (or, more likely, it gets taken care of by new RitesAndOrders
     // Only show ascription if needed.
     if (recipient('needsBaptism') || recipient('needsReception')) {
         show('ceremony.ascription');
@@ -382,6 +162,7 @@ function showHideAscription() {
 }
 
 function showHidePriorSacraments() {
+    // TODO: figure out how to account for notification of parish of baptism/reception
     // Show/hide baptism info.
     if (recipient('baptised')) {
         // Collect info about prior baptism.
@@ -433,6 +214,7 @@ function showHidePriorSacraments() {
 }
 
 function showHideSponsors() {
+    // TODO: rewrite this
     // Show/hide sponsor info.
     // If they need baptism, show both sponsors.
     if (recipient('needsBaptism')) {
@@ -455,36 +237,6 @@ function showHideSponsors() {
         show('register.baptism.sponsors');
         hide('register.baptism.sponsor');
         hide('register.baptism.witness');
-    }
-}
-
-function showHideByAge() {
-    // Show or hide elements based on the age stored in data-max-age and data-min-age.
-    // If age is null, show everything.
-    // The ages are inclusive: eg data-max-age=13 will show for 13 and not show for 14.
-    const age = recipient('age');
-    if (age != NaN && age >= 0) {
-        // If age is sane, decide whether to hide or show.
-        for (let e of document.querySelectorAll('[data-max-age],[data-min-age]')) {
-            let maxage = e.getAttribute('data-max-age');
-            let minage = e.getAttribute('data-min-age');
-            if (maxage == null) {
-                maxage = Infinity;
-            }
-            if (minage == null) {
-                minage = -1;
-            }
-            if (age <= maxage && age >= minage) {
-                show(e);
-            } else {
-                hide(e);
-            }
-        }
-    } else {
-        // If age is null or negative, show everything.
-        for (let e of document.querySelectorAll('[data-max-age],[data-min-age]')) {
-            show(e);
-        }
     }
 }
 
@@ -514,23 +266,4 @@ function updateForm() {
     showHideByAge();
 
     autofill();
-}
-
-function printRegister() {
-    for (let e of document.querySelectorAll('section')) {
-        if (e.id == 'register') {
-            e.classList.remove('screen-only');
-        } else {
-            e.classList.add('temp-hide');
-        }
-    }
-    window.print();
-    for (let e of document.querySelectorAll('section')) {
-        if (e.id == 'register') {
-            e.classList.add('screen-only');
-        } else {
-            e.classList.remove('temp-hide');
-        }
-    }
-    document.getElementById('register').scrollIntoView();
 }

@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8">
     <title>Preparing for the Sacraments</title>
+    <script type="text/javascript" src="util.js"></script>
     <script type="text/javascript" src="prepare.js"></script>
     <script type="text/javascript">
         window.addEventListener('load', (event) => {
@@ -28,9 +29,18 @@
     <main>
     <form autocomplete="off" method="post" action="" onsubmit="return false;">
     <section id="instructions" class="screen-only">
-        <p>Fill out the form as completely as possible. If you do not yet have all of the required information, you can print this document, meet with the person receiving the sacraments (and/or his or her parents or guardians), and obtain from them the missing information; then, you can return to this form to fill it out completely. If the recipient has a severe disability or other exceptional circumstances apply, please consult a canonist first.</p>
-        <p>This form will update automatically as it is changed. Based on the information that it has, it produces <a href="#register">instructions</a> for updating sacramental registers.</p>
-        <p>For privacy reasons, this form will not retain any information that is entered into it, and it does not send any information anywhere else. Please print this page if you need to save the information entered into it.</p>
+        <p>
+            Fill out the form as completely as possible.
+            It will update automatically to only show the relevant information.
+            If the recipient has a severe disability or other exceptional circumstances apply, please consult a canonist first.
+        </p>
+        <p>
+            If you do not yet have all of the required information, you can print this document, meet with the person receiving the sacraments (and/or his or her parents or guardians), and obtain from them the missing information; then, you can return to this form to fill it out completely.
+        </p>
+        <p>
+            For privacy reasons, this form will not retain any information that is entered into it, and it does not send any information anywhere else.
+            Please print or otherwise save this page if you need to keep the information entered into it.
+        </p>
     </section>
     <section id="recipient">
         <h2>Recipient</h2>
@@ -91,7 +101,7 @@
             <p id="recipient.certificatesnote" class="print-only info">If the person has received baptism or confirmation, even if outside the Catholic Church, he or she should provide a sacramental certificate or similar type of record.</p>
         </div>
        
-        <div id="recipient.birthinfo">
+        <div id="recipient.birthinfo" class="if-adopted">
             <aside>Canon 877 §3. Norms regarding whether or not to record an adopted person’s birth parents are to be set by the episcopal conference.</aside>
             <h3>Birth information</h3>
             <p class="note">Fill in the following with as much information as is known.</p>
@@ -339,10 +349,6 @@
         </div>
     </section>
 
-    <section id="print-instructions-return" class="print-only info">
-        <p>After collecting the relevant information, return to <a href="https://avbop.github.io/sacraments/initiation.html">https://avbop.github.io/sacraments/initiation.html</a> to complete the preparation and generate the information for recording the sacraments.</p>
-    </section>
-
     <section id="faculty" class="screen-only">
         <h2>Faculties</h2>
 
@@ -482,190 +488,6 @@
         <p class="warning" data-orders="deacon" data-rites="confirmation">A deacon will not be able to be the celebrant of these rites.</p>
     </section>
 
-    <section id="register" class="screen-only">
-        <button onclick="printRegister();" class="screen-only">&#128424; Print</button>
-        <h2 class="screen-only">Recording</h2>
-        <h2 class="print-only">Recording Sacraments for <span data-autofill="recipient.name"></span></h2>
-        <div id="register.baptism" data-rites="baptism">
-            <h3>Baptismal register</h3>
-            <aside>Canons 535 §2 and 877.</aside>
-            <p>In the baptismal register of <span data-autofill="ceremony.place"></span>, record at least the following information:</p>
-            <ul>
-                <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
-                <li>Recipient’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
-                <li>Recipient’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
-                <li>Name of minister: <span data-autofill="minister.name"></span></li>
-                <li>Names of the recipient’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
-                <li id="register.baptism.sponsors">Names of the sponsors: <span data-autofill="ceremony.sponsors.first"></span>, <span data-autofill="ceremony.sponsors.second"></span></li>
-                <li id="register.baptism.sponsor">Name of the sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
-                <li id="register.baptism.witness">Name of the Christian witness: <span data-autofill="ceremony.sponsors.second"></span></li>
-                <li>Place of baptism: <span data-autofill="ceremony.place"></span></li>
-                <li>Date of baptism: <span data-autofill="ceremony.date"></span></li>
-                <li id="register.baptism.baptismonly">
-                    Annotation: Ascribed by baptism to the <span data-autofill="ceremony.churchascription"></span>.
-                </li>
-                <li id="register.baptism.baptismandconfirmation">
-                    Annotation: Ascribed by baptism to the <span data-autofill="ceremony.churchascription"></span>.
-                    Confirmed on
-                    <span data-autofill="ceremony.date"></span>
-                    at <span data-autofill="ceremony.place"></span>
-                    by <span data-autofill="minister.name"></span>.
-                </li>
-            </ul>
-            <div id="register.baptism.birthinfo">
-                <aside>Canon 877 §3.</aside>
-                <p class="note">Depending on the particular law established by the episcopal conference, it might also be necessary to record the recipient’s birth information.</p>
-                <ul>
-                    <li>Name of the recipient at birth: <span data-autofill="recipient.birthname"></span></li>
-                    <li>Names of the recipient’s parents at birth: <span data-autofill="recipient.birthparents.father"></span>, <span data-autofill="recipient.birthparents.mother"></span></li>
-                </ul>
-            </div>
-            <p class="note" id="register.baptism.marriagenote" data-min-age="14">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
-            <p class="note">If the register has an index, remember to update it.</p>
-        </div>
-        <div id="register.reception" data-rites="reception">
-            <h3>Register of reception into full communion</h3>
-            <aside>Canons 535 §2 and 877 (by analogy to the baptismal register); see also local OCIA norms.</aside>
-            <p class="note">
-            Particular law determines where this information is to be kept.
-            This is usually either a dedicated register for receptions into full communion or the baptismal register.
-            There, at least the following information should be recorded:
-            </p>
-            <ul>
-                <li>Person received into full communion: <span data-autofill="recipient.name"></span></li>
-                <li>Person’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
-                <li>Person’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
-                <li>Person’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
-                <li>Minister of baptism: <span data-autofill="recipient.priorbaptism.minister"></span></li>
-                <li>Names of the baptismal sponsors: <span data-autofill="recipient.priorbaptism.sponsors"></span></li>
-                <li>Place of baptism: <span data-autofill="recipient.priorbaptism.place"></span></li>
-                <li>Date of baptism: <span data-autofill="recipient.priorbaptism.date"></span></li>
-                <li id="register.reception.confirmedandreceived">
-                    Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
-                    and confirmed on
-                    <span data-autofill="ceremony.date"></span>
-                    at <span data-autofill="ceremony.place"></span>
-                    by <span data-autofill="minister.name"></span>.</li>
-                <li id="register.reception.onlyreceived">
-                    Annotation: Received into the <span data-autofill="ceremony.churchascription"></span>
-                    on <span data-autofill="ceremony.date"></span>
-                    at <span data-autofill="ceremony.place"></span>
-                    by <span data-autofill="minister.name"></span>.
-                    <span id="register.reception.priorconfirmation">Confirmed on <span data-autofill="recipient.priorconfirmation.date"></span>
-                    at <span data-autofill="recipient.priorconfirmation.place"></span>
-                    by <span data-autofill="recipient.priorconfirmation.minister"></span>,
-                    with <span data-autofill="recipient.priorconfirmation.sponsor"></span> as sponsor.</span>
-                </li>
-            </ul>
-            <p class="note" id="register.reception.marriagenote" data-min-age="14">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
-            <p class="note">If the register has an index, remember to update it.</p>
-        </div>
-        <div id="register.confirmation" data-orders="presbyter bishop" data-rites="confirmation">
-            <h3>Confirmation register</h3>
-            <aside>Canon 895.</aside>
-            <p class="note">
-            Particular law determines where the confirmation register is kept.
-            This is most commonly either the diocesan offices or the parish that prepared <span data-autofill="recipient.name"></span> for confirmation.
-            There, at least the following information is to be recorded:
-            </p>
-            <ul>
-                <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
-                <li>Recipient’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
-                <li>Recipient’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
-                <li>Recipient’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
-                <li>Minister of confirmation: <span data-autofill="minister.name"></span></li>
-                <li>Sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
-                <li>Place of confirmation: <span data-autofill="ceremony.place"></span></li>
-                <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
-            </ul>
-            <p class="note">If the register has an index, remember to update it.</p>
-        </div>
-        <div id="register.notification.tobaptism">
-            <h3>Notification</h3>
-            <aside>Canon 895.</aside>
-            <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
-
-            <aside>Canons 535 §§1 and 2.</aside>
-            <p>Dear Father N.,</p>
-
-            <p>
-            I recently had the privilege of confirming <span data-autofill="recipient.name"></span>, who was baptised in your parish.
-            I ask that you please record the confirmation in the baptismal register and write me to verify that the record has been made.
-            </p>
-
-            <ul>
-                <li>Recipient: <span data-autofill="recipient.name"></span></li>
-                <li>Recipient’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
-                <li>Recipient’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
-                <li>Recipient’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
-                <li>Minister of confirmation: <span data-autofill="minister.name"></span></li>
-                <li>Sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
-                <li>Place of confirmation: <span data-autofill="ceremony.place"></span></li>
-                <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
-            </ul>
-
-            <p>Yours devotedly in Christ,</p>
-            <p><span data-autofill="minister.name"></span></p>
-        </div>
-        <div id="register.notification.tofullcommunion">
-            <h3>Notification</h3>
-            <aside>Canon 895.</aside>
-            <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
-
-            <aside>Canons 535 §§1 and 2.</aside>
-            <p>Dear Father N.,</p>
-
-            <p>
-            I recently had the privilege of confirming <span data-autofill="recipient.name"></span>, who was received into the full communion of the Church in your parish.
-            I ask that you please record the confirmation in the appropriate register and write me to verify that the record has been made.
-            </p>
-
-            <ul>
-                <li>Recipient: <span data-autofill="recipient.name"></span></li>
-                <li>Recipient’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
-                <li>Recipient’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
-                <li>Recipient’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
-                <li>Minister of confirmation: <span data-autofill="minister.name"></span></li>
-                <li>Sponsor: <span data-autofill="ceremony.sponsors.first"></span></li>
-                <li>Place of confirmation: <span data-autofill="ceremony.place"></span></li>
-                <li>Date of confirmation: <span data-autofill="ceremony.date"></span></li>
-            </ul>
-
-            <p>Yours devotedly in Christ,</p>
-            <p><span data-autofill="minister.name"></span></p>
-        </div>
-        <div id="register.notification.baptisedsameparish">
-            <h3>Baptismal register</h3>
-            <aside>Canon 895.</aside>
-            In the baptismal register of <span data-autofill="recipient.priorbaptism.place"></span>, at the entry for <span data-autofill="recipient.name"></span>’s baptism on <span data-autofill="recipient.priorbaptism.date"></span>, the following annotation should be added:
-            <ul>
-                <li>
-                    Confirmed on
-                    <span data-autofill="ceremony.date"></span>
-                    at <span data-autofill="ceremony.place"></span>
-                    by <span data-autofill="minister.name"></span>.
-                </li>
-            </ul>
-        </div>
-        <div id="register.notification.receivedsameparish">
-            <h3>Register of reception into full communion</h3>
-            <aside>Canon 895.</aside>
-            At <span data-autofill="recipient.priorfullcommunion.place"></span>, in the register of reception into full communion (which may be the same as the baptismal register), at the entry for <span data-autofill="recipient.name"></span>’s reception into full communion on <span data-autofill="recipient.priorfullcommunion.date"></span>, the following annotation should be added:
-            <ul>
-                <li>
-                    Confirmed on
-                    <span data-autofill="ceremony.date"></span>
-                    at <span data-autofill="ceremony.place"></span>
-                    by <span data-autofill="minister.name"></span>.
-                </li>
-            </ul>
-        </div>
-        <div id="register.communion" data-rites="communion">
-            <h3>First Holy Communion register</h3>
-            <aside>See the silence of canons 897–958 on recording reception of the Most Holy Eucharist, by contrast with the pattern for those sacraments that are to be recorded (e.g., canon 877).</aside>
-            <p class="note">Particular law determines how and whether to record a person’s first reception of Holy Communion.</p>
-        </div>
-    </section>
     <section id="nothing">
         <p class="info">Based on the above information, no additional rites are needed at this time.</p>
     </section>
