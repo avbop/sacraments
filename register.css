@@ -1,7 +1,7 @@
 /* This file is released to the public domain and is marked with CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/). */
 
-#register, #summary {
-    border: thin solid  black;
+#register {
+    border: thin solid black;
     background-color: var(--result);
 }
 
@@ -14,16 +14,6 @@
 
 #register div [data-autofill] {
     background-color: var(--bg-content);
-}
-
-.temp-hide {
-    display: none;
-}
-
-#register button {
-    float: right;
-    margin: 0.5em;
-    padding: 0.5em;
 }
 
 @media print {
