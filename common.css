@@ -212,6 +212,12 @@ header section {
     background-color: var(--info);
 }
 
+button.printer {
+    float: right;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
 @media screen {
     .print-only {
         display: none;

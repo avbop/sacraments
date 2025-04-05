@@ -28,7 +28,7 @@
     </header>
     <main>
     <form autocomplete="off" method="post" action="" onsubmit="return false;">
-    <section id="instructions" class="screen-only">
+    <section id="instructions" class="instructions screen-only">
         <p>
             Fill out the form as completely as possible.
             It will update automatically to only show the relevant information.
@@ -39,7 +39,7 @@
         </p>
         <p>
             For privacy reasons, this form will not retain any information that is entered into it, and it does not send any information anywhere else.
-            Please print or otherwise save this page if you need to keep the information entered into it.
+            Please print or otherwise save this page to keep the information entered into it.
         </p>
     </section>
     <section id="recipient">
@@ -477,6 +477,7 @@
         <aside data-min-age="7">
             Canons 852 §1, 866, 883 2°, and 885 §2. Those over the age of seven who receive baptism or are received into full communion are also to be confirmed and to make their first Holy Communion in the same liturgy.
         </aside>
+        <button onclick="window.print();" class="printer screen-only">&#128424; Print</button>
         <h2>Summary</h2>
         <p>Based on the current information, the ceremony should proceed in this order:</p>
         <ol>
@@ -492,6 +493,13 @@
         <p class="info">Based on the above information, no additional rites are needed at this time.</p>
     </section>
     </form>
+
+    <section class="instructions">
+        After administering the sacraments, return to
+        <a href="register.html" class="print-only">avbop.github.io/sacraments</a>
+        <a href="register.html" class="screen-only">this site</a>
+        to arrange this information for the relevant sacramental registers.
+    </section>
     </main>
 
     <footer>
