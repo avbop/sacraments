@@ -4,3 +4,9 @@
     border: thin solid black;
     background-color: var(--result);
 }
+
+@media print {
+    #summary {
+        border: thick double black;
+    }
+}
