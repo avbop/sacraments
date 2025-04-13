@@ -410,6 +410,10 @@
                         <input type="checkbox" id="faculty.reception.granted"/>
                         <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
                     </li>
+                    <li>
+                        <input type="checkbox" id="faculty.reception.death"/>
+                        <label for="faculty.reception.death"><span data-autofill="recipient.name"></span> is in danger of death</label>
+                    </li>
                 </ul>
             </div>
             <p data-orders="deacon" data-rites="confirmation" class="warning">Because of the requirement that confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
@@ -435,10 +439,6 @@
                     <li data-orders="presbyter" data-rites="baptism">
                         <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
                         <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately baptising <span data-autofill="recipient.name"></span> in the same ceremony</label>
-                    </li>
-                    <li data-orders="presbyter" data-rites="reception">
-                        <input type="checkbox" id="faculty.confirmation.parochusreception"/>
-                        <label for="faculty.confirmation.parochusreception">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately receiving <span data-autofill="recipient.name"></span> into full communion in the same ceremony</label>
                     </li>
                     <li data-orders="presbyter" data-rites="baptism">
                         <input type="checkbox" id="faculty.confirmation.baptism"/>
