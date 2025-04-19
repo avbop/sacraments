@@ -42,11 +42,11 @@
     <section id="ceremony" class="screen-only">
         <h2>Ceremony</h2>
         <div>
-            <h3>Calendar</h3>
             <aside>
                 Canons 200–203. The recipient’s canonical age on the day of the ceremony was
                 <span data-autofill="recipient.age"></span>.
             </aside>
+            <h3>Calendar</h3>
             <p>
                 <label for="ceremony.date">Date of reception of sacraments:</label>
                 <input type="date" min="1983-11-27" id="ceremony.date"/>
@@ -122,7 +122,6 @@
         </div>
 
         <div id="ceremony.ascription" data-rites="reception baptism">
-            <h3>Ascription</h3>
             <aside>
                 Canons 111 and 112.
                 See also CCEO canon 35.
@@ -133,6 +132,7 @@
                 Canon 112 §1 3°. Children under the age of fourteen automatically change ascription following their parents.
                 This is generally held to apply also to children whose parents come into the full communion of the Catholic Church.
             </aside>
+            <h3>Ascription</h3>
             <p>
                 <label>To which Catholic Church <span class="latin">sui iuris</span> was this person ascribed?</label>
                 <select id="ceremony.churchascription">
@@ -344,8 +344,8 @@
             Someone who has been baptised Catholic should not also be received into full communion.
         </p>
         <div id="register.baptism" data-rites="baptism">
-            <h3>Baptismal register</h3>
             <aside>Canons 535 §2 and 877.</aside>
+            <h3>Baptismal register</h3>
             <p>In the baptismal register of <span data-autofill="ceremony.place"></span>, record at least the following information:</p>
             <ul>
                 <li>Name of recipient: <span data-autofill="recipient.name"></span></li>
@@ -381,8 +381,8 @@
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.reception" data-rites="reception">
-            <h3>Register of reception into full communion</h3>
             <aside>Canons 535 §2 and 877 (by analogy to the baptismal register); see also local OCIA norms.</aside>
+            <h3>Register of reception into full communion</h3>
             <p class="note">
             Particular law determines where this information is to be kept.
             This is usually either a dedicated register for receptions into full communion or the baptismal register.
@@ -418,8 +418,8 @@
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.confirmation" data-orders="presbyter bishop" data-rites="confirmation">
-            <h3>Confirmation register</h3>
             <aside>Canon 895.</aside>
+            <h3>Confirmation register</h3>
             <p class="note">
             Particular law determines where the confirmation register is kept.
             This is most commonly either the diocesan offices or the parish that prepared <span data-autofill="recipient.name"></span> for confirmation.
@@ -439,8 +439,8 @@
             <p class="note" data-orders="presbyter">It may be helpful to record as an annotation the faculty by which <span data-autofill="minister.name"></span> validly administered confirmation.</p>
         </div>
         <div id="register.notification.tobaptism">
-            <h3>Notification</h3>
             <aside>Canon 895.</aside>
+            <h3>Notification</h3>
             <p class="note">If <span data-autofill="recipient.name"></span> was not baptised at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish of baptism, namely <span data-autofill="recipient.priorbaptism.place"></span>.</p>
 
             <aside>Canons 535 §§1 and 2.</aside>
@@ -466,8 +466,8 @@
             <p><span data-autofill="minister.name"></span></p>
         </div>
         <div id="register.notification.tofullcommunion">
-            <h3>Notification</h3>
             <aside>Canon 895.</aside>
+            <h3>Notification</h3>
             <p class="note">If <span data-autofill="recipient.name"></span> was not received into full communion at <span data-autofill="ceremony.place"></span>, a letter like the following should be sent to the parish where he or she was received into full communion, namely <span data-autofill="recipient.priorfullcommunion.place"></span>.</p>
 
             <aside>Canons 535 §§1 and 2.</aside>
@@ -493,8 +493,8 @@
             <p><span data-autofill="minister.name"></span></p>
         </div>
         <div id="register.notification.baptisedsameparish">
-            <h3>Baptismal register</h3>
             <aside>Canon 895.</aside>
+            <h3>Baptismal register</h3>
             In the baptismal register of <span data-autofill="recipient.priorbaptism.place"></span>, at the entry for <span data-autofill="recipient.name"></span>’s baptism on <span data-autofill="recipient.priorbaptism.date"></span>, the following annotation should be added:
             <ul>
                 <li>
@@ -506,8 +506,8 @@
             </ul>
         </div>
         <div id="register.notification.receivedsameparish">
-            <h3>Register of reception into full communion</h3>
             <aside>Canon 895.</aside>
+            <h3>Register of reception into full communion</h3>
             At <span data-autofill="recipient.priorfullcommunion.place"></span>, in the register of reception into full communion (which may be the same as the baptismal register), at the entry for <span data-autofill="recipient.name"></span>’s reception into full communion on <span data-autofill="recipient.priorfullcommunion.date"></span>, the following annotation should be added:
             <ul>
                 <li>
@@ -519,8 +519,8 @@
             </ul>
         </div>
         <div id="register.communion" data-rites="communion">
-            <h3>First Holy Communion register</h3>
             <aside>See the silence of canons 897–958 on recording reception of the Most Holy Eucharist, by contrast with the pattern for those sacraments that are to be recorded (e.g., canon 877).</aside>
+            <h3>First Holy Communion register</h3>
             <p class="note">Particular law determines how and whether to record a person’s first reception of Holy Communion.</p>
         </div>
     </section>
