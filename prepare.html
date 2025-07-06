@@ -385,7 +385,8 @@
 
         <div id="faculty.reception" data-rites="reception">
             <aside>
-                <abbr title="Ordo initiationis christianae adultorum">OICA</abbr>, App., n. 8. Receiving someone into full communion is reserved to the diocesan bishop, although this faculty is often granted to parish priests.
+                <abbr title="Ordo initiationis christianae adultorum">OICA</abbr>, App., n. 8. Receiving someone into full communion is reserved to the diocesan bishop.
+                In practice, this faculty is often granted to parish priests.
                 <br/>
                 Canon 112 §1 3°. Children under the age of fourteen whose parents are received into full communion are generally considered to have also been received into full communion.
             </aside>
@@ -414,7 +415,7 @@
         <div id="faculty.confirmation" data-rites="confirmation">
             <h3>Confirmation</h3>
             <div data-orders="presbyter bishop">
-                <aside>Canons 882–888. The faculty mentioned in canon 884 §2 is omitted because it would normally only occur in the context of the ceremony itself, not at the planning stage with which this form is intended to assist.</aside>
+                <aside>Canons 852, 863, 882–888. The faculty mentioned in canon 884 §2 is omitted because it would normally only occur in the context of the ceremony itself, not at the planning stage with which this form is intended to assist.</aside>
                 <span data-autofill="minister.name"></span>
                 can validly confirm
                 <span data-autofill="recipient.name"></span>
@@ -428,7 +429,7 @@
                         <input type="checkbox" id="faculty.confirmation.mandate"/>
                         <label for="faculty.confirmation.mandate">the diocesan bishop has granted him the faculty</label>
                     </li>
-                    <li data-orders="presbyter" data-rites="baptism">
+                    <li data-orders="presbyter" data-rites="baptism" data-max-age="13">
                         <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
                         <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately baptising <span data-autofill="recipient.name"></span> in the same ceremony</label>
                     </li>
@@ -496,7 +497,9 @@
             If the child's parents have been received into full communion after the baptism of the child and before the child's fourteenth birthday, then it is commonly held that the child has been received into full communion by his or her parents' act.
             If the child's parents are not Catholic, careful pastoral discernment is needed.
             <br/>
-            The confirmation of a child received into full communion may be delayed to a later time, if appropriate.
+            <span data-max-age="17" data-rites="confirmation">
+                The confirmation of a child received into full communion may be delayed to a later time, if appropriate.
+            </span>
         </p>
     </section>
 
