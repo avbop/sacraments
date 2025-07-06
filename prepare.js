@@ -76,12 +76,12 @@ function recipient(p) {
             }
             return false;
         case 'needsReception':
-            // Reception: if baptised non-Catholic, not already received, and at least 14.
+            // Reception: if baptised non-Catholic, not already received, and at least 7.
             const actualAscription = recipient('ascription');
             const age = recipient('age');
             if (!recipient('needsBaptism')) {
                 if (actualAscription != 'latin' && actualAscription != 'eastern') {
-                    if (isNaN(age) || age >= 14) {
+                    if (isNaN(age) || age >= 7) {
                         return true;
                     }
                 }

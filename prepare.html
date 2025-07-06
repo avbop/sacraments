@@ -393,9 +393,9 @@
 
         <div id="faculty.reception" data-rites="reception">
             <aside>
-                Canon 863 and OCIA. The reception into full communion of someone over the age of fourteen is reserved to the diocesan bishop.
+                <abbr title="Ordo initiationis christianae adultorum">OICA</abbr>, App., n. 8. Receiving someone into full communion is reserved to the diocesan bishop, although this faculty is often granted to parish priests.
                 <br/>
-                Canon 112 §1 3°. Children under the age of fourteen whose parents are received into full communion are generally also considered to have been received into full communion. Correspondingly, there is no provision for them to make a formal act of entrance into full communion of their own accord.
+                Canon 112 §1 3°. Children under the age of fourteen whose parents are received into full communion are generally considered to have also been received into full communion.
             </aside>
             <h3>Reception into full communion</h3>
             <div>
@@ -412,13 +412,11 @@
                         <input type="checkbox" id="faculty.reception.granted"/>
                         <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
                     </li>
-                    <li>
-                        <input type="checkbox" id="faculty.reception.death"/>
-                        <label for="faculty.reception.death"><span data-autofill="recipient.name"></span> is in danger of death</label>
-                    </li>
                 </ul>
             </div>
-            <p data-orders="deacon" data-rites="confirmation" class="warning">Because of the requirement that confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
+            <p data-orders="deacon" data-rites="confirmation" class="warning">
+                Because of the requirement that confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.
+            </p>
         </div>
 
         <div id="faculty.confirmation" data-rites="confirmation">
@@ -446,7 +444,7 @@
                         <input type="checkbox" id="faculty.confirmation.baptism"/>
                         <label for="faculty.confirmation.baptism">he is baptising <span data-autofill="recipient.name"></span>, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
-                    <li data-orders="presbyter" data-rites="reception">
+                    <li data-orders="presbyter" data-rites="reception" data-min-age="18">
                         <input type="checkbox" id="faculty.confirmation.reception"/>
                         <label for="faculty.confirmation.reception">he is receiving <span data-autofill="recipient.name"></span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
@@ -481,18 +479,33 @@
 
     <section id="summary">
         <aside data-min-age="7">
-            Canons 852 §1, 866, 883 2°, and 885 §2. Those over the age of seven who receive baptism or are received into full communion are also to be confirmed and to make their first Holy Communion in the same liturgy.
+            Canons 852 §1, 866, 883 2°, and 885 §2. Those over the age of seven who receive baptism are also to be confirmed and to make their first Holy Communion in the same liturgy.
+            Adults received into full communion are also to be confirmed and to make their first Holy Communion in the same liturgy.
+            By implication, children received into full communion may be confirmed in the same liturgy or at a later time.
+            <br/>
+            Canon 112 §1 3°. Children under the age of fourteen whose parents enter into full communion are generally held to automatically enter into full communion together with their parents.
+            <br/>
+            Canon 914. Any Catholic over the age of reason (about seven) should receive Holy Communion regularly.
         </aside>
         <button onclick="window.print();" class="printer screen-only">&#128424; Print</button>
         <h2>Summary</h2>
         <p>Based on the current information, the ceremony should proceed in this order:</p>
         <ol>
-            <li id="summary.reception" data-rites="reception">Reception into full communion</li>
+            <li id="summary.reception" data-rites="reception">Reception into full communion<span data-max-age="17"> (if pastorally appropriate)</span></li>
             <li id="summary.baptism" data-rites="baptism">Baptism</li>
-            <li id="summary.confirmation" data-rites="confirmation">Confirmation</li>
+            <li id="summary.confirmation" data-rites="confirmation">Confirmation<span data-max-age="17" (if pastorally appropriate)</span></li>
             <li id="summary.communion" data-rites="communion">First Holy Communion</li>
         </ol>
-        <p class="warning" data-orders="deacon" data-rites="confirmation">A deacon will not be able to be the celebrant of these rites.</p>
+        <p class="warning" data-orders="deacon" data-rites="confirmation">
+            A deacon will not be able to be the celebrant of these rites.
+        </p>
+        <p data-max-age="17" class="info" data-rites="reception">
+            The law is unclear about whether a child between the ages of seven and eighteen should be received into full communion through a formal rite.
+            If the child's parents have been received into full communion after the baptism of the child and before the child's fourteenth birthday, then it is commonly held that the child has been received into full communion by his or her parents' act.
+            If the child's parents are not Catholic, careful pastoral discernment is needed.
+            <br/>
+            The confirmation of a child received into full communion may be delayed to a later time, if appropriate.
+        </p>
     </section>
 
     <section id="nothing">
