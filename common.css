@@ -50,7 +50,7 @@
     src: url('fonts/SourceSerif4Variable-Italic.ttf.woff2') format('truetype');
 }
 
-body, input {
+body, input, .fake-input {
     font-family: Source Serif, Palatino, serif;
     color: var(--text);
 }
@@ -88,7 +88,7 @@ aside:hover {
     z-index: 1;
 }
 
-input {
+input, .fake-input {
     padding: 0.25em;
     margin: 0.25em;
     font-size: 100%;
@@ -218,6 +218,11 @@ button.printer {
     padding: 0.5em;
 }
 
+p.fake-input {
+    border: thin solid black;
+    text-decoration: none !important;
+}
+
 @media screen {
     .print-only {
         display: none;
@@ -234,7 +239,7 @@ button.printer {
         display: none;
     }
 
-    input[type=text] {
+    input[type=text], .fake-input {
         border: thin solid black;
         width: 95%;
         height: 2em;
