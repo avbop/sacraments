@@ -22,7 +22,6 @@
 </head>
 
 <body>
-    <div style="color: black; background-color: var(--warning); width: 95%; margin: 2em; padding: 23m; text-align: center; font-weight: bold; font-size: 125%; border: thick solid black;"><p>This project is incomplete and should be assumed to give inaccurate information.</p></div>
     <header>
         <noscript class="warning">This document will not work without JavaScript enabled.</noscript>
         <h1>Preparing for the Sacraments</h1>
@@ -53,8 +52,9 @@
             </p>
             <p>
                 <label for="recipient.birthdate">Recipient’s date of birth:</label>
-                <input type="date" id="recipient.birthdate"/>
+                <input class="screen-only" type="date" id="recipient.birthdate"/>
             </p>
+            <p class="fake-input print-only" data-autofill="recipient.birthdate"></p>
             <p>
                 <label for="recipient.birthplace">Recipient’s place of birth:</label>
                 <input type="text" id="recipient.birthplace"/>
@@ -128,19 +128,12 @@
             <h3>Baptism information</h3>
             <p>
                 <label for="recipient.priorbaptism.date">Recipient’s date of baptism:</label>
-                <input type="date" id="recipient.priorbaptism.date"/>
+                <input type="date" class="screen-only" id="recipient.priorbaptism.date"/>
             </p>
+            <p class="fake-input print-only" data-autofill="recipient.priorbaptism.date"></p>
             <p>
                 <label for="recipient.priorbaptism.place">Name of the building and city where baptism was received:</label>
                 <input type="text" id="recipient.priorbaptism.place"/>
-            </p>
-            <p>
-                <label for="recipient.priorbaptism.minister">Full name and title of the person who performed the baptism:</label>
-                <input type="text" id="recipient.priorbaptism.minister" />
-            </p>
-            <p>
-                <label for="recipient.priorbaptism.sponsors">Full names of the sponsors (godparents):</label>
-                <input type="text" id="recipient.priorbaptism.sponsors"/>
             </p>
             <p>
                 <label for="recipient.priorbaptism.church">Church or denomination into which the recipient was baptised:</label><br/>
@@ -171,8 +164,9 @@
             <h3>Information about reception into full communion</h3>
             <p>
                 <label for="recipient.priorfullcommunion.date">Date recipient was received into full communion:</label>
-                <input type="date" id="recipient.priorfullcommunion.date"/>
+                <input type="date" class="screen-only" id="recipient.priorfullcommunion.date"/>
             </p>
+            <p class="fake-input print-only" data-autofill="recipient.priorfullcommunion.date"></p>
             <p>
                 <label for="recipient.priorfullcommunion.place">Name and city of the Catholic parish where this person was received into full communion:</label>
                 <input type="text" id="recipient.priorfullcommunion.place"/>
@@ -187,8 +181,9 @@
             <h3>Confirmation information</h3>
             <p>
                 <label for="recipient.priorconfirmation.date">Recipient’s date of confirmation:</label>
-                <input type="date" id="recipient.priorconfirmation.date"/>
+                <input type="date" class="screen-only" id="recipient.priorconfirmation.date"/>
             </p>
+            <p class="fake-input print-only" data-autofill="recipient.priorconfirmation.date"></p>
             <p>
                 <label for="recipient.priorconfirmation.minister">Full name and title of the priest or bishop who administered the confirmation:</label>
                 <input type="text" id="recipient.priorconfirmation.minister" />
@@ -214,8 +209,9 @@
             </aside>
             <p>
                 <label for="ceremony.date">Date of reception of sacraments:</label>
-                <input type="date" min="1983-11-27" id="ceremony.date"/>
+                <input type="date" class="screen-only" min="1983-11-27" id="ceremony.date"/>
             </p>
+            <p class="fake-input print-only" data-autofill="ceremony.date"></p>
             <p>
                 <label for="ceremony.place">Name and city of place of reception of sacraments:</label>
                 <input type="text" id="ceremony.place" />
@@ -256,6 +252,7 @@
         <div id="ceremony.sponsors">
             <aside>
                 Canons 872–874 and 892–893.
+                <a href="https://www.christianunity.va/content/unitacristiani/en/documenti/testo-in-inglese.html">Directory for the Application of Principles and Norms on Ecumenism</a>, 98b.
             </aside>
             <h3>Sponsors (godparents)</h3>
             <div id="ceremony.sponsors.firstP">
@@ -272,20 +269,20 @@
                     <br/>
                     This second sponsor will serve as a:
                     <select id="ceremony.sponsors.secondtype" class="screen-only">
-                        <option value="sponsor">Catholic sponsor</option>
+                        <option value="sponsor">Catholic (or Eastern non-Catholic) sponsor</option>
                         <option value="witness">Christian witness</option>
                     </select>
                     <ul class="blanklist print-only">
                         <li>
                             <input type="radio" name="ceremony.sponsors.print"/>
-                            <label>Catholic sponsor</label>
+                            <label>Catholic (or Eastern non-Catholic) sponsor</label>
                         </li>
                         <li>
                             <input type="radio" name="ceremony.sponsors.print"/>
                             <label>Christian witness</label>
                         </li>
                     </ul>
-                <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. There may not be more than two sponsors for baptism.</p>
+                <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. An Eastern non-Catholic Christian may serve as a sponsor, rather than Christian witness, together with a Catholic sponsor. There may not be more than two sponsors for baptism.</p>
             </div>
         </div>
 
@@ -392,9 +389,10 @@
 
         <div id="faculty.reception" data-rites="reception">
             <aside>
-                Canon 863 and OCIA. The reception into full communion of someone over the age of fourteen is reserved to the diocesan bishop.
+                <abbr title="Ordo initiationis christianae adultorum">OICA</abbr>, App., n. 8. Receiving someone into full communion is reserved to the diocesan bishop.
+                In practice, this faculty is often granted to parish priests.
                 <br/>
-                Canon 112 §1 3°. Children under the age of fourteen whose parents are received into full communion are generally also considered to have been received into full communion. Correspondingly, there is no provision for them to make a formal act of entrance into full communion of their own accord.
+                Canon 112 §1 3°. Children under the age of fourteen whose parents are received into full communion are generally considered to have also been received into full communion.
             </aside>
             <h3>Reception into full communion</h3>
             <div>
@@ -411,19 +409,17 @@
                         <input type="checkbox" id="faculty.reception.granted"/>
                         <label for="faculty.reception.granted">the faculty has been explicitly granted to him by the diocesan bishop</label>
                     </li>
-                    <li>
-                        <input type="checkbox" id="faculty.reception.death"/>
-                        <label for="faculty.reception.death"><span data-autofill="recipient.name"></span> is in danger of death</label>
-                    </li>
                 </ul>
             </div>
-            <p data-orders="deacon" data-rites="confirmation" class="warning">Because of the requirement that confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.</p>
+            <p data-orders="deacon" data-rites="confirmation" class="warning">
+                Because of the requirement that confirmation immediately follow reception into full communion, a deacon cannot receive <span data-autofill="recipient.name"></span> into the Church.
+            </p>
         </div>
 
         <div id="faculty.confirmation" data-rites="confirmation">
             <h3>Confirmation</h3>
             <div data-orders="presbyter bishop">
-                <aside>Canons 882–888. The faculty mentioned in canon 884 §2 is omitted because it would normally only occur in the context of the ceremony itself, not at the planning stage with which this form is intended to assist.</aside>
+                <aside>Canons 852, 863, 882–888. The faculty mentioned in canon 884 §2 is omitted because it would normally only occur in the context of the ceremony itself, not at the planning stage with which this form is intended to assist.</aside>
                 <span data-autofill="minister.name"></span>
                 can validly confirm
                 <span data-autofill="recipient.name"></span>
@@ -437,7 +433,7 @@
                         <input type="checkbox" id="faculty.confirmation.mandate"/>
                         <label for="faculty.confirmation.mandate">the diocesan bishop has granted him the faculty</label>
                     </li>
-                    <li data-orders="presbyter" data-rites="baptism">
+                    <li data-orders="presbyter" data-rites="baptism" data-max-age="13">
                         <input type="checkbox" id="faculty.confirmation.parochusbaptism"/>
                         <label for="faculty.confirmation.parochusbaptism">he is the pastor/parish priest (<span class="latin">parochus</span>) and is legitimately baptising <span data-autofill="recipient.name"></span> in the same ceremony</label>
                     </li>
@@ -445,7 +441,7 @@
                         <input type="checkbox" id="faculty.confirmation.baptism"/>
                         <label for="faculty.confirmation.baptism">he is baptising <span data-autofill="recipient.name"></span>, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
-                    <li data-orders="presbyter" data-rites="reception">
+                    <li data-orders="presbyter" data-rites="reception" data-min-age="18">
                         <input type="checkbox" id="faculty.confirmation.reception"/>
                         <label for="faculty.confirmation.reception">he is receiving <span data-autofill="recipient.name"></span> into full communion, with a mandate from the diocesan bishop, in the same ceremony</label>
                     </li>
@@ -480,18 +476,39 @@
 
     <section id="summary">
         <aside data-min-age="7">
-            Canons 852 §1, 866, 883 2°, and 885 §2. Those over the age of seven who receive baptism or are received into full communion are also to be confirmed and to make their first Holy Communion in the same liturgy.
+            Canons 852 §1, 866, 883 2°, and 885 §2. Those over the age of seven who receive baptism are also to be confirmed and to make their first Holy Communion in the same liturgy.
+            Adults received into full communion are also to be confirmed and to make their first Holy Communion in the same liturgy.
+            Canon 852 only applies its definition of adult to those who receive baptism, so children received into full communion may be confirmed in the same liturgy or at a later time.
+            <br/>
+            Canon 112 §1 3°. Children under the age of fourteen whose parents enter into full communion are generally held to automatically enter into full communion together with their parents.
+            <br/>
+            Canon 914. Any Catholic over the age of reason (about seven) should receive Holy Communion regularly.
         </aside>
         <button onclick="window.print();" class="printer screen-only">&#128424; Print</button>
         <h2>Summary</h2>
         <p>Based on the current information, the ceremony should proceed in this order:</p>
         <ol>
-            <li id="summary.reception" data-rites="reception">Reception into full communion</li>
+            <li id="summary.reception" data-rites="reception">Reception into full communion<span data-max-age="17"> (if pastorally appropriate)</span></li>
             <li id="summary.baptism" data-rites="baptism">Baptism</li>
-            <li id="summary.confirmation" data-rites="confirmation">Confirmation</li>
+            <li id="summary.confirmation" data-rites="confirmation">Confirmation<span data-max-age="17" data-rites="reception"> (if pastorally appropriate)</span></li>
             <li id="summary.communion" data-rites="communion">First Holy Communion</li>
         </ol>
-        <p class="warning" data-orders="deacon" data-rites="confirmation">A deacon will not be able to be the celebrant of these rites.</p>
+        <p class="warning" data-orders="deacon" data-rites="confirmation">
+            A deacon will not be able to be the celebrant of these rites.
+        </p>
+        <p data-max-age="17" class="info" data-rites="reception">
+            The law is unclear about whether a child between the ages of seven and eighteen should be received into full communion through a formal rite.
+            If the child's parents have been received into full communion after the baptism of the child and before the child's fourteenth birthday, then it is commonly held that the child has been received into full communion by his or her parents' act.
+            If the child's parents are not Catholic, careful pastoral discernment is needed.
+            <br/>
+            <span data-max-age="17" data-rites="confirmation">
+                The confirmation of a child received into full communion may be delayed to a later time, if appropriate.
+            </span>
+        </p>
+        <p class="info screen-only">
+            For privacy reasons, this form will not retain any information that is entered into it once this window is closed.
+            Please print or otherwise save this page to keep the information entered into it.
+        </p>
     </section>
 
     <section id="nothing">
@@ -501,7 +518,7 @@
 
     <section class="instructions">
         After administering the sacraments, return to
-        <a href="register.html" class="print-only">avbop.github.io/sacraments</a>
+        <a href="register.html" class="print-only">canonlaw.app</a>
         <a href="register.html" class="screen-only">this site</a>
         to arrange this information for the relevant sacramental registers.
     </section>
@@ -511,7 +528,6 @@
         <p>Feedback welcomed via <a href="https://github.com/avbop/sacraments">Github</a> or <a id="emailaddress"></a>.</p>
         <p>Image © 2012 <a href="https://www.flickr.com/photos/paullew/8185251426/in/album-72157594314281446">Lawrence Lew, O.P.</a> (<a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a>).
     </footer>
-    <div style="color: black; background-color: var(--warning); width: 95%; margin: 2em; padding: 23m; text-align: center; font-weight: bold; font-size: 125%; border: thick solid black;"><p>This project is incomplete and should be assumed to give inaccurate information.</p></div>
 </body>
 
 </html>

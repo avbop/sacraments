@@ -13,6 +13,12 @@ function recipient(p) {
             }
         case 'birthdate':
             return new Date(document.getElementById('recipient.birthdate').value);
+        case 'priorbaptism.date':
+            return new Date(document.getElementById('recipient.priorbaptism.date').value);
+        case 'priorconfirmation.date':
+            return new Date(document.getElementById('recipient.priorconfirmation.date').value);
+        case 'priorfullcommunion.date':
+            return new Date(document.getElementById('recipient.priorfullcommunion.date').value);
         case 'adopted':
             return document.getElementById('recipient.adopted').value == 'Yes';
         case 'baptised':
@@ -207,7 +213,7 @@ function updateForm() {
     // This function runs every time the form is modified.
     // Run through the entire form and show/hide/update as needed.
 
-    // This must precede showHideRitesAndOrders: it can change whether someone has received confirmation or Holy Communion.
+    // This must precede showHideByData: it can change whether someone has received confirmation or Holy Communion.
     showHideSacraments();
 
     const baptism = ceremony('baptised');
@@ -215,7 +221,7 @@ function updateForm() {
     const confirmation = ceremony('confirmed');
     const communion = ceremony('communioned');
     const grade = minister('grade');
-    showHideRitesAndOrders(baptism, reception, confirmation, communion, grade);
+    showHideByData(baptism, reception, confirmation, communion, grade);
 
     showHideConfirmationNotification();
 
@@ -224,8 +230,6 @@ function updateForm() {
     showHideAdoption();
 
     showHideEastern();
-
-    showHideByAge();
 
     autofill();
 }

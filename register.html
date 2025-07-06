@@ -22,7 +22,6 @@
 </head>
 
 <body>
-    <div style="color: black; background-color: var(--warning); width: 95%; margin: 2em; padding: 23m; text-align: center; font-weight: bold; font-size: 125%; border: thick solid black;"><p>This project is incomplete and should be assumed to give inaccurate information.</p></div>
     <header>
         <noscript class="warning">This document will not work without JavaScript enabled.</noscript>
         <h1>Recording the Sacraments</h1>
@@ -100,6 +99,7 @@
         <div id="ceremony.sponsors" data-rites="baptism confirmation">
             <aside>
                 Canons 872–874 and 892–893.
+                <a href="https://www.christianunity.va/content/unitacristiani/en/documenti/testo-in-inglese.html">Directory for the Application of Principles and Norms on Ecumenism</a>, 98b.
             </aside>
             <h3>Sponsors (godparents)</h3>
             <div id="ceremony.sponsors.firstP">
@@ -115,10 +115,10 @@
                     <br/>
                     This second sponsor served as a:
                     <select id="ceremony.sponsors.secondtype">
-                        <option value="sponsor">Catholic sponsor</option>
+                        <option value="sponsor">Catholic (or Eastern non-Catholic) sponsor</option>
                         <option value="witness">Christian witness</option>
                     </select>
-                <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. There may not be more than two sponsors for baptism.</p>
+                <p class="note">The second sponsor (godparent) is optional. If he or she is Catholic, he or she must have received all three sacraments of initiation and be actively living the faith. If he or she is a baptised Christian, but not a Catholic, he or she may serve as a Christian witness. An Eastern non-Catholic Christian may serve as a sponsor, rather than Christian witness, together with a Catholic sponsor. There may not be more than two sponsors for baptism.</p>
             </div>
         </div>
 
@@ -274,14 +274,6 @@
                 <label for="recipient.priorbaptism.place">Name of the building and city where baptism was received:</label>
                 <input type="text" id="recipient.priorbaptism.place"/>
             </p>
-            <p>
-                <label for="recipient.priorbaptism.minister">Full name and title of the person who performed the baptism:</label>
-                <input type="text" id="recipient.priorbaptism.minister" />
-            </p>
-            <p>
-                <label for="recipient.priorbaptism.sponsors">Full names of the sponsors (godparents):</label>
-                <input type="text" id="recipient.priorbaptism.sponsors"/>
-            </p>
         </div>
 
         <div id="recipient.priorfullcommunioninfo">
@@ -382,20 +374,22 @@
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.reception" data-rites="reception">
-            <aside>Canons 535 §2 and 877 (by analogy to the baptismal register); see also local OCIA norms.</aside>
+            <aside>
+                <abbr title="Ordo initiationis christianae adultorum">OICA</abbr>, App., n. 13, explicitly requires only the person's name, date of baptism, and place of baptism.
+                The requirement to record information regarding the act of reception into full communion is implicit.
+                Canon 535 §2 requires recording of ascription to a Church <span class="latin">sui iuris</span>, confirmation, marriage, and other changes to a person's canonical status.
+                <br/>
+                By analogy to the baptismal register, it seems that additional information to identify the person may be useful (canons 535 §2 and 877).
+                For example, particular law for the United States of America requires additionally: date of birth; place of birth; name of the minister; names of the parents; and names of the sponsors (National Statutes for the Christian Initiation of Adults, n. 16 §2).
+            </aside>
             <h3>Register of reception into full communion</h3>
             <p class="note">
-            Particular law determines where this information is to be kept.
-            This is usually either a dedicated register for receptions into full communion or the baptismal register.
-            There, at least the following information should be recorded:
+                Particular law determines where this information is to be kept.
+                This is usually either a dedicated register for receptions into full communion or the baptismal register.
+                There, at least the following information should be recorded:
             </p>
             <ul>
                 <li>Person received into full communion: <span data-autofill="recipient.name"></span></li>
-                <li>Person’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
-                <li>Person’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
-                <li>Person’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
-                <li>Minister of baptism: <span data-autofill="recipient.priorbaptism.minister"></span></li>
-                <li>Names of the baptismal sponsors: <span data-autofill="recipient.priorbaptism.sponsors"></span></li>
                 <li>Place of baptism: <span data-autofill="recipient.priorbaptism.place"></span></li>
                 <li>Date of baptism: <span data-autofill="recipient.priorbaptism.date"></span></li>
                 <li id="register.reception.confirmedandreceived">
@@ -414,6 +408,14 @@
                     by <span data-autofill="recipient.priorconfirmation.minister"></span>,
                     with <span data-autofill="recipient.priorconfirmation.sponsor"></span> as sponsor.</span>
                 </li>
+            </ul>
+            <p class="note">
+                Recording the following additional information is also recommended, and may be required in some places:
+            </p>
+            <ul>
+                <li>Person’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Person’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Person’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
             </ul>
             <p class="note" id="register.reception.marriagenote" data-min-age="14">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
             <p class="note">If the register has an index, remember to update it.</p>
@@ -524,6 +526,10 @@
             <h3>First Holy Communion register</h3>
             <p class="note">Particular law determines how and whether to record a person’s first reception of Holy Communion.</p>
         </div>
+        <p class="info screen-only">
+            For privacy reasons, this form will not retain any information that is entered into it once this window is closed.
+            Please print or otherwise save this page to keep the information entered into it.
+        </p>
     </section>
     </form>
     </main>
@@ -532,7 +538,6 @@
         <p>Feedback welcomed via <a href="https://github.com/avbop/sacraments">Github</a> or <a id="emailaddress"></a>.</p>
         <p>Image © 2012 <a href="https://www.flickr.com/photos/paullew/8185251426/in/album-72157594314281446">Lawrence Lew, O.P.</a> (<a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a>).
     </footer>
-    <div style="color: black; background-color: var(--warning); width: 95%; margin: 2em; padding: 23m; text-align: center; font-weight: bold; font-size: 125%; border: thick solid black;"><p>This project is incomplete and should be assumed to give inaccurate information.</p></div>
 </body>
 
 </html>
