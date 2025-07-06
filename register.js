@@ -13,6 +13,12 @@ function recipient(p) {
             }
         case 'birthdate':
             return new Date(document.getElementById('recipient.birthdate').value);
+        case 'priorbaptism.date':
+            return new Date(document.getElementById('recipient.priorbaptism.date').value);
+        case 'priorconfirmation.date':
+            return new Date(document.getElementById('recipient.priorconfirmation.date').value);
+        case 'priorfullcommunion.date':
+            return new Date(document.getElementById('recipient.priorfullcommunion.date').value);
         case 'adopted':
             return document.getElementById('recipient.adopted').value == 'Yes';
         case 'baptised':
