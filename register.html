@@ -275,14 +275,6 @@
                 <label for="recipient.priorbaptism.place">Name of the building and city where baptism was received:</label>
                 <input type="text" id="recipient.priorbaptism.place"/>
             </p>
-            <p>
-                <label for="recipient.priorbaptism.minister">Full name and title of the person who performed the baptism:</label>
-                <input type="text" id="recipient.priorbaptism.minister" />
-            </p>
-            <p>
-                <label for="recipient.priorbaptism.sponsors">Full names of the sponsors (godparents):</label>
-                <input type="text" id="recipient.priorbaptism.sponsors"/>
-            </p>
         </div>
 
         <div id="recipient.priorfullcommunioninfo">
@@ -383,20 +375,22 @@
             <p class="note">If the register has an index, remember to update it.</p>
         </div>
         <div id="register.reception" data-rites="reception">
-            <aside>Canons 535 §2 and 877 (by analogy to the baptismal register); see also local OCIA norms.</aside>
+            <aside>
+                <abbr title="Ordo initiationis christianae adultorum">OICA</abbr>, App., n. 13, explicitly requires only the person's name, date of baptism, and place of baptism.
+                The requirement to record information regarding the act of reception into full communion is implicit.
+                Canon 535 §2 requires recording of ascription to a Church <span class="latin">sui iuris</span>, confirmation, marriage, and other changes to a person's canonical status.
+                <br/>
+                By analogy to the baptismal register, it seems that additional information to identify the person may be useful (canons 535 §2 and 877).
+                For example, particular law for the United States of America requires additionally: date of birth; place of birth; name of the minister; names of the parents; and names of the sponsors (National Statutes for the Christian Initiation of Adults, n. 16 §2).
+            </aside>
             <h3>Register of reception into full communion</h3>
             <p class="note">
-            Particular law determines where this information is to be kept.
-            This is usually either a dedicated register for receptions into full communion or the baptismal register.
-            There, at least the following information should be recorded:
+                Particular law determines where this information is to be kept.
+                This is usually either a dedicated register for receptions into full communion or the baptismal register.
+                There, at least the following information should be recorded:
             </p>
             <ul>
                 <li>Person received into full communion: <span data-autofill="recipient.name"></span></li>
-                <li>Person’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
-                <li>Person’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
-                <li>Person’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
-                <li>Minister of baptism: <span data-autofill="recipient.priorbaptism.minister"></span></li>
-                <li>Names of the baptismal sponsors: <span data-autofill="recipient.priorbaptism.sponsors"></span></li>
                 <li>Place of baptism: <span data-autofill="recipient.priorbaptism.place"></span></li>
                 <li>Date of baptism: <span data-autofill="recipient.priorbaptism.date"></span></li>
                 <li id="register.reception.confirmedandreceived">
@@ -415,6 +409,14 @@
                     by <span data-autofill="recipient.priorconfirmation.minister"></span>,
                     with <span data-autofill="recipient.priorconfirmation.sponsor"></span> as sponsor.</span>
                 </li>
+            </ul>
+            <p class="note">
+                Recording the following additional information is also recommended, and may be required in some places:
+            </p>
+            <ul>
+                <li>Person’s date of birth: <span data-autofill="recipient.birthdate"></span></li>
+                <li>Person’s place of birth: <span data-autofill="recipient.birthplace"></span></li>
+                <li>Person’s parents: <span data-autofill="recipient.parents.father"></span>, <span data-autofill="recipient.parents.mother"></span></li>
             </ul>
             <p class="note" id="register.reception.marriagenote" data-min-age="14">If <span data-autofill="recipient.name"></span> is validly married, the marriage should be recorded as an additional annotation.</p>
             <p class="note">If the register has an index, remember to update it.</p>
