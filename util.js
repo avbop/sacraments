@@ -82,14 +82,20 @@ function minister(p) {
     }
 }
 
-function showHideRitesAndOrders(baptism, reception, confirmation, communion, grade) {
-    // Show/hide sections that require specific rites or grades of holy orders.
+function showHideByData(baptism, reception, confirmation, communion, grade) {
+    // Show/hide sections according to the various data- custom attributes.
     // data-orders is a space-separated list of deacon, presbyter, bishop. Any of these can match (OR).
     // data-rites is a space-separated list of baptism, reception, confirmation, communion. Any of these can match (OR).
-    // If both are present, both must match (AND).
-    for (let e of document.querySelectorAll('[data-rites],[data-orders]')) {
+    // data-min-age is the minimum age of the recipient, inclusive (so data-min-age="18" separates out adults). If age is null, this evaluates to true.
+    // data-max-age is the maximum age of the recipient, inclusive (so data-max-age="6" separates out infants). If age is null, this evaluates to true.
+    // If multiple data-X attributes are present, all must match (AND).
+    const age = recipient('age');
+    for (let e of document.querySelectorAll('[data-rites],[data-orders],[data-min-age],[data-max-age]')) {
+        // Default to not showing the element.
         let showR = false;
         let showO = false;
+        let showA = false;
+        // Does the element meet the requirements set for rites?
         if (e.hasAttribute('data-rites')) {
             const rites = e.getAttribute('data-rites').split(' ');
             if (baptism && rites.includes('baptism')) {
@@ -107,13 +113,33 @@ function showHideRitesAndOrders(baptism, reception, confirmation, communion, gra
         } else {
             showR = true;
         }
+        // Does the element meet the requirements set for orders?
         if (e.hasAttribute('data-orders')) {
             const orders = e.getAttribute('data-orders').split(' ');
             showO = orders.includes(grade);
         } else {
             showO = true;
         }
-        (showR && showO) ? show(e) : hide(e);
+        // Does the element meet the requirements set for age?
+        let maxage = e.getAttribute('data-max-age');
+        let minage = e.getAttribute('data-min-age');
+        if (maxage == null) {
+            maxage = Infinity;
+        }
+        if (minage == null) {
+            minage = -1;
+        }
+        if (age != NaN && age >= 0) {
+            // If age is sane, decide whether to hide or show.
+            if (age <= maxage && age >= minage) {
+                showA = true;
+            }
+        } else {
+            // If age is null or negative, show everything.
+            showA = true;
+        }
+        // Only show if all requirements are met.
+        (showR && showO && showA) ? show(e) : hide(e);
     }
 }
 
@@ -160,36 +186,6 @@ function showHideAdoption() {
     } else {
         for (let e of elems) {
             hide(e);
-        }
-    }
-}
-
-function showHideByAge() {
-    // Show or hide elements based on the age stored in data-max-age and data-min-age.
-    // If age is null, show everything.
-    // The ages are inclusive: eg data-max-age=13 will show for 13 and not show for 14.
-    const age = recipient('age');
-    if (age != NaN && age >= 0) {
-        // If age is sane, decide whether to hide or show.
-        for (let e of document.querySelectorAll('[data-max-age],[data-min-age]')) {
-            let maxage = e.getAttribute('data-max-age');
-            let minage = e.getAttribute('data-min-age');
-            if (maxage == null) {
-                maxage = Infinity;
-            }
-            if (minage == null) {
-                minage = -1;
-            }
-            if (age <= maxage && age >= minage) {
-                show(e);
-            } else {
-                hide(e);
-            }
-        }
-    } else {
-        // If age is null or negative, show everything.
-        for (let e of document.querySelectorAll('[data-max-age],[data-min-age]')) {
-            show(e);
         }
     }
 }

@@ -234,7 +234,7 @@ function updateForm() {
     // This function runs every time the form is modified.
     // Run through the entire form and show/hide/update as needed.
 
-    // This must precede showHideRitesAndOrders: it can change whether someone has received confirmation or Holy Communion.
+    // This must precede showHideByData: it can change whether someone has received confirmation or Holy Communion.
     showHidePriorSacraments();
 
     const needsBaptism = recipient('needsBaptism');
@@ -243,9 +243,9 @@ function updateForm() {
     const needsCommunion = recipient('needsCommunion');
     const grade = minister('grade');
     // This must precede showHideSacraments: this delineates what *can* be done, whereas showHideSacraments calculates what *will* be done.
-    showHideRitesAndOrders(needsBaptism, needsReception, needsConfirmation, needsCommunion, grade);
+    showHideByData(needsBaptism, needsReception, needsConfirmation, needsCommunion, grade);
 
-    // This must follow showHideRitesAndOrders(): see comment above.
+    // This must follow showHideByData(): see comment above.
     showHideSacraments();
 
     showHideAscription();
@@ -255,8 +255,6 @@ function updateForm() {
     showHideAdoption();
 
     showHideEastern();
-
-    showHideByAge();
 
     autofill();
 }
