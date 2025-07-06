@@ -150,7 +150,6 @@ function autofill() {
         let val = '[error]';
         const data = e.getAttribute('data-autofill');
         const pieces = data.split('.');
-        console.log(data, pieces.join('.'));
         val = window[pieces.shift()](pieces.join('.'));
         if (val instanceof Date) {
             const fmt = {
