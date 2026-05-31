@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sacraments",
+  "compatibility_date": "2026-05-31",
+  "observability": {
+    "enabled": false
+  },
+  "assets": {
+    "directory": "."
+  },
+  "send_metrics": false,
+  "minify": true
+}
