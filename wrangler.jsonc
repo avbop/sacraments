@@ -8,5 +8,6 @@
   "assets": {
     "directory": "."
   },
-  "send_metrics": false
+  "send_metrics": false,
+  "minify": true
 }
